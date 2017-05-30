@@ -35,7 +35,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         mMantenimiento = new javax.swing.JMenu();
         miClientes = new javax.swing.JMenuItem();
         miRestaurantes = new javax.swing.JMenuItem();
+        miProductos = new javax.swing.JMenuItem();
         mProcesos = new javax.swing.JMenu();
+        miOrden = new javax.swing.JMenuItem();
         mAyuda = new javax.swing.JMenu();
         miAcercaDe = new javax.swing.JMenuItem();
 
@@ -61,9 +63,16 @@ public class frmPrincipal extends javax.swing.JFrame {
         miRestaurantes.setText("Restaurantes");
         mMantenimiento.add(miRestaurantes);
 
+        miProductos.setText("Productos");
+        mMantenimiento.add(miProductos);
+
         jMenuBar1.add(mMantenimiento);
 
         mProcesos.setText("Procesos");
+
+        miOrden.setText("Orden");
+        mProcesos.add(miOrden);
+
         jMenuBar1.add(mProcesos);
 
         mAyuda.setText("Ayuda");
@@ -83,7 +92,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
@@ -104,6 +113,8 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu mProcesos;
     private javax.swing.JMenuItem miAcercaDe;
     private javax.swing.JMenuItem miClientes;
+    private javax.swing.JMenuItem miOrden;
+    private javax.swing.JMenuItem miProductos;
     private javax.swing.JMenuItem miRestaurantes;
     private javax.swing.JMenuItem miSalir;
     // End of variables declaration//GEN-END:variables
