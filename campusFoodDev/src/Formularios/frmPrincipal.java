@@ -46,7 +46,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Proyecto Java");
+        setTitle("Proyecto Java - CampusFood");
+        setPreferredSize(new java.awt.Dimension(640, 320));
 
         mArchivo.setText("Archivo");
 
@@ -58,6 +59,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         mMantenimiento.setText("Mantenimiento");
 
         miClientes.setText("Clientes");
+        miClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miClientesActionPerformed(evt);
+            }
+        });
         mMantenimiento.add(miClientes);
 
         miRestaurantes.setText("Restaurantes");
@@ -78,6 +84,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         mAyuda.setText("Ayuda");
 
         miAcercaDe.setText("Acerca de...");
+        miAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAcercaDeActionPerformed(evt);
+            }
+        });
         mAyuda.add(miAcercaDe);
 
         jMenuBar1.add(mAyuda);
@@ -97,6 +108,20 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void miClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miClientesActionPerformed
+        // TODO add your handling code here:
+        
+        frmClientes mantCli= new frmClientes();
+        mantCli.setVisible(true);
+    }//GEN-LAST:event_miClientesActionPerformed
+
+    private void miAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAcercaDeActionPerformed
+        // TODO add your handling code here:
+        
+        frmAcercaDe info = new frmAcercaDe();
+        info.setVisible(true);
+    }//GEN-LAST:event_miAcercaDeActionPerformed
 
     /**
      * @param args the command line arguments

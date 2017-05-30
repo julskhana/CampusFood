@@ -24,13 +24,15 @@ public class frmAcercaDe extends javax.swing.JFrame {
     public frmAcercaDe() {
         initComponents();
         
+        
         //Excepcion para cargar imagen
         try{
             BufferedImage espolicon = ImageIO.read(new File("src/icons/espol_icon.png"));
             logoEspol.setIcon(new ImageIcon(espolicon));
-        }catch (Exception e){
-            
+        }catch (Exception e){    
         }
+        
+        
     }
 
     /**
@@ -108,9 +110,10 @@ public class frmAcercaDe extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(224, 224, 224)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btSalirAD, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(215, 215, 215)
+                        .addComponent(btSalirAD, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

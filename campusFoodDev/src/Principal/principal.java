@@ -5,6 +5,8 @@
  */
 package Principal;
 
+import Formularios.frmPrincipal;
+
 /**
  *
  * @author julian
@@ -14,5 +16,8 @@ public class principal {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Sistema de gestion de almuerzos - Campus Espol\n");
+        
+        frmPrincipal frmP = new frmPrincipal();
+        frmP.setVisible(true);
     }
 }
