@@ -60,7 +60,7 @@ public class frmClientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbClientes);
 
-        cbConsultaClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todo", "Id", "Cedula", "Nombres", "Apellidos", " " }));
+        cbConsultaClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todo", "Id", "Cedula", "Nombres", "Apellidos" }));
 
         btConsultar.setText("Consultar");
 
