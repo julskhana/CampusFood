@@ -5,6 +5,8 @@
  */
 package Formularios;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author julian
@@ -52,6 +54,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         mArchivo.setText("Archivo");
 
         miSalir.setText("Salir");
+        miSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSalirActionPerformed(evt);
+            }
+        });
         mArchivo.add(miSalir);
 
         jMenuBar1.add(mArchivo);
@@ -77,6 +84,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         mProcesos.setText("Procesos");
 
         miOrden.setText("Orden");
+        miOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miOrdenActionPerformed(evt);
+            }
+        });
         mProcesos.add(miOrden);
 
         jMenuBar1.add(mProcesos);
@@ -122,6 +134,21 @@ public class frmPrincipal extends javax.swing.JFrame {
         frmAcercaDe info = new frmAcercaDe();
         info.setVisible(true);
     }//GEN-LAST:event_miAcercaDeActionPerformed
+
+    private void miSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSalirActionPerformed
+        // TODO add your handling code here:
+        //SALIR
+        int opt1= JOptionPane.showConfirmDialog(this,"¿Esta Seguro de que desea Salir?","Salir",JOptionPane.YES_NO_OPTION);
+        if(opt1==0){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_miSalirActionPerformed
+
+    private void miOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miOrdenActionPerformed
+        // TODO add your handling code here:
+        frmOrden genOrden = new frmOrden();
+        genOrden.setVisible(true);
+    }//GEN-LAST:event_miOrdenActionPerformed
 
     /**
      * @param args the command line arguments

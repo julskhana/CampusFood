@@ -65,6 +65,7 @@ public class frmClientes extends javax.swing.JFrame {
         btConsultar.setText("Consultar");
 
         btNuevoCliente.setText("Nuevo");
+        btNuevoCliente.setPreferredSize(new java.awt.Dimension(75, 30));
         btNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNuevoClienteActionPerformed(evt);
@@ -72,6 +73,7 @@ public class frmClientes extends javax.swing.JFrame {
         });
 
         btEliminar.setText("Eliminar");
+        btEliminar.setPreferredSize(new java.awt.Dimension(75, 30));
         btEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEliminarActionPerformed(evt);
@@ -79,6 +81,7 @@ public class frmClientes extends javax.swing.JFrame {
         });
 
         btEditar.setText("Editar");
+        btEditar.setPreferredSize(new java.awt.Dimension(75, 30));
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
@@ -102,9 +105,9 @@ public class frmClientes extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(btEditar)
+                .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btEliminar)
+                .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(128, 128, 128)
                 .addComponent(btNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66))
@@ -121,10 +124,10 @@ public class frmClientes extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btNuevoCliente)
-                    .addComponent(btEliminar)
-                    .addComponent(btEditar))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(btNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
