@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2017 a las 23:24:52
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Servidor: localhost
+-- Tiempo de generación: 06-06-2017 a las 23:55:39
+-- Versión del servidor: 10.1.19-MariaDB
+-- Versión de PHP: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `campusfood_db3`
+-- Base de datos: `campusFoodDB3`
 --
 
 -- --------------------------------------------------------
@@ -112,7 +112,7 @@ CREATE TABLE `restaurante` (
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `clave` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
-  `rol` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
+  `rol` char(1) COLLATE latin1_spanish_ci NOT NULL,
   `estado` char(1) COLLATE latin1_spanish_ci NOT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
