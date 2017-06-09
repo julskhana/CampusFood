@@ -9,12 +9,12 @@ package Formularios;
  *
  * @author julian
  */
-public class frmIngresoClientes extends javax.swing.JFrame {
+public class frmEdicionClientes2 extends javax.swing.JFrame {
 
     /**
      * Creates new form frmIngresoClientes
      */
-    public frmIngresoClientes() {
+    public frmEdicionClientes2() {
         initComponents();
     }
 
@@ -39,7 +39,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
         cbTipo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         tfSaldo = new javax.swing.JTextField();
-        btIngresar = new javax.swing.JButton();
+        btEditar = new javax.swing.JButton();
         btLimpiar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         tfDireccion = new javax.swing.JTextField();
@@ -53,9 +53,11 @@ public class frmIngresoClientes extends javax.swing.JFrame {
         tfEdad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Ingreso de Clientes");
+        setTitle("Edicion de Clientes");
 
         jLabel1.setText("Cedula:");
+
+        tfCedula.setEditable(false);
 
         jLabel2.setText("Nombres:");
 
@@ -77,8 +79,8 @@ public class frmIngresoClientes extends javax.swing.JFrame {
             }
         });
 
-        btIngresar.setText("Ingresar");
-        btIngresar.setPreferredSize(new java.awt.Dimension(80, 30));
+        btEditar.setText("Editar");
+        btEditar.setPreferredSize(new java.awt.Dimension(80, 30));
 
         btLimpiar.setText("Limpiar");
         btLimpiar.setPreferredSize(new java.awt.Dimension(80, 30));
@@ -155,7 +157,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
                     .addComponent(cbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tfSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -210,7 +212,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -238,7 +240,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btIngresar;
+    private javax.swing.JButton btEditar;
     private javax.swing.JButton btLimpiar;
     private javax.swing.JComboBox<String> cbSexo;
     private javax.swing.JComboBox<String> cbTipo;

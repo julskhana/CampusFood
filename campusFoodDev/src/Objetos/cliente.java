@@ -18,20 +18,29 @@ public class cliente implements Serializable{
     private String nombres;
     private String apellidos;
     private String correo;
+    private String direccion;
+    private String telefono;
     private String tipo;
     private float saldo;
     private float descuento;
+    private int edad;
+    private String sexo;
+    
     
     //constructor 
-    public cliente (int id, String ced, String noms, String apls, String correo, String tipo, float saldo, float desc){
+    public cliente (int id, String ced, String noms, String apls, String correo, String dir, String tel, String tipo, float saldo, float desc, int edad, String sexo){
         this.id=id;
         this.cedula=ced;
         this.nombres=noms;
         this.apellidos=apls;
         this.correo=correo;
+        this.direccion=dir;
+        this.telefono=tel;
         this.tipo=tipo;
         this.saldo=saldo;
         this.descuento=desc;
+        this.edad=edad;
+        this.sexo=sexo;
     }
     
     //constructor vacio
@@ -70,6 +79,24 @@ public class cliente implements Serializable{
     public void setDescuento(float descuento) {
         this.descuento = descuento;
     }    
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+    
+    
     
     //getters
 
@@ -104,6 +131,23 @@ public class cliente implements Serializable{
     public float getDescuento() {
         return descuento;
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+    
     
     
 }
