@@ -89,7 +89,7 @@ public class frmEdicionProductos extends javax.swing.JFrame {
                                 .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(88, 88, 88)
                         .addComponent(btEditar)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
