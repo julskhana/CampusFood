@@ -136,6 +136,8 @@ public class frmClientes extends javax.swing.JFrame {
 
     private void btNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoClienteActionPerformed
         // TODO add your handling code here:
+        frmIngresoClientes mantIngCli= new frmIngresoClientes();
+        mantIngCli.setVisible(true);
     }//GEN-LAST:event_btNuevoClienteActionPerformed
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
@@ -144,6 +146,8 @@ public class frmClientes extends javax.swing.JFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         // TODO add your handling code here:
+        frmEdicionClientes2 mantEdiCli= new frmEdicionClientes2();
+        mantEdiCli.setVisible(true);
     }//GEN-LAST:event_btEditarActionPerformed
 
     /**

@@ -9,12 +9,12 @@ package Formularios;
  *
  * @author norberto
  */
-public class frmRestaurante extends javax.swing.JFrame {
+public class frmProducto extends javax.swing.JFrame {
 
     /**
-     * Creates new form frmRestaurante
+     * Creates new form frmProducto
      */
-    public frmRestaurante() {
+    public frmProducto() {
         initComponents();
     }
 
@@ -27,8 +27,8 @@ public class frmRestaurante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cbConsultaRestaurante = new javax.swing.JComboBox<>();
-        jTextField4 = new javax.swing.JTextField();
+        cbProducto = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
         btConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -37,13 +37,13 @@ public class frmRestaurante extends javax.swing.JFrame {
         btNuevo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Mantenimiento de Restaurante");
+        setTitle("Mantenimiento de Producto");
 
-        cbConsultaRestaurante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todo", "Id", "Nombre", "Ubicacion" }));
+        cbProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todo", "Id", "Nombre", "Descripcion", "Tipo" }));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -56,13 +56,13 @@ public class frmRestaurante extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Ubicacion"
+                "Id", "Nombre", "Descripcion", "Tipo", "Precio", "Calendario"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -93,59 +93,53 @@ public class frmRestaurante extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(cbConsultaRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btConsultar)
-                .addGap(31, 31, 31))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btEditar)
-                        .addGap(90, 90, 90)
-                        .addComponent(btEliminar)
-                        .addGap(117, 117, 117)
-                        .addComponent(btNuevo))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addComponent(btConsultar)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(btEditar)
+                .addGap(102, 102, 102)
+                .addComponent(btEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btNuevo)
+                .addGap(75, 75, 75))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbConsultaRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btConsultar))
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btEditar)
                     .addComponent(btEliminar)
                     .addComponent(btNuevo))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btConsultarActionPerformed
-
-    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        // TODO add your handling code here:
-        frmEdicionRestaurante mantEdiRes= new frmEdicionRestaurante();
-        mantEdiRes.setVisible(true);
-    }//GEN-LAST:event_btEditarActionPerformed
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
         // TODO add your handling code here:
@@ -153,9 +147,16 @@ public class frmRestaurante extends javax.swing.JFrame {
 
     private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
         // TODO add your handling code here:
-        frmIngresoRestaurante mantIngRes=new frmIngresoRestaurante();
-        mantIngRes.setVisible(true);
+        frmIngresoProducto mantIngPro= new frmIngresoProducto();
+        mantIngPro.setVisible(true);
+        
     }//GEN-LAST:event_btNuevoActionPerformed
+
+    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+        // TODO add your handling code here:
+        frmEdicionProductos mantEdiPro=new frmEdicionProductos();
+        mantEdiPro.setVisible(true);
+    }//GEN-LAST:event_btEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,9 +168,9 @@ public class frmRestaurante extends javax.swing.JFrame {
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btNuevo;
-    private javax.swing.JComboBox<String> cbConsultaRestaurante;
+    private javax.swing.JComboBox<String> cbProducto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
