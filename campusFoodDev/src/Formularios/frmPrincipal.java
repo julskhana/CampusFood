@@ -49,7 +49,6 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proyecto Java - CampusFood");
-        setPreferredSize(new java.awt.Dimension(640, 320));
 
         mArchivo.setText("Archivo");
 
@@ -74,9 +73,19 @@ public class frmPrincipal extends javax.swing.JFrame {
         mMantenimiento.add(miClientes);
 
         miRestaurantes.setText("Restaurantes");
+        miRestaurantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miRestaurantesActionPerformed(evt);
+            }
+        });
         mMantenimiento.add(miRestaurantes);
 
         miProductos.setText("Productos");
+        miProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miProductosActionPerformed(evt);
+            }
+        });
         mMantenimiento.add(miProductos);
 
         jMenuBar1.add(mMantenimiento);
@@ -149,6 +158,18 @@ public class frmPrincipal extends javax.swing.JFrame {
         frmOrden genOrden = new frmOrden();
         genOrden.setVisible(true);
     }//GEN-LAST:event_miOrdenActionPerformed
+
+    private void miRestaurantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRestaurantesActionPerformed
+        // TODO add your handling code here:
+        frmRestaurante mantRes= new frmRestaurante();
+        mantRes.setVisible(true);
+    }//GEN-LAST:event_miRestaurantesActionPerformed
+
+    private void miProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miProductosActionPerformed
+        // TODO add your handling code here:
+        frmProducto mantPro= new frmProducto();
+        mantPro.setVisible(true);
+    }//GEN-LAST:event_miProductosActionPerformed
 
     /**
      * @param args the command line arguments
