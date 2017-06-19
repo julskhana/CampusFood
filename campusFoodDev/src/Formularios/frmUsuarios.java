@@ -99,6 +99,11 @@ public class frmUsuarios extends javax.swing.JFrame {
         btEliminar.setText("Eliminar");
         btEliminar.setMaximumSize(new java.awt.Dimension(80, 32));
         btEliminar.setMinimumSize(new java.awt.Dimension(80, 32));
+        btEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("VALORES");
 
@@ -186,6 +191,31 @@ public class frmUsuarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btConsultarActionPerformed
 
+    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
+
+        // TODO add your handling code here:
+        if (seleccionEliminacionValida()){
+            ConexionBase c = new ConexionBase();
+            try{
+                c.conectar();
+                int filas[] =tbusuario.getSelectedRows();
+                    for (int i = 0; i < filas.length; i++) {
+                        int fila = filas[i];
+                        String id = tbusuario.getValueAt(fila,0).toString();
+                        if(!c.eliminarUsuario(Integer.parseInt(id))){
+                            JOptionPane.showMessageDialog(this,"Ocurrió un error en la eliminación","Eliminación",JOptionPane.ERROR_MESSAGE);
+                            return ;
+                        }
+                    }
+            }catch(Exception e){
+                System.out.println(e);
+            }
+            c.desconectar();
+        }
+        if(formularioConsultaValidoA()){
+            consultarRegistro();}
+    }//GEN-LAST:event_btEliminarActionPerformed
+
     public void consultarRegistro(){
         String tipo = cbConsultaUsuarios.getSelectedItem().toString();
         String descripcion = tfConsulta.getText();
@@ -241,6 +271,19 @@ public class frmUsuarios extends javax.swing.JFrame {
         }
         
         return true;
+    }
+    
+    private boolean seleccionEliminacionValida(){ 
+        int n = tbusuario.getSelectedRowCount();
+        if(n==0){
+            JOptionPane.showMessageDialog(this,"Debe seleccionar mínimo un registro para eliminar","Eliminación",JOptionPane.ERROR_MESSAGE);
+            return false;        
+        }
+        int op = JOptionPane.showConfirmDialog(this, "Está seguro de eliminar los registros seleccionados?","Eliminación",JOptionPane.YES_NO_OPTION);
+        if(op==0)
+            return true;
+        else
+            return false;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

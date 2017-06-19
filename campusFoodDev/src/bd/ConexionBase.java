@@ -97,6 +97,24 @@ public class ConexionBase {
         return registroU;
     }
 
+    //eliminacion de usuarios
+    public boolean eliminarUsuario(int id)
+    {
+        try
+        {
+            PreparedStatement st = null;
+            st = con.prepareStatement("DELETE FROM usuario WHERE id = ?");            
+            st.setInt(1,id);         
+            st.executeUpdate();
+            st.close();                        
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            return false;
+        }        
+    }
     
     //funcion para ingresar cliente a bd
     public boolean ingresarCliente(cliente cliente){
