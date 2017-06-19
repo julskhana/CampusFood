@@ -5,6 +5,12 @@
  */
 package Formularios;
 
+import Objetos.usuario;
+import bd.ConexionBase;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author julian
@@ -29,12 +35,15 @@ public class frmUsuarios extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbusuario = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbConsultaUsuarios = new javax.swing.JComboBox<>();
         tfConsulta = new javax.swing.JTextField();
         btConsultar = new javax.swing.JButton();
         btCClave = new javax.swing.JButton();
         btNuevousuario = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento Usuarios");
@@ -60,9 +69,14 @@ public class frmUsuarios extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbusuario);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "Estado", "Rol", "Fecha Registro" }));
+        cbConsultaUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
 
         btConsultar.setText("Consultar");
+        btConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btConsultarActionPerformed(evt);
+            }
+        });
 
         btCClave.setText("Cambio de Clave");
         btCClave.setMaximumSize(new java.awt.Dimension(80, 32));
@@ -86,6 +100,12 @@ public class frmUsuarios extends javax.swing.JFrame {
         btEliminar.setMaximumSize(new java.awt.Dimension(80, 32));
         btEliminar.setMinimumSize(new java.awt.Dimension(80, 32));
 
+        jLabel1.setText("VALORES");
+
+        jLabel2.setText("Rol: \"A\" Administrador, \"C\" Cajero.");
+
+        jLabel3.setText("Estado: \"A\" Activo, \"V\" Permiso, \"D\" Despedido.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +117,7 @@ public class frmUsuarios extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbConsultaUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addComponent(tfConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
@@ -111,23 +131,37 @@ public class frmUsuarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btNuevousuario, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(49, 49, 49)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbConsultaUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btConsultar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNuevousuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addContainerGap())
         );
 
         pack();
@@ -137,7 +171,6 @@ public class frmUsuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmIngresoUsuarioCambioClave eclave = new frmIngresoUsuarioCambioClave();
         eclave.setVisible(true);
-
     }//GEN-LAST:event_btCClaveActionPerformed
 
     private void btNuevousuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevousuarioActionPerformed
@@ -146,13 +179,79 @@ public class frmUsuarios extends javax.swing.JFrame {
         ingresoU.setVisible(true);
     }//GEN-LAST:event_btNuevousuarioActionPerformed
 
+    private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
+        // TODO add your handling code here:
+        if (formularioConsultaValidoA()){
+            consultarRegistro();
+        }
+    }//GEN-LAST:event_btConsultarActionPerformed
 
+    public void consultarRegistro(){
+        String tipo = cbConsultaUsuarios.getSelectedItem().toString();
+        String descripcion = tfConsulta.getText();
+        
+        //consultar
+        try{
+            //cunsolta a la base
+            try{
+                ConexionBase c = new ConexionBase();
+                c.conectar();
+                
+                ArrayList<usuario> registro = c.consultarUsuarios();
+                ArrayList<usuario> resultado = new ArrayList<usuario>();
+                
+                
+                if (tipo.equals("Todos")){
+                    resultado = registro;
+                }
+                
+                DefaultTableModel dtm = (DefaultTableModel)tbusuario.getModel();
+                dtm.setRowCount(0);
+                
+                //recorriendo base de datos
+                for (usuario us:resultado){
+                    Object[] fila = new Object[4];
+                    fila[0] = us.getId();
+                    fila[1] = us.getRol();
+                    fila[2] = us.getEstado();
+                    fila[3] = us.getFecha_registro();
+                    dtm.addRow(fila);
+                }
+            c.desconectar();
+            }catch (Exception e){
+                System.out.println("error al consultar usuarios");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Ocurrió un error al consultar los registros","Consulta",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private boolean formularioConsultaValidoA(){
+        String tipo = cbConsultaUsuarios.getSelectedItem().toString();
+        String descripcion = tfConsulta.getText();
+        if(tipo.equals("Cedula") && descripcion.equals("")){
+                JOptionPane.showMessageDialog(this,"Debe ingresar un número","Consulta",JOptionPane.ERROR_MESSAGE);
+                return false;
+        }else if(tipo.equals("Nombres") && descripcion.equals("")){
+                JOptionPane.showMessageDialog(this,"Debe ingresar un Nombre","Consulta",JOptionPane.ERROR_MESSAGE);
+                return false;
+        }else if(tipo.equals("Apellidos") && descripcion.equals("")){
+                JOptionPane.showMessageDialog(this,"Debe ingresar un Apellido","Consulta",JOptionPane.ERROR_MESSAGE);
+                return false;
+        }
+        
+        return true;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCClave;
     private javax.swing.JButton btConsultar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btNuevousuario;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbConsultaUsuarios;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbusuario;
     private javax.swing.JTextField tfConsulta;

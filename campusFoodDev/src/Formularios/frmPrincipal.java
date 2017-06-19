@@ -18,6 +18,8 @@ public class frmPrincipal extends javax.swing.JFrame {
      */
     public frmPrincipal() {
         initComponents();
+        
+        System.out.println("Formulario Principal.");
     }
 
     /**

@@ -5,8 +5,11 @@
  */
 package Formularios;
 
+import Objetos.usuario;
+import bd.ConexionBase;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -21,13 +24,6 @@ public class frmIngresoUsuario extends javax.swing.JFrame {
      */
     public frmIngresoUsuario() {
         initComponents();
-        
-        //generar fecha de ingreso de usuario
-        //String fecha = new SimpleDateFormat("")
-        
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        String fecha_hora_in = dateFormat.format(date); //2016/11/16 12:08:43
         
     }
 
@@ -142,8 +138,44 @@ public class frmIngresoUsuario extends javax.swing.JFrame {
 
     private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
         // TODO add your handling code here:
+        
+        //generar fecha de ingreso de usuario
+        //String fecha = new SimpleDateFormat("")
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        String fecha_hora_in = dateFormat.format(date); //2016/11/16 12:08:43
+        
+        
         if (es_formulario_valido()){
-            System.out.println("Usuario Ingresado Correctamente.");
+            String clave = pfclave1.getText();
+            String rol = cbRol.getSelectedItem().toString();
+            String estado = "A";
+            //recopilacion de datos para crear nuevo usuario
+            usuario u = new usuario(clave,rol,estado,fecha_hora_in);
+            //conexion a la base
+            ConexionBase c = new ConexionBase();
+            
+            if (Arrays.equals(pfclave1.getPassword(), pfclave2.getPassword())){
+                try{
+                    c.conectar();
+                    if (c.ingresarUsuario(u)){
+                        System.out.println("Usuario Ingresado exitosamente...");
+                        JOptionPane.showMessageDialog(this,"Usuario Ingresado Correctamente.");
+                        System.out.println("Usuario Ingresado Correctamente.\nFrecha de Registro: "+fecha_hora_in);
+                        limpiar();
+                        this.dispose();
+                    }else{
+                        System.out.println("Error al ingresar el usuario");
+                    }
+                    c.desconectar();
+                
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+            }else{
+                JOptionPane.showMessageDialog(this,"Claves no coinciden.","Informacion Incorrecta",JOptionPane.ERROR_MESSAGE);
+                System.out.println("Claves no son iguales\nUsuario no ingresado.");
+            }
         }else{
             System.out.println("Error al ingresar Usuario.");
         }
@@ -151,22 +183,34 @@ public class frmIngresoUsuario extends javax.swing.JFrame {
 
     private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
         // TODO add your handling code here:
-        pfclave1.setText("");
-        pfclave2.setText("");
+        limpiar();
     }//GEN-LAST:event_btLimpiarActionPerformed
 
     
     private boolean es_formulario_valido(){
-        if ((pfclave1.getText().length()>10)){
+        if ((pfclave1.getText().length()>10)||(pfclave2.getText().length()>10)){
             System.out.println("clave invalida, maximo 10 caracteres...");
             JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nMáximo 10 caracteres.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
             return false;
-        }else if (pfclave1.getText().equals(pfclave2.getText())){
-            System.out.println("clave invalida, no coincide...");
-            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nClaves no Coinciden.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
+        }else if(pfclave1.getText().equals("")){
+            System.out.println("clave invalida, campos no pueden estar vacios...");
+            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos incompletos.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else if (pfclave2.getText().equals("")){
+            System.out.println("clave invalida, campos no pueden estar vacios...");
+            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos incompletos.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else if (pfclave1.getText().equals("")&&pfclave2.getText().equals("")){
+            System.out.println("clave invalida, campos no pueden estar vacios...");
+            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nLa clave no puede ser nula.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
+    }
+    
+    private void limpiar(){
+        pfclave1.setText("");
+        pfclave2.setText("");
     }
     
 

@@ -32,7 +32,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jComboBox1" min="-2" pref="108" max="-2" attributes="0"/>
+                      <Component id="cbConsultaUsuarios" min="-2" pref="108" max="-2" attributes="0"/>
                       <EmptySpace pref="28" max="32767" attributes="0"/>
                       <Component id="tfConsulta" min="-2" pref="299" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -50,6 +50,16 @@
               <Component id="btNuevousuario" min="-2" pref="82" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -57,19 +67,26 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbConsultaUsuarios" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btConsultar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="135" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btCClave" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btNuevousuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -96,14 +113,11 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="cbConsultaUsuarios">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Id"/>
-            <StringItem index="1" value="Estado"/>
-            <StringItem index="2" value="Rol"/>
-            <StringItem index="3" value="Fecha Registro"/>
+          <StringArray count="1">
+            <StringItem index="0" value="Todos"/>
           </StringArray>
         </Property>
       </Properties>
@@ -117,6 +131,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Consultar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btConsultarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btCClave">
       <Properties>
@@ -155,6 +172,21 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[80, 32]"/>
         </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="VALORES"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rol: &quot;A&quot; Administrador, &quot;C&quot; Cajero."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Estado: &quot;A&quot; Activo, &quot;V&quot; Permiso, &quot;D&quot; Despedido."/>
       </Properties>
     </Component>
   </SubComponents>

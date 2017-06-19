@@ -14,7 +14,7 @@ public class ConexionBase {
        private static final String HOST = "127.0.0.1";
        private static final String PORT = "3306";
        //base para linux
-       private static final String DATABASE = "restaurante3";
+       private static final String DATABASE = "campusFoodDB3";
        //base para windows
        //private static final String DATABASE = "proyecto_java_2017_2";
        private static final String USER = "root";
@@ -60,7 +60,7 @@ public class ConexionBase {
             st = con.prepareStatement("insert into usuario (clave,rol,estado,fecha_registro) values (?,?,?,?);");
             st.setString(1,u.getClave());
             st.setString(2,u.getRol());
-            st.setString(3,"A"); //Estado por defecto es "A", activo
+            st.setString(3,u.getEstado());
             st.setString(4,u.getFecha_registro());
             
             st.executeUpdate();
@@ -79,7 +79,7 @@ public class ConexionBase {
         ArrayList<usuario> registroU = new ArrayList<usuario>();
         try{
             Statement st = this.con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM usuario");
+            ResultSet rs = st.executeQuery("SELECT * FROM usuario;");
             while (rs.next()){
                 int id = rs.getInt("id");
                 String clave = rs.getString("clave");
