@@ -26,7 +26,6 @@ public class cliente implements Serializable{
     private int edad;
     private String sexo;
     
-    
     //constructor 
     public cliente (int id, String ced, String noms, String apls, String correo, String dir, String tel, String tipo, float saldo, float desc, int edad, String sexo){
         this.id=id;

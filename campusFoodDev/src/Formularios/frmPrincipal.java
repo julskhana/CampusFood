@@ -33,6 +33,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         mArchivo = new javax.swing.JMenu();
+        mMantenimientoUsuario = new javax.swing.JMenuItem();
         miSalir = new javax.swing.JMenuItem();
         mMantenimiento = new javax.swing.JMenu();
         miClientes = new javax.swing.JMenuItem();
@@ -51,6 +52,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         setTitle("Proyecto Java - CampusFood");
 
         mArchivo.setText("Archivo");
+
+        mMantenimientoUsuario.setText("Usuarios");
+        mMantenimientoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mMantenimientoUsuarioActionPerformed(evt);
+            }
+        });
+        mArchivo.add(mMantenimientoUsuario);
 
         miSalir.setText("Salir");
         miSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +180,12 @@ public class frmPrincipal extends javax.swing.JFrame {
         mantPro.setVisible(true);
     }//GEN-LAST:event_miProductosActionPerformed
 
+    private void mMantenimientoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mMantenimientoUsuarioActionPerformed
+        // TODO add your handling code here:
+        frmUsuarios user = new frmUsuarios();
+        user.setVisible(true);
+    }//GEN-LAST:event_mMantenimientoUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -183,6 +198,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu mArchivo;
     private javax.swing.JMenu mAyuda;
     private javax.swing.JMenu mMantenimiento;
+    private javax.swing.JMenuItem mMantenimientoUsuario;
     private javax.swing.JMenu mProcesos;
     private javax.swing.JMenuItem miAcercaDe;
     private javax.swing.JMenuItem miClientes;

@@ -28,6 +28,14 @@ public class usuario implements Serializable{
         this.fecha_registro=fecha_reg;
     }
     
+    //cosntructor de consulta
+    public usuario (int id, String rol, String estado, String fecha_reg){
+        this.id=id;
+        this.rol=rol;
+        this.estado=estado;
+        this.fecha_registro=fecha_reg;
+    }
+    
     //cosntructor vacio
     public usuario(){}
 
