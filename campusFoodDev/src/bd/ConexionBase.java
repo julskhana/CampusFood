@@ -116,6 +116,25 @@ public class ConexionBase {
         }        
     }
     
+    //despido de usuarios
+    public boolean despidoUsuario(int id)
+    {
+        try
+        {
+            PreparedStatement st = null;
+            st = con.prepareStatement("update usuario set estado='D' WHERE id = ?");            
+            st.setInt(1,id);         
+            st.executeUpdate();
+            st.close();                        
+            return true;
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            return false;
+        }        
+    }
+    
     //funcion para ingresar cliente a bd
     public boolean ingresarCliente(cliente cliente){
         try{
