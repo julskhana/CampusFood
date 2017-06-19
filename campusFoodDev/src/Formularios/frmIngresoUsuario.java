@@ -8,6 +8,7 @@ package Formularios;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -141,8 +142,11 @@ public class frmIngresoUsuario extends javax.swing.JFrame {
 
     private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
         // TODO add your handling code here:
-        
-        
+        if (es_formulario_valido()){
+            System.out.println("Usuario Ingresado Correctamente.");
+        }else{
+            System.out.println("Error al ingresar Usuario.");
+        }
     }//GEN-LAST:event_btIngresarActionPerformed
 
     private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
@@ -152,11 +156,17 @@ public class frmIngresoUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btLimpiarActionPerformed
 
     
-    private boolean calveValida(){
-        if (pfclave1.getText().equals(pfclave2.getText())){
-            return true;
+    private boolean es_formulario_valido(){
+        if ((pfclave1.getText().length()>10)){
+            System.out.println("clave invalida, maximo 10 caracteres...");
+            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nMáximo 10 caracteres.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else if (pfclave1.getText().equals(pfclave2.getText())){
+            System.out.println("clave invalida, no coincide...");
+            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nClaves no Coinciden.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
+            return false;
         }
-        return false;
+        return true;
     }
     
 
