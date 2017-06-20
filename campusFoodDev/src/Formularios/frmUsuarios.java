@@ -44,7 +44,7 @@ public class frmUsuarios extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btDespedir = new javax.swing.JButton();
+        btEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento Usuarios");
@@ -112,10 +112,10 @@ public class frmUsuarios extends javax.swing.JFrame {
 
         jLabel3.setText("Estado: \"A\" Activo, \"V\" Permiso, \"D\" Despedido.");
 
-        btDespedir.setText("Despedir");
-        btDespedir.addActionListener(new java.awt.event.ActionListener() {
+        btEditar.setText("Editar");
+        btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btDespedirActionPerformed(evt);
+                btEditarActionPerformed(evt);
             }
         });
 
@@ -139,7 +139,7 @@ public class frmUsuarios extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66)
-                        .addComponent(btDespedir, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btCClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
@@ -168,7 +168,7 @@ public class frmUsuarios extends javax.swing.JFrame {
                     .addComponent(btCClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNuevousuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btDespedir))
+                    .addComponent(btEditar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,9 +225,9 @@ public class frmUsuarios extends javax.swing.JFrame {
             consultarRegistro();}
     }//GEN-LAST:event_btEliminarActionPerformed
 
-    private void btDespedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDespedirActionPerformed
+    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btDespedirActionPerformed
+    }//GEN-LAST:event_btEditarActionPerformed
 
     public void consultarRegistro(){
         String tipo = cbConsultaUsuarios.getSelectedItem().toString();
@@ -302,7 +302,7 @@ public class frmUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCClave;
     private javax.swing.JButton btConsultar;
-    private javax.swing.JButton btDespedir;
+    private javax.swing.JButton btEditar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btNuevousuario;
     private javax.swing.JComboBox<String> cbConsultaUsuarios;
