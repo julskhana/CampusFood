@@ -30,6 +30,14 @@ public class usuario implements Serializable{
         this.fecha_registro=fecha_reg;
     }
     
+    //constructor autenticacion
+
+    public usuario(String cuenta, String clave) {
+        this.cuenta = cuenta;
+        this.clave = clave;
+    }
+    
+    
     //Constructor para ingresar
     public usuario (String cuenta,String clave, String rol, String estado, String fecha_reg){
         this.cuenta=cuenta;

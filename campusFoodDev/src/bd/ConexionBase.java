@@ -57,7 +57,7 @@ public class ConexionBase {
     public boolean ingresarUsuario(usuario u){
         try{
             PreparedStatement st=null;
-            st = con.prepareStatement("insert into usuario (cuenta,clave,rol,estado,fecha_registro) values (?,?,?,?,?);");
+            st = con.prepareStatement("insert into usuario (cuenta,clave,rol,estado,fecha_registro) values (?,md5(?),?,?,?);");
             st.setString(1,u.getCuenta());
             st.setString(2,u.getClave());
             st.setString(3,u.getRol());
@@ -74,6 +74,33 @@ public class ConexionBase {
             return false;
         }
     }
+    
+    public boolean esUsuarioValido(usuario u)
+    {        
+        boolean resultado = false;
+        ResultSet rs = null;                       
+        PreparedStatement st = null;
+        try
+        {            
+            st = con.prepareStatement("SELECT * FROM usuario WHERE cuenta = ? AND clave = md5(?) AND estado = ?");            
+            st.setString(1,u.getCuenta());         
+            st.setString(2,u.getClave());
+            st.setString(3,"A");
+            rs = st.executeQuery();            
+            if(rs.next()){
+                u.setRol(rs.getString("rol"));
+                resultado = true;
+            } 
+            rs.close();
+            st.close();
+        }
+        catch(Exception e){
+            System.out.println(e);
+            resultado = false;
+        }           
+     return resultado; 
+    }
+    
     
     //funcion para consulta de usuarios
     public ArrayList<usuario> consultarUsuarios(){

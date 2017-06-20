@@ -5,6 +5,7 @@
  */
 package Principal;
 
+import Formularios.frmAutenticacion;
 import Formularios.frmPrincipal;
 
 /**
@@ -17,7 +18,13 @@ public class principal {
         // TODO code application logic here
         System.out.println("Sistema de gestion de almuerzos - Campus Espol\n");
         
+        
+        frmAutenticacion aut = new frmAutenticacion();
+        aut.setVisible(true);
+        
+        /*
         frmPrincipal frmP = new frmPrincipal();
         frmP.setVisible(true);
+        */
     }
 }
