@@ -57,11 +57,12 @@ public class ConexionBase {
     public boolean ingresarUsuario(usuario u){
         try{
             PreparedStatement st=null;
-            st = con.prepareStatement("insert into usuario (clave,rol,estado,fecha_registro) values (?,?,?,?);");
-            st.setString(1,u.getClave());
-            st.setString(2,u.getRol());
-            st.setString(3,u.getEstado());
-            st.setString(4,u.getFecha_registro());
+            st = con.prepareStatement("insert into usuario (cuenta,clave,rol,estado,fecha_registro) values (?,?,?,?,?);");
+            st.setString(1,u.getCuenta());
+            st.setString(2,u.getClave());
+            st.setString(3,u.getRol());
+            st.setString(4,u.getEstado());
+            st.setString(5,u.getFecha_registro());
             
             st.executeUpdate();
             st.close();
@@ -82,12 +83,13 @@ public class ConexionBase {
             ResultSet rs = st.executeQuery("SELECT * FROM usuario;");
             while (rs.next()){
                 int id = rs.getInt("id");
+                String cuenta = rs.getString("cuenta");
                 String clave = rs.getString("clave");
                 String rol = rs.getString("rol");
                 String estado = rs.getString("estado");
                 String fecha_reg = rs.getString("fecha_registro");
                 
-                usuario usr = new usuario(id,clave,rol,estado,fecha_reg);
+                usuario usr = new usuario(id,cuenta,clave,rol,estado,fecha_reg);
                 registroU.add(usr);
             }
             System.out.println("usuarios consultados.");

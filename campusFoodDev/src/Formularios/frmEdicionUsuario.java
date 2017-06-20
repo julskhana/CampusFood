@@ -131,75 +131,17 @@ public class frmEdicionUsuario extends javax.swing.JFrame {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         String fecha_hora_in = dateFormat.format(date); //2016/11/16 12:08:43
-        
-        
-        if (es_formulario_valido()){
-            String clave = pfclave1.getText();
-            String rol = cbRol.getSelectedItem().toString();
-            String estado = "A";
-            //recopilacion de datos para crear nuevo usuario
-            usuario u = new usuario(clave,rol,estado,fecha_hora_in);
-            //conexion a la base
-            ConexionBase c = new ConexionBase();
-            
-            if (Arrays.equals(pfclave1.getPassword(), pfclave2.getPassword())){
-                try{
-                    c.conectar();
-                    if (c.ingresarUsuario(u)){
-                        System.out.println("Usuario Ingresado exitosamente...");
-                        JOptionPane.showMessageDialog(this,"Usuario Ingresado Correctamente.");
-                        System.out.println("Usuario Ingresado Correctamente.\nFrecha de Registro: "+fecha_hora_in);
-                        limpiar();
-                        this.dispose();
-                    }else{
-                        System.out.println("Error al ingresar el usuario");
-                    }
-                    c.desconectar();
-                
-                }catch (Exception e){
-                    System.out.println(e);
-                }
-            }else{
-                JOptionPane.showMessageDialog(this,"Claves no coinciden.","Informacion Incorrecta",JOptionPane.ERROR_MESSAGE);
-                System.out.println("Claves no son iguales\nUsuario no ingresado.");
-            }
-        }else{
-            System.out.println("Error al ingresar Usuario.");
-        }
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
         // TODO add your handling code here:
         limpiar();
     }//GEN-LAST:event_btLimpiarActionPerformed
-
-    
-    private boolean es_formulario_valido(){
-        if ((pfclave1.getText().length()>10)||(pfclave2.getText().length()>10)){
-            System.out.println("clave invalida, maximo 10 caracteres...");
-            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nMáximo 10 caracteres.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
-            return false;
-        }else if(pfclave1.getText().equals("")){
-            System.out.println("clave invalida, campos no pueden estar vacios...");
-            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos incompletos.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
-            return false;
-        }else if (pfclave2.getText().equals("")){
-            System.out.println("clave invalida, campos no pueden estar vacios...");
-            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos incompletos.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
-            return false;
-        }else if (pfclave1.getText().equals("")&&pfclave2.getText().equals("")){
-            System.out.println("clave invalida, campos no pueden estar vacios...");
-            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nLa clave no puede ser nula.","Ingreso de Usuarios",JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        return true;
-    }
     
     private void limpiar(){
-        pfclave1.setText("");
-        pfclave2.setText("");
+        //pfclave1.setText("");
+        //pfclave2.setText("");
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEditar;

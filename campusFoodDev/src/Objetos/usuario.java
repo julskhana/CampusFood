@@ -14,14 +14,16 @@ import java.io.Serializable;
 public class usuario implements Serializable{
     
     private int id;
+    private String cuenta;
     private String clave;
     private String rol;
     private String estado;
     private String fecha_registro;
     
     //Constructor
-    public usuario (int id, String clave, String rol, String estado, String fecha_reg){
+    public usuario (int id, String cuenta, String clave, String rol, String estado, String fecha_reg){
         this.id=id;
+        this.cuenta=cuenta;
         this.clave=clave;
         this.rol=rol;
         this.estado=estado;
@@ -29,7 +31,8 @@ public class usuario implements Serializable{
     }
     
     //Constructor para ingresar
-    public usuario (String clave, String rol, String estado, String fecha_reg){
+    public usuario (String cuenta,String clave, String rol, String estado, String fecha_reg){
+        this.cuenta=cuenta;
         this.clave=clave;
         this.rol=rol;
         this.estado=estado;
@@ -37,7 +40,8 @@ public class usuario implements Serializable{
     }
     
     //cosntructor de consulta
-    public usuario (int id, String rol, String estado, String fecha_reg){
+    public usuario (int id,String cuenta, String rol, String estado, String fecha_reg){
+        this.cuenta=cuenta;
         this.id=id;
         this.rol=rol;
         this.estado=estado;
@@ -48,6 +52,11 @@ public class usuario implements Serializable{
     public usuario(){}
 
     //setters
+    public void setCuenta(String cuenta) {
+        this.cuenta = cuenta;
+    }
+    
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -69,6 +78,11 @@ public class usuario implements Serializable{
     }
 
     //getters
+
+    public String getCuenta() {
+        return cuenta;
+    }
+    
     public int getId() {
         return id;
     }

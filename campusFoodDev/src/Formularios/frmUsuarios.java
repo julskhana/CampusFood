@@ -51,17 +51,17 @@ public class frmUsuarios extends javax.swing.JFrame {
 
         tbusuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Rol", "Estado", "Fecha Registro"
+                "Id", "Cuenta", "Rol", "Estado", "Fecha Registro"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -253,11 +253,12 @@ public class frmUsuarios extends javax.swing.JFrame {
                 
                 //recorriendo base de datos
                 for (usuario us:resultado){
-                    Object[] fila = new Object[4];
+                    Object[] fila = new Object[5];
                     fila[0] = us.getId();
-                    fila[1] = us.getRol();
-                    fila[2] = us.getEstado();
-                    fila[3] = us.getFecha_registro();
+                    fila[1] = us.getCuenta();
+                    fila[2] = us.getRol();
+                    fila[3] = us.getEstado();
+                    fila[4] = us.getFecha_registro();
                     dtm.addRow(fila);
                 }
             c.desconectar();
