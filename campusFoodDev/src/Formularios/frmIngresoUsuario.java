@@ -230,6 +230,10 @@ public class frmIngresoUsuario extends javax.swing.JFrame {
         pfclave2.setText("");
     }
     
+    private boolean validarDuplicidadCuenta(){
+        return true;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btIngresar;

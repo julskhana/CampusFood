@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-06-2017 a las 23:55:39
+-- Tiempo de generación: 20-06-2017 a las 22:04:56
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -103,6 +103,17 @@ CREATE TABLE `restaurante` (
   `ubicacion` varchar(100) COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `restaurante`
+--
+
+INSERT INTO `restaurante` (`id`, `nombre`, `ubicacion`) VALUES
+(1, 'Mi Cafeteria', 'CELEX'),
+(2, 'Neo', 'EDCOM'),
+(3, 'Comedor Principal FCSH', 'FCSH'),
+(4, 'Comedor Piscina', 'Tecnologias'),
+(5, 'Comedor Fiec FCSH', 'FIEC');
+
 -- --------------------------------------------------------
 
 --
@@ -111,11 +122,21 @@ CREATE TABLE `restaurante` (
 
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
+  `cuenta` varchar(45) COLLATE latin1_spanish_ci NOT NULL,
   `clave` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
   `rol` char(1) COLLATE latin1_spanish_ci NOT NULL,
   `estado` char(1) COLLATE latin1_spanish_ci NOT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `cuenta`, `clave`, `rol`, `estado`, `fecha_registro`) VALUES
+(11, 'jabajana', '11111', 'A', 'A', '2017-06-20 19:50:00'),
+(12, 'wvidal', '2222', 'A', 'A', '2017-06-20 20:03:25'),
+(13, 'drmerino', '3333', 'C', 'A', '2017-06-20 20:04:08');
 
 --
 -- Índices para tablas volcadas
@@ -162,7 +183,8 @@ ALTER TABLE `restaurante`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cuenta_UNIQUE` (`cuenta`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -192,12 +214,12 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `restaurante`
 --
 ALTER TABLE `restaurante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- Restricciones para tablas volcadas
 --
