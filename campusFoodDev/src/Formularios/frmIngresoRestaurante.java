@@ -5,6 +5,12 @@
  */
 package Formularios;
 
+import Objetos.restaurante;
+import Objetos.usuario;
+import bd.ConexionBase;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author norberto
@@ -28,9 +34,9 @@ public class frmIngresoRestaurante extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfnombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tfubicacion = new javax.swing.JTextField();
         btLimpiar = new javax.swing.JButton();
         btIngresar = new javax.swing.JButton();
 
@@ -39,17 +45,17 @@ public class frmIngresoRestaurante extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tfnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tfnombreActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Ubicacion:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        tfubicacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                tfubicacionActionPerformed(evt);
             }
         });
 
@@ -61,73 +67,128 @@ public class frmIngresoRestaurante extends javax.swing.JFrame {
         });
 
         btIngresar.setText("Ingresar");
+        btIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btIngresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
+                            .addComponent(tfnombre)
+                            .addComponent(tfubicacion, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(btLimpiar)
-                        .addGap(83, 83, 83)
-                        .addComponent(btIngresar)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                        .addGap(106, 106, 106)
+                        .addComponent(btIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(tfnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                    .addComponent(tfubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btLimpiar)
                     .addComponent(btIngresar))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfnombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tfnombreActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void tfubicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfubicacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_tfubicacionActionPerformed
 
     private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
         // TODO add your handling code here:
+        limpiar();
     }//GEN-LAST:event_btLimpiarActionPerformed
+
+    private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
+        // TODO add your handling code here:
+        if (es_formulario_valido()){
+            String nombre = tfnombre.getText();
+            String ubicacion = tfubicacion.getText();
+            //recopilacion de datos para crear nuevo restaurante
+            restaurante r = new restaurante(nombre,ubicacion);
+            //conexion a la base
+            ConexionBase c = new ConexionBase();
+            
+            try{
+                c.conectar();
+                if (c.ingresarRestaurante(r)){
+                    System.out.println("Restaurante Ingresado exitosamente...");
+                    JOptionPane.showMessageDialog(this,"Restaurante Ingresado Correctamente.");
+                    limpiar();
+                    this.dispose();
+                }else{
+                    System.out.println("Error al ingresar el restaurante");
+                }
+                c.desconectar();
+                
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        }
+        
+    }//GEN-LAST:event_btIngresarActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
+    private boolean es_formulario_valido(){
+        if(tfnombre.getText().equals("")){
+            System.out.println("nombre invalida, campos no pueden estar vacios...");
+            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos incompletos.","Ingreso de Restaurantes",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else if (tfubicacion.getText().equals("")){
+            System.out.println("ubicacion invalida, campos no pueden estar vacios...");
+            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos incompletos.","Ingreso de Restaurantes",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else if (tfnombre.getText().equals("")&&tfubicacion.getText().equals("")){
+            System.out.println("Informacion invalida, campos no pueden estar vacios...");
+            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nLa informacion no puede ser nula.","Ingreso de Restaurantes",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+    
+    public void limpiar(){
+        tfnombre.setText("");
+        tfubicacion.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btIngresar;
     private javax.swing.JButton btLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField tfnombre;
+    private javax.swing.JTextField tfubicacion;
     // End of variables declaration//GEN-END:variables
 }

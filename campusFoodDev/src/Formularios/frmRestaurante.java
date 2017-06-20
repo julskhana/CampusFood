@@ -5,6 +5,13 @@
  */
 package Formularios;
 
+import Objetos.restaurante;
+import Objetos.usuario;
+import bd.ConexionBase;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author norberto
@@ -28,10 +35,10 @@ public class frmRestaurante extends javax.swing.JFrame {
     private void initComponents() {
 
         cbConsultaRestaurante = new javax.swing.JComboBox<>();
-        jTextField4 = new javax.swing.JTextField();
+        tfdescripcion = new javax.swing.JTextField();
         btConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbRestaurante = new javax.swing.JTable();
         btEditar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         btNuevo = new javax.swing.JButton();
@@ -39,11 +46,11 @@ public class frmRestaurante extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento de Restaurante");
 
-        cbConsultaRestaurante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todo", "Id", "Nombre", "Ubicacion" }));
+        cbConsultaRestaurante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Id", "Nombre", "Ubicacion" }));
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        tfdescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                tfdescripcionActionPerformed(evt);
             }
         });
 
@@ -54,7 +61,7 @@ public class frmRestaurante extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbRestaurante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -65,7 +72,7 @@ public class frmRestaurante extends javax.swing.JFrame {
                 "Id", "Nombre", "Ubicacion"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbRestaurante);
 
         btEditar.setText("Editar");
         btEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,52 +100,54 @@ public class frmRestaurante extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(cbConsultaRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btConsultar)
-                .addGap(31, 31, 31))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btEditar)
-                        .addGap(90, 90, 90)
+                        .addComponent(cbConsultaRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tfdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btConsultar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
                         .addComponent(btEliminar)
-                        .addGap(117, 117, 117)
-                        .addComponent(btNuevo))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(92, 92, 92)
+                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
+                        .addComponent(btNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbConsultaRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btConsultar))
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btEditar)
+                    .addComponent(btNuevo)
                     .addComponent(btEliminar)
-                    .addComponent(btNuevo))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(btEditar))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void tfdescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_tfdescripcionActionPerformed
 
     private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
         // TODO add your handling code here:
+        if (formularioConsultaValido()){
+            consultarRegistroR();
+        }
     }//GEN-LAST:event_btConsultarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
@@ -161,6 +170,62 @@ public class frmRestaurante extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
+    public void consultarRegistroR(){
+        String tipo = cbConsultaRestaurante.getSelectedItem().toString();
+        String descripcion = tfdescripcion.getText();
+        
+        //consultar
+        try{
+            //cunsolta a la base
+            try{
+                ConexionBase c = new ConexionBase();
+                c.conectar();
+                
+                ArrayList<restaurante> registro = c.consultarRestaurante();
+                ArrayList<restaurante> resultado = new ArrayList<restaurante>();
+                
+                
+                if (tipo.equals("Todos")){
+                    resultado = registro;
+                }
+                
+                DefaultTableModel dtm = (DefaultTableModel)tbRestaurante.getModel();
+                dtm.setRowCount(0);
+                
+                //recorriendo base de datos for
+                for (restaurante res:resultado){
+                    Object[] fila = new Object[3];
+                    fila[0] = res.getId();
+                    fila[1] = res.getNombre();
+                    fila[2] = res.getUbicacion();
+                    dtm.addRow(fila);
+                }
+            c.desconectar();
+            }catch (Exception e){
+                System.out.println("error al consultar restaurantes");
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Ocurrió un error al consultar los registros","Consulta",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    private boolean formularioConsultaValido(){
+        String tipo = cbConsultaRestaurante.getSelectedItem().toString();
+        String descripcion = tfdescripcion.getText();
+        if(tipo.equals("Cedula") && descripcion.equals("")){
+                JOptionPane.showMessageDialog(this,"Debe ingresar un número","Consulta",JOptionPane.ERROR_MESSAGE);
+                return false;
+        }else if(tipo.equals("Nombres") && descripcion.equals("")){
+                JOptionPane.showMessageDialog(this,"Debe ingresar un Nombre","Consulta",JOptionPane.ERROR_MESSAGE);
+                return false;
+        }else if(tipo.equals("Apellidos") && descripcion.equals("")){
+                JOptionPane.showMessageDialog(this,"Debe ingresar un Apellido","Consulta",JOptionPane.ERROR_MESSAGE);
+                return false;
+        }
+        
+        return true;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConsultar;
@@ -169,7 +234,7 @@ public class frmRestaurante extends javax.swing.JFrame {
     private javax.swing.JButton btNuevo;
     private javax.swing.JComboBox<String> cbConsultaRestaurante;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tbRestaurante;
+    private javax.swing.JTextField tfdescripcion;
     // End of variables declaration//GEN-END:variables
 }

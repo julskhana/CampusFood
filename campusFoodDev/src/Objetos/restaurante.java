@@ -16,15 +16,24 @@ public class restaurante implements Serializable{
     private int id;
     private String nombre;
     private String ubicacion;
-    private String almuerzo;
+    //private String almuerzo;
     
-    public restaurante(int id, String nom, String ubi, String alm){
+    //constructor normal
+    public restaurante(int id, String nom, String ubi){
         this.id=id;
         this.nombre=nom;
         this.ubicacion=ubi;
-        this.almuerzo=alm;
     }
     
+    //constructor ingresar
+    public restaurante( String nom, String ubi){
+        this.nombre=nom;
+        this.ubicacion=ubi;
+    }
+    
+    //constructor para consultar
+    
+    //constructor vacio
     public restaurante(){}
     
     //getters
@@ -40,9 +49,6 @@ public class restaurante implements Serializable{
         return ubicacion;
     }
 
-    public String getAlmuerzo() {
-        return almuerzo;
-    }
     
     //setters
     public void setId(int id) {
@@ -55,10 +61,6 @@ public class restaurante implements Serializable{
 
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
-    }
-
-    public void setAlmuerzo(String almuerzo) {
-        this.almuerzo = almuerzo;
     }
     
 }

@@ -167,6 +167,47 @@ public class ConexionBase {
         }
     }
     
+    //RESTAURANTE
+    //cunsulta de restaurantes
+    public ArrayList<restaurante> consultarRestaurante(){
+        ArrayList<restaurante> registroR = new ArrayList<restaurante>();
+        try{
+            Statement st = this.con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM restaurante;");
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String nom = rs.getString("nombre");
+                String ubi= rs.getString("ubicacion");
+                
+                restaurante rest = new restaurante(id,nom,ubi);
+                registroR.add(rest);
+            }
+            System.out.println("restaurantes consultados.");
+        }catch (Exception e){
+            System.out.println("error en consulta de restaurantes.");
+        }
+        return registroR;
+    }
+    
+    //ingreso de restaurantes
+    public boolean ingresarRestaurante(restaurante r){
+        try{
+            PreparedStatement st=null;
+            st = con.prepareStatement("insert into restaurante (nombre,ubicacion) values (?,?);");
+            st.setString(1,r.getNombre());
+            st.setString(2,r.getUbicacion());
+            
+            st.executeUpdate();
+            st.close();
+            
+            System.out.println("Se ingreso el restaurante exitosamente...");
+            return true;
+        }catch (Exception e){
+            System.out.println("Error al ingresar el restaurante\n"+e);
+            return false;
+        }
+    }
+
     
     //FUNCIONES DE PROYECTO ANTERIOR
     /*
