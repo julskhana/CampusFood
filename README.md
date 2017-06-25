@@ -1,5 +1,5 @@
 # CampusFood
-Sistema de gestion de compra de almuerzos en un campus universitario.
+#Sistema de gestion de compra de almuerzos en un campus universitario.
 
 #Proyecto de Java Programming Language 2017 T1
 #Profesor: Ing. Ronald Criollo
