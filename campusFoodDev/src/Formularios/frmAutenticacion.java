@@ -9,6 +9,7 @@ import Objetos.usuario;
 import bd.ConexionBase;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -29,8 +30,8 @@ public class frmAutenticacion extends javax.swing.JFrame {
         try{
             BufferedImage candado = ImageIO.read(new File("src/icons/candado_peq.png"));
             ic_candado.setIcon(new ImageIcon(candado));
-        }catch (Exception e){    
-        }
+        }catch (IOException e){}
+        
     }
 
     /**
