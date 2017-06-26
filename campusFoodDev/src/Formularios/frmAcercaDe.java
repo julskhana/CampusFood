@@ -81,7 +81,7 @@ public class frmAcercaDe extends javax.swing.JFrame {
 
         logoEspol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/espol_icon.png"))); // NOI18N
 
-        btSalirAD.setText("Salir");
+        btSalirAD.setText("Regresar");
         btSalirAD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalirADActionPerformed(evt);

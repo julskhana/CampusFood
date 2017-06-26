@@ -7,6 +7,10 @@ package Formularios;
 
 import Objetos.usuario;
 import bd.ConexionBase;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +24,13 @@ public class frmAutenticacion extends javax.swing.JFrame {
      */
     public frmAutenticacion() {
         initComponents();
+        
+        //Excepcion para cargar imagen
+        try{
+            BufferedImage candado = ImageIO.read(new File("src/icons/candado_peq.png"));
+            ic_candado.setIcon(new ImageIcon(candado));
+        }catch (Exception e){    
+        }
     }
 
     /**
@@ -36,9 +47,11 @@ public class frmAutenticacion extends javax.swing.JFrame {
         lclave = new javax.swing.JLabel();
         pfclave = new javax.swing.JPasswordField();
         btIngresar = new javax.swing.JButton();
+        ic_candado = new javax.swing.JLabel();
+        btLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Autenticacion Usuarios");
+        setTitle("Autenticación Usuarios");
 
         lusuario.setText("Usuario:");
 
@@ -51,40 +64,60 @@ public class frmAutenticacion extends javax.swing.JFrame {
             }
         });
 
+        ic_candado.setPreferredSize(new java.awt.Dimension(57, 57));
+
+        btLimpiar.setText("Limpiar");
+        btLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                        .addGap(27, 27, 27)
+                        .addComponent(ic_candado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lclave)
                             .addComponent(lusuario))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfusuario)
-                            .addComponent(pfclave, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tfusuario, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                            .addComponent(pfclave)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
+                        .addGap(54, 54, 54)
+                        .addComponent(btLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                         .addComponent(btIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lusuario)
-                    .addComponent(tfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lclave)
-                    .addComponent(pfclave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lusuario)
+                            .addComponent(tfusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lclave)
+                            .addComponent(pfclave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(ic_candado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(btIngresar)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btIngresar)
+                    .addComponent(btLimpiar))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -100,13 +133,13 @@ public class frmAutenticacion extends javax.swing.JFrame {
             c.conectar();
             usuario u = new usuario(usuario, clave);
             if(c.esUsuarioValido(u)){
-                JOptionPane.showMessageDialog(null,"Usuario correcto","Autenticación",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Bienvenido "+usuario+".","Autenticación",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Usuario correcto");
                 frmPrincipal ingreso = new frmPrincipal();
                 ingreso.setVisible(true);
                 this.dispose();
             }else{
-                JOptionPane.showMessageDialog(null,"Usuario Incorrecto","Autenticación",JOptionPane.ERROR_MESSAGE);                        
+                JOptionPane.showMessageDialog(null,"Usuario o Clave Incorrectos","Autenticación",JOptionPane.ERROR_MESSAGE);                        
                 System.out.println("Usuario incorrecto");
             }
             c.desconectar();
@@ -115,12 +148,24 @@ public class frmAutenticacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btIngresarActionPerformed
 
+    private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btLimpiarActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+    private void limpiar(){
+        tfusuario.setText("");
+        pfclave.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btIngresar;
+    private javax.swing.JButton btLimpiar;
+    private javax.swing.JLabel ic_candado;
     private javax.swing.JLabel lclave;
     private javax.swing.JLabel lusuario;
     private javax.swing.JPasswordField pfclave;
