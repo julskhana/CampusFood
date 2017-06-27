@@ -42,11 +42,12 @@ public class frmRestaurante extends javax.swing.JFrame {
         btEditar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         btNuevo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento de Restaurante");
 
-        cbConsultaRestaurante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Id", "Nombre", "Ubicacion" }));
+        cbConsultaRestaurante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Nombre", "Ubicacion", "Descripcion", "Capacidad", "Horario", "Puntuacion" }));
 
         tfdescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,15 +64,23 @@ public class frmRestaurante extends javax.swing.JFrame {
 
         tbRestaurante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Ubicacion"
+                "Id", "Nombre", "Ubicacion", "Descripcion", "Capacidad", "Horario", "Puntuacion(Max.5)"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbRestaurante);
 
         btEditar.setText("Editar");
@@ -95,6 +104,8 @@ public class frmRestaurante extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Descripcion:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,21 +113,25 @@ public class frmRestaurante extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbConsultaRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btConsultar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(btEliminar)
-                        .addGap(92, 92, 92)
-                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
-                        .addComponent(btNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(168, 168, 168)
+                                .addComponent(btNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbConsultaRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btConsultar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,15 +140,16 @@ public class frmRestaurante extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbConsultaRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btConsultar))
+                    .addComponent(btConsultar)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btNuevo)
-                    .addComponent(btEliminar)
-                    .addComponent(btEditar))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(btEditar)
+                    .addComponent(btEliminar))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -184,9 +200,40 @@ public class frmRestaurante extends javax.swing.JFrame {
                 ArrayList<restaurante> registro = c.consultarRestaurante();
                 ArrayList<restaurante> resultado = new ArrayList<restaurante>();
                 
-                
+                //Consultar tipo y descripcion
                 if (tipo.equals("Todos")){
-                    resultado = registro;
+                        resultado = registro;
+                }else{
+                    for (restaurante r1:registro){
+                        if(tipo.equals("Nombre")&&(descripcion.length()>0)){
+                            if(r1.getNombre().toUpperCase().contains(descripcion.toUpperCase())){
+                                resultado.add(r1);
+                            }
+                        }else if(tipo.equals("Ubicacion")&&(descripcion.length()>0)){
+                            if(r1.getUbicacion().toUpperCase().contains(descripcion.toUpperCase())){
+                                resultado.add(r1);
+                            }
+                        }else if(tipo.equals("Descripcion")&&(descripcion.length()>0)){
+                            if(r1.getDescripcion().toUpperCase().contains(descripcion.toUpperCase())){
+                                resultado.add(r1);
+                            }
+                        }else if(tipo.equals("Capacidad")&&(descripcion.length()>0)){
+                            if(String.valueOf(r1.getCapacidad()).contains(descripcion)){
+                                resultado.add(r1);
+                            }
+                        }else if(tipo.equals("Horario")&&(descripcion.length()>0)){
+                            if(r1.getHorario().toUpperCase().contains(descripcion.toUpperCase())){
+                                resultado.add(r1);
+                            }
+                        }else if(tipo.equals("Puntuacion")&&(descripcion.length()>0)){
+                            if(String.valueOf(r1.getCapacidad()).equals(descripcion)){
+                                resultado.add(r1);
+                            }
+                        }else{
+                            JOptionPane.showMessageDialog(this,"Descripcion vacia.","Consulta Invalida",JOptionPane.ERROR_MESSAGE);
+                            break;
+                        }
+                    }
                 }
                 
                 DefaultTableModel dtm = (DefaultTableModel)tbRestaurante.getModel();
@@ -194,10 +241,14 @@ public class frmRestaurante extends javax.swing.JFrame {
                 
                 //recorriendo base de datos for
                 for (restaurante res:resultado){
-                    Object[] fila = new Object[3];
+                    Object[] fila = new Object[7];
                     fila[0] = res.getId();
                     fila[1] = res.getNombre();
                     fila[2] = res.getUbicacion();
+                    fila[3] = res.getDescripcion();
+                    fila[4] = res.getCapacidad();
+                    fila[5] = res.getHorario();
+                    fila[6] = res.getPuntuacion();
                     dtm.addRow(fila);
                 }
             c.desconectar();
@@ -233,6 +284,7 @@ public class frmRestaurante extends javax.swing.JFrame {
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btNuevo;
     private javax.swing.JComboBox<String> cbConsultaRestaurante;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbRestaurante;
     private javax.swing.JTextField tfdescripcion;

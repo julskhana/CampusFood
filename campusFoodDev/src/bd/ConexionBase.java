@@ -204,9 +204,13 @@ public class ConexionBase {
             while (rs.next()){
                 int id = rs.getInt("id");
                 String nom = rs.getString("nombre");
-                String ubi= rs.getString("ubicacion");
+                String ubi = rs.getString("ubicacion");
+                String desc = rs.getString("descripcion");
+                int cap = rs.getShort("capacidad");
+                String hora = rs.getString("horario");
+                int punt = rs.getShort("puntuacion");
                 
-                restaurante rest = new restaurante(id,nom,ubi);
+                restaurante rest = new restaurante(id, nom, ubi, desc, cap, hora, punt);
                 registroR.add(rest);
             }
             System.out.println("restaurantes consultados.");

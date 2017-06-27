@@ -16,19 +16,31 @@ public class restaurante implements Serializable{
     private int id;
     private String nombre;
     private String ubicacion;
+    private String descripcion;
+    private int capacidad;
+    private String horario;
+    private int puntuacion;
     //private String almuerzo;
     
     //constructor normal
-    public restaurante(int id, String nom, String ubi){
+    public restaurante(int id, String nom, String ubi, String desc, int cap, String hora, int punt){
         this.id=id;
         this.nombre=nom;
         this.ubicacion=ubi;
+        this.descripcion=desc;
+        this.capacidad=cap;
+        this.horario=hora;
+        this.puntuacion=punt;
     }
     
     //constructor ingresar
-    public restaurante( String nom, String ubi){
+    public restaurante(String nom, String ubi, String desc, int cap, String hora, int punt){
         this.nombre=nom;
         this.ubicacion=ubi;
+        this.descripcion=desc;
+        this.capacidad=cap;
+        this.horario=hora;
+        this.puntuacion=punt;
     }
     
     //constructor para consultar
@@ -49,6 +61,23 @@ public class restaurante implements Serializable{
         return ubicacion;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public int getPuntuacion() {
+        return puntuacion;
+    }
+
+    
     
     //setters
     public void setId(int id) {
@@ -62,5 +91,22 @@ public class restaurante implements Serializable{
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public void setPuntuacion(int puntuacion) {
+        this.puntuacion = puntuacion;
+    }
+    
     
 }

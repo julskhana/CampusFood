@@ -134,7 +134,7 @@ public class frmIngresoRestaurante extends javax.swing.JFrame {
             String nombre = tfnombre.getText();
             String ubicacion = tfubicacion.getText();
             //recopilacion de datos para crear nuevo restaurante
-            restaurante r = new restaurante(nombre,ubicacion);
+            restaurante r = new restaurante();
             //conexion a la base
             ConexionBase c = new ConexionBase();
             
