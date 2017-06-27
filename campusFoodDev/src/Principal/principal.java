@@ -18,13 +18,13 @@ public class principal {
         // TODO code application logic here
         System.out.println("Sistema de gestion de almuerzos - Campus Espol\n");
         
+        //codigo para iniciar proyecto con autenticacion
+        //frmAutenticacion aut = new frmAutenticacion();
+        //aut.setVisible(true);
         
-        frmAutenticacion aut = new frmAutenticacion();
-        aut.setVisible(true);
-        
-        /*
+        //codigo para iniciar proyecto sin autenticacion
         frmPrincipal frmP = new frmPrincipal();
         frmP.setVisible(true);
-        */
+        
     }
 }

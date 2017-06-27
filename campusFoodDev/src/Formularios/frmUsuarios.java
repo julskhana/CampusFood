@@ -35,8 +35,8 @@ public class frmUsuarios extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbusuario = new javax.swing.JTable();
-        cbConsultaUsuarios = new javax.swing.JComboBox<>();
-        tfConsulta = new javax.swing.JTextField();
+        cbtipo = new javax.swing.JComboBox<>();
+        tfdescripcion = new javax.swing.JTextField();
         btConsultar = new javax.swing.JButton();
         btCClave = new javax.swing.JButton();
         btNuevousuario = new javax.swing.JButton();
@@ -70,7 +70,7 @@ public class frmUsuarios extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbusuario);
 
-        cbConsultaUsuarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos" }));
+        cbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Cuenta", "Rol", "Estado", "Fecha Registro" }));
 
         btConsultar.setText("Consultar");
         btConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,17 +130,17 @@ public class frmUsuarios extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbConsultaUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(tfConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
+                        .addComponent(cbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfdescripcion)
+                        .addGap(30, 30, 30)
                         .addComponent(btConsultar)
-                        .addGap(53, 53, 53))
+                        .addGap(35, 35, 35))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66)
                         .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addComponent(btCClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
                         .addComponent(btNuevousuario, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,8 +158,8 @@ public class frmUsuarios extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbConsultaUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbtipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btConsultar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,8 +230,8 @@ public class frmUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btEditarActionPerformed
 
     public void consultarRegistro(){
-        String tipo = cbConsultaUsuarios.getSelectedItem().toString();
-        String descripcion = tfConsulta.getText();
+        String tipo = cbtipo.getSelectedItem().toString();
+        String descripcion = tfdescripcion.getText();
         
         //consultar
         try{
@@ -243,11 +243,32 @@ public class frmUsuarios extends javax.swing.JFrame {
                 ArrayList<usuario> registro = c.consultarUsuarios();
                 ArrayList<usuario> resultado = new ArrayList<usuario>();
                 
-                
+                //Consultar tipo y descripcion
                 if (tipo.equals("Todos")){
-                    resultado = registro;
-                }
-                
+                        resultado = registro;
+                    }else{
+                        for (usuario u1:registro){
+                            if(tipo.equals("Cuenta")){
+                                if(u1.getCuenta().toUpperCase().contains(descripcion.toUpperCase())){
+                                    resultado.add(u1);
+                                }
+                            }else if(tipo.equals("Rol")){
+                                if(u1.getRol().toUpperCase().contains(descripcion.toUpperCase())){
+                                    resultado.add(u1);
+                                }
+                            }else if(tipo.equals("Estado")){
+                                if(u1.getEstado().toUpperCase().contains(descripcion.toUpperCase())){
+                                    resultado.add(u1);
+                                }
+                            }else if(tipo.equals("Fecha Registro")){
+                                if(u1.getFecha_registro().contains(descripcion.toUpperCase())){
+                                    resultado.add(u1);
+                                }
+                            }
+                        }
+                        //System.out.println("consulta invalida...");
+                    }
+
                 DefaultTableModel dtm = (DefaultTableModel)tbusuario.getModel();
                 dtm.setRowCount(0);
                 
@@ -271,8 +292,8 @@ public class frmUsuarios extends javax.swing.JFrame {
     }
     
     private boolean formularioConsultaValidoA(){
-        String tipo = cbConsultaUsuarios.getSelectedItem().toString();
-        String descripcion = tfConsulta.getText();
+        String tipo = cbtipo.getSelectedItem().toString();
+        String descripcion = tfdescripcion.getText();
         if(tipo.equals("Cedula") && descripcion.equals("")){
                 JOptionPane.showMessageDialog(this,"Debe ingresar un número","Consulta",JOptionPane.ERROR_MESSAGE);
                 return false;
@@ -306,12 +327,12 @@ public class frmUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btNuevousuario;
-    private javax.swing.JComboBox<String> cbConsultaUsuarios;
+    private javax.swing.JComboBox<String> cbtipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbusuario;
-    private javax.swing.JTextField tfConsulta;
+    private javax.swing.JTextField tfdescripcion;
     // End of variables declaration//GEN-END:variables
 }
