@@ -242,6 +242,32 @@ public class ConexionBase {
             return false;
         }
     }
+    
+    //funcion para modificar restaurantes
+    public boolean modificarCliente(restaurante r1){
+        try{
+            int idc = r1.getId();
+            System.out.println("id de restaurante: "+idc);
+            PreparedStatement st2 = null;
+            st2 = con.prepareStatement("update restaurante set nombre = ?, ubicacion = ?, descripcion = ?, capacidad = ?, horario = ?, puntuacion = ? where id = ?;");
+            st2.setString(1,r1.getNombre());
+            st2.setString(2,r1.getUbicacion());
+            st2.setString(3,r1.getDescripcion());
+            st2.setInt(4,r1.getCapacidad());
+            st2.setString(5,r1.getHorario());
+            st2.setInt(6,r1.getPuntuacion());
+            st2.setInt(7,r1.getId());
+            
+            st2.executeUpdate();
+            st2.close();
+            System.out.println("modificacion de restaurante exitosa");
+            return true;
+        }
+        catch(SQLException e){
+            System.out.println(e);
+            return false;
+        }
+    }
 
     
     //FUNCIONES DE PROYECTO ANTERIOR

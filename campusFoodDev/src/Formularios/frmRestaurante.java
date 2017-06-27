@@ -23,6 +23,7 @@ public class frmRestaurante extends javax.swing.JFrame {
      */
     public frmRestaurante() {
         initComponents();
+        btEditar.enable(false);
     }
 
     /**
@@ -163,13 +164,23 @@ public class frmRestaurante extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (formularioConsultaValido()){
             consultarRegistroR();
+            btEditar.enable(true);
         }
     }//GEN-LAST:event_btConsultarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         // TODO add your handling code here:
-        frmEdicionRestaurante2 mantEdiRes= new frmEdicionRestaurante2();
-        mantEdiRes.setVisible(true);
+        //frmEdicionRestaurante2 mantEdiRes= new frmEdicionRestaurante2();
+        //mantEdiRes.setVisible(true);
+        if(seleccionEdicionnValida()){
+            int fila = tbRestaurante.getSelectedRow();
+            int id = Integer.parseInt(tbRestaurante.getValueAt(fila,0).toString());
+            frmEdicionRestaurante2 edres = new frmEdicionRestaurante2(id);
+            edres.setVisible(true);
+        }else{
+            consultarRegistroR();
+        }
+        
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
@@ -274,6 +285,28 @@ public class frmRestaurante extends javax.swing.JFrame {
                 return false;
         }
         
+        return true;
+    }
+    
+    private boolean seleccionEliminacionValida(){ 
+        int n = tbRestaurante.getSelectedRowCount();
+        if(n==0){
+            JOptionPane.showMessageDialog(this,"Debe seleccionar mínimo un registro para eliminar","Eliminación",JOptionPane.ERROR_MESSAGE);
+            return false;        
+        }
+        int op = JOptionPane.showConfirmDialog(this, "Está seguro de eliminar los registros seleccionados?","Eliminación",JOptionPane.YES_NO_OPTION);
+        if(op==0)
+            return true;
+        else
+            return false;
+    }
+    
+    private boolean seleccionEdicionnValida(){ 
+        int n = tbRestaurante.getSelectedRowCount();
+        if(n==0){
+            JOptionPane.showMessageDialog(this,"Debe seleccionar mínimo un registro para editar","Edicion",JOptionPane.ERROR_MESSAGE);
+            return false;        
+        }
         return true;
     }
     

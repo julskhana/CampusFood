@@ -22,6 +22,10 @@ public class frmUsuarios extends javax.swing.JFrame {
      */
     public frmUsuarios() {
         initComponents();
+        
+        btEliminar.enable(false);
+        btEditar.enable(false);
+        
     }
 
     /**
@@ -203,6 +207,8 @@ public class frmUsuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (formularioConsultaValidoA()){
             consultarRegistro();
+            btEliminar.enable(true);
+            btEditar.enable(true);
         }
     }//GEN-LAST:event_btConsultarActionPerformed
 
