@@ -51,6 +51,7 @@ public class frmIngresoUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ingreso Usuarios");
+        setResizable(false);
 
         jLabel1.setText("Rol:");
 

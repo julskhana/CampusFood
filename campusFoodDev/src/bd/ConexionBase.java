@@ -195,7 +195,7 @@ public class ConexionBase {
     }
     
     //RESTAURANTE
-    //cunsulta de restaurantes
+    //consulta de restaurantes
     public ArrayList<restaurante> consultarRestaurante(){
         ArrayList<restaurante> registroR = new ArrayList<restaurante>();
         try{
@@ -224,9 +224,13 @@ public class ConexionBase {
     public boolean ingresarRestaurante(restaurante r){
         try{
             PreparedStatement st=null;
-            st = con.prepareStatement("insert into restaurante (nombre,ubicacion) values (?,?);");
+            st = con.prepareStatement("insert into restaurante (nombre,ubicacion,descripcion,capacidad,horario,puntuacion) values (?,?,?,?,?,?);");
             st.setString(1,r.getNombre());
             st.setString(2,r.getUbicacion());
+            st.setString(3,r.getDescripcion());
+            st.setInt(4,r.getCapacidad());
+            st.setString(5,r.getHorario());
+            st.setInt(6,r.getPuntuacion());
             
             st.executeUpdate();
             st.close();

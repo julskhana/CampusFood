@@ -23,24 +23,24 @@ public class restaurante implements Serializable{
     //private String almuerzo;
     
     //constructor normal
-    public restaurante(int id, String nom, String ubi, String desc, int cap, String hora, int punt){
+    public restaurante(int id, String nombre, String ubicacion, String descripcion, int capacidad, String hora, int puntos){
         this.id=id;
-        this.nombre=nom;
-        this.ubicacion=ubi;
-        this.descripcion=desc;
-        this.capacidad=cap;
+        this.nombre=nombre;
+        this.ubicacion=ubicacion;
+        this.descripcion=descripcion;
+        this.capacidad=capacidad;
         this.horario=hora;
-        this.puntuacion=punt;
+        this.puntuacion=puntos;
     }
     
     //constructor ingresar
-    public restaurante(String nom, String ubi, String desc, int cap, String hora, int punt){
-        this.nombre=nom;
-        this.ubicacion=ubi;
-        this.descripcion=desc;
-        this.capacidad=cap;
+    public restaurante(String nombre, String ubicacion, String descripcion, int capacidad, String hora, int puntos){    
+        this.nombre=nombre;
+        this.ubicacion=ubicacion;
+        this.descripcion=descripcion;
+        this.capacidad=capacidad;
         this.horario=hora;
-        this.puntuacion=punt;
+        this.puntuacion=puntos;
     }
     
     //constructor para consultar

@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
  *
  * @author norberto
  */
-public class frmIngresoRestaurante extends javax.swing.JFrame {
+public class frmEdicionRestaurante2 extends javax.swing.JFrame {
 
     /**
      * Creates new form frmIngresoRestaurante
      */
-    public frmIngresoRestaurante() {
+    public frmEdicionRestaurante2() {
         initComponents();
     }
 
@@ -191,13 +191,8 @@ public class frmIngresoRestaurante extends javax.swing.JFrame {
         if (es_formulario_valido()){
             String nombre = tfnombre.getText();
             String ubicacion = tfubicacion.getText();
-            String descripcion = tfdescripcion.getText();
-            int capacidad = Integer.parseInt(tfcapacidad.getText());
-            String horario = tfhorario.getText();
-            int puntos = Integer.parseInt(cbPuntos.getSelectedItem().toString());
-            
             //recopilacion de datos para crear nuevo restaurante
-            restaurante r = new restaurante(nombre, ubicacion, descripcion, capacidad, horario, puntos);
+            restaurante r = new restaurante();
             //conexion a la base
             ConexionBase c = new ConexionBase();
             
@@ -225,9 +220,17 @@ public class frmIngresoRestaurante extends javax.swing.JFrame {
      */
 
     private boolean es_formulario_valido(){
-        if(tfnombre.getText().equals("")||tfubicacion.getText().equals("")||tfnombre.getText().equals("")&&tfubicacion.getText().equals("")){
-            System.out.println("texto invalida, campos no pueden estar vacios...");
+        if(tfnombre.getText().equals("")){
+            System.out.println("nombre invalida, campos no pueden estar vacios...");
             JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos incompletos.","Ingreso de Restaurantes",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else if (tfubicacion.getText().equals("")){
+            System.out.println("ubicacion invalida, campos no pueden estar vacios...");
+            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos incompletos.","Ingreso de Restaurantes",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }else if (tfnombre.getText().equals("")&&tfubicacion.getText().equals("")){
+            System.out.println("Informacion invalida, campos no pueden estar vacios...");
+            JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nLa informacion no puede ser nula.","Ingreso de Restaurantes",JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;

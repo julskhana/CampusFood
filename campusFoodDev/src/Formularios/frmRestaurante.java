@@ -168,7 +168,7 @@ public class frmRestaurante extends javax.swing.JFrame {
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         // TODO add your handling code here:
-        frmEdicionRestaurante mantEdiRes= new frmEdicionRestaurante();
+        frmEdicionRestaurante2 mantEdiRes= new frmEdicionRestaurante2();
         mantEdiRes.setVisible(true);
     }//GEN-LAST:event_btEditarActionPerformed
 
