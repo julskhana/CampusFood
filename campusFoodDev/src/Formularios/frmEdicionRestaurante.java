@@ -7,7 +7,8 @@ package Formularios;
 
 import Objetos.restaurante;
 import Objetos.usuario;
-import bd.ConexionBase;
+import bd.ConexionBD;
+import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
@@ -15,14 +16,36 @@ import javax.swing.JOptionPane;
  *
  * @author norberto
  */
-public class frmEdicionRestaurante2 extends javax.swing.JFrame {
+public class frmEdicionRestaurante extends javax.swing.JFrame {
 
     /**
      * Creates new form frmIngresoRestaurante
      */
-    public frmEdicionRestaurante2(int id) {
+    public frmEdicionRestaurante(int id) {
         initComponents();
         tfid.setText(String.valueOf(id));
+        String ide = String.valueOf(id);
+        
+        //cargando datos de cliente a editar
+        ConexionBD c = new ConexionBD();
+        try{
+            c.conectar();
+            ArrayList<restaurante> rest = c.consultarRestaurante("",ide);
+            c.desconectar();
+            
+            for (restaurante re:rest){
+                if(re.getId()==id){
+                   tfnombre.setText(re.getNombre());
+                   tfubicacion.setText(re.getUbicacion());
+                   tfdescripcion.setText(re.getDescripcion());
+                   tfcapacidad.setText(String.valueOf(re.getCapacidad()));
+                   tfhorario.setText(re.getHorario());
+                   //cbPuntos.
+                }
+            }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Ocurrió un error al consultar los datos del registro","Edición",JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -208,7 +231,7 @@ public class frmEdicionRestaurante2 extends javax.swing.JFrame {
             //recopilacion de datos para crear nuevo restaurante
             restaurante r = new restaurante();
             //conexion a la base
-            ConexionBase c = new ConexionBase();
+            ConexionBD c = new ConexionBD();
             
             try{
                 c.conectar();

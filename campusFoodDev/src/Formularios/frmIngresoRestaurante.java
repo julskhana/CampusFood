@@ -7,7 +7,7 @@ package Formularios;
 
 import Objetos.restaurante;
 import Objetos.usuario;
-import bd.ConexionBase;
+import bd.ConexionBD;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
@@ -199,7 +199,7 @@ public class frmIngresoRestaurante extends javax.swing.JFrame {
             //recopilacion de datos para crear nuevo restaurante
             restaurante r = new restaurante(nombre, ubicacion, descripcion, capacidad, horario, puntos);
             //conexion a la base
-            ConexionBase c = new ConexionBase();
+            ConexionBD c = new ConexionBD();
             
             try{
                 c.conectar();

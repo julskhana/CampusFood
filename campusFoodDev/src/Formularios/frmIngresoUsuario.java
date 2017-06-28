@@ -6,7 +6,7 @@
 package Formularios;
 
 import Objetos.usuario;
-import bd.ConexionBase;
+import bd.ConexionBD;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -171,8 +171,7 @@ public class frmIngresoUsuario extends javax.swing.JFrame {
             //recopilacion de datos para crear nuevo usuario
             usuario u = new usuario(cuenta,clave,rol,estado,fecha_hora_in);
             //conexion a la base
-            ConexionBase c = new ConexionBase();
-            
+            ConexionBD c = new ConexionBD();
             if (Arrays.equals(pfclave1.getPassword(), pfclave2.getPassword())){
                 try{
                     c.conectar();

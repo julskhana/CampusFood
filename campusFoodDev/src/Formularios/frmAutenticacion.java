@@ -6,7 +6,7 @@
 package Formularios;
 
 import Objetos.usuario;
-import bd.ConexionBase;
+import bd.ConexionBD;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -129,7 +129,7 @@ public class frmAutenticacion extends javax.swing.JFrame {
         String usuario = tfusuario.getText();
         String clave = String.valueOf(pfclave.getPassword());
         
-        ConexionBase c = new ConexionBase();
+        ConexionBD c = new ConexionBD();
         try {
             c.conectar();
             usuario u = new usuario(usuario, clave);

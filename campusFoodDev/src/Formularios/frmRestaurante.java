@@ -7,7 +7,7 @@ package Formularios;
 
 import Objetos.restaurante;
 import Objetos.usuario;
-import bd.ConexionBase;
+import bd.ConexionBD;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -175,7 +175,7 @@ public class frmRestaurante extends javax.swing.JFrame {
         if(seleccionEdicionnValida()){
             int fila = tbRestaurante.getSelectedRow();
             int id = Integer.parseInt(tbRestaurante.getValueAt(fila,0).toString());
-            frmEdicionRestaurante2 edres = new frmEdicionRestaurante2(id);
+            frmEdicionRestaurante edres = new frmEdicionRestaurante(id);
             edres.setVisible(true);
         }else{
             consultarRegistroR();
@@ -205,10 +205,10 @@ public class frmRestaurante extends javax.swing.JFrame {
         try{
             //cunsolta a la base
             try{
-                ConexionBase c = new ConexionBase();
+                ConexionBD c = new ConexionBD();
                 c.conectar();
                 
-                ArrayList<restaurante> registro = c.consultarRestaurante();
+                ArrayList<restaurante> registro = c.consultarRestaurante("","restaurante");
                 ArrayList<restaurante> resultado = new ArrayList<restaurante>();
                 
                 //Consultar tipo y descripcion

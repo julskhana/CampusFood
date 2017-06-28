@@ -6,7 +6,7 @@
 package Formularios;
 
 import Objetos.usuario;
-import bd.ConexionBase;
+import bd.ConexionBD;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;

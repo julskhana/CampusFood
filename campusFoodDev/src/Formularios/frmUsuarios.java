@@ -6,7 +6,7 @@
 package Formularios;
 
 import Objetos.usuario;
-import bd.ConexionBase;
+import bd.ConexionBD;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -216,7 +216,7 @@ public class frmUsuarios extends javax.swing.JFrame {
 
         // TODO add your handling code here:
         if (seleccionEliminacionValida()){
-            ConexionBase c = new ConexionBase();
+            ConexionBD c = new ConexionBD();
             try{
                 c.conectar();
                 int filas[] =tbusuario.getSelectedRows();
@@ -249,7 +249,7 @@ public class frmUsuarios extends javax.swing.JFrame {
         try{
             //cunsolta a la base
             try{
-                ConexionBase c = new ConexionBase();
+                ConexionBD c = new ConexionBD();
                 c.conectar();
                 
                 ArrayList<usuario> registro = c.consultarUsuarios();

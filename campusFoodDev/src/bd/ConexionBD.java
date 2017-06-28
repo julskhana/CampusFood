@@ -6,7 +6,7 @@ import Objetos.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ConexionBase {
+public class ConexionBD {
     
        private Connection con;
        private static final String DRIVER = "com.mysql.jdbc.Driver";
@@ -196,11 +196,18 @@ public class ConexionBase {
     
     //RESTAURANTE
     //consulta de restaurantes
-    public ArrayList<restaurante> consultarRestaurante(){
+    public ArrayList<restaurante> consultarRestaurante(String busqueda, String tipo){
         ArrayList<restaurante> registroR = new ArrayList<restaurante>();
         try{
             Statement st = this.con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM restaurante;");
+            ResultSet rs = null;
+            
+            if(tipo.equalsIgnoreCase("restaurante")){
+                rs = st.executeQuery("SELECT * FROM restaurante;");
+            }else{
+                rs = st.executeQuery("SELECT * FROM restaurante WHERE "+tipo+" LIKE '%"+busqueda+"%';");
+            }
+            
             while (rs.next()){
                 int id = rs.getInt("id");
                 String nom = rs.getString("nombre");
@@ -241,6 +248,34 @@ public class ConexionBase {
             System.out.println("Error al ingresar el restaurante\n"+e);
             return false;
         }
+    }
+    
+    //funcion para obtener datos de restaurante por id
+    public restaurante obtenerRestaurante(int id){
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        restaurante rest = new restaurante();
+        try
+        {            
+            st = con.prepareStatement("SELECT * FROM restaurante WHERE id = ?;");
+            st.setInt(1,id);         
+            rs = st.executeQuery();            
+            if(rs.next()){
+                String nom = rs.getString("nombre");
+                String ubi = rs.getString("ubicacion");
+                String desc = rs.getString("descripcion");
+                int cap = rs.getInt("cantidad");
+                String hora = rs.getString("horario");
+                int puntos = rs.getInt("puntuacion");
+                rest = new restaurante(nom, ubi, desc, cap, hora, puntos);
+            } 
+            rs.close();
+            st.close();
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }    
+        return rest;
     }
     
     //funcion para modificar restaurantes
