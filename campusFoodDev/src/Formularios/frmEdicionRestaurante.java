@@ -77,7 +77,7 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
         tfid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Ingreso de Restaurante");
+        setTitle("Edicion de Restaurantes");
         setResizable(false);
 
         jLabel1.setText("Nombre:");
