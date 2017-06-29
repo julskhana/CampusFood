@@ -163,6 +163,7 @@ public class frmRestaurante extends javax.swing.JFrame {
         if (formularioConsultaValido()){
             consultarRegistroR();
             btEditar.enable(true);
+            btEditar.setFocusable(true);
         }
     }//GEN-LAST:event_btConsultarActionPerformed
 
@@ -173,12 +174,12 @@ public class frmRestaurante extends javax.swing.JFrame {
         if(seleccionEdicionnValida()){
             int fila = tbRestaurante.getSelectedRow();
             int id = Integer.parseInt(tbRestaurante.getValueAt(fila,0).toString());
-            frmEdicionRestaurante edres = new frmEdicionRestaurante(id);
-            edres.setVisible(true);
+            frmEdicionRestaurante edrest = new frmEdicionRestaurante(id);
+            edrest.setVisible(true);
         }else{
             consultarRegistroR();
         }
-        
+        consultarRegistroR();
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
@@ -299,6 +300,7 @@ public class frmRestaurante extends javax.swing.JFrame {
             return false;
     }
     
+    //funcion para establecer seleccion valida al momento de editar o eliminar
     private boolean seleccionEdicionnValida(){ 
         int n = tbRestaurante.getSelectedRowCount();
         if(n==0){

@@ -10,6 +10,7 @@ import Objetos.usuario;
 import bd.ConexionBD;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,7 +41,7 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
                    tfdescripcion.setText(re.getDescripcion());
                    tfcapacidad.setText(String.valueOf(re.getCapacidad()));
                    tfhorario.setText(re.getHorario());
-                   //cbPuntos.
+                   cbPuntos.setSelectedIndex(re.getPuntuacion()-1);
                 }
             }
         }catch (Exception e){
@@ -120,7 +121,7 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
 
         jLabel6.setText("Puntuacion:");
 
-        cbPuntos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "4", "3", "2", "1" }));
+        cbPuntos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
 
         jLabel7.setText("(HH:MM-HH:MM)");
 
@@ -271,6 +272,7 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
                 System.out.println(e);
             }
         }
+        
     }//GEN-LAST:event_bteditarActionPerformed
 
     private void btcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcancelarActionPerformed
@@ -303,7 +305,7 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
         tfnombre.setText("");
         tfubicacion.setText("");
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLimpiar;
     private javax.swing.JButton btcancelar;
