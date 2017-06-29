@@ -62,7 +62,7 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         tfubicacion = new javax.swing.JTextField();
         btLimpiar = new javax.swing.JButton();
-        btIngresar = new javax.swing.JButton();
+        bteditar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         tfdescripcion = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -103,10 +103,10 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
             }
         });
 
-        btIngresar.setText("Ingresar");
-        btIngresar.addActionListener(new java.awt.event.ActionListener() {
+        bteditar.setText("Editar");
+        bteditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btIngresarActionPerformed(evt);
+                bteditarActionPerformed(evt);
             }
         });
 
@@ -167,7 +167,7 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
                         .addComponent(tfhorario, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bteditar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
@@ -203,7 +203,7 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btLimpiar)
-                    .addComponent(btIngresar))
+                    .addComponent(bteditar))
                 .addGap(15, 15, 15))
         );
 
@@ -223,25 +223,31 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
         limpiar();
     }//GEN-LAST:event_btLimpiarActionPerformed
 
-    private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
+    private void bteditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteditarActionPerformed
         // TODO add your handling code here:
         if (es_formulario_valido()){
+            int idr = Integer.parseInt(tfid.getText());
             String nombre = tfnombre.getText();
             String ubicacion = tfubicacion.getText();
+            String descripcion = tfdescripcion.getText();
+            int capacidad = Integer.parseInt(tfcapacidad.getText());
+            String horario = tfhorario.getText();
+            int puntos = Integer.parseInt(cbPuntos.getSelectedItem().toString());
+            
             //recopilacion de datos para crear nuevo restaurante
-            restaurante r = new restaurante();
+            restaurante r = new restaurante(idr, nombre, ubicacion, descripcion, capacidad, horario, puntos);
             //conexion a la base
             ConexionBD c = new ConexionBD();
             
             try{
                 c.conectar();
-                if (c.ingresarRestaurante(r)){
-                    System.out.println("Restaurante Ingresado exitosamente...");
-                    JOptionPane.showMessageDialog(this,"Restaurante Ingresado Correctamente.");
+                if (c.modificarRestaurante(r)){
+                    System.out.println("Restaurante Modificado exitosamente...");
+                    JOptionPane.showMessageDialog(this,"Restaurante Modificado Correctamente.");
                     limpiar();
                     this.dispose();
                 }else{
-                    System.out.println("Error al ingresar el restaurante");
+                    System.out.println("Error al editar el restaurante");
                 }
                 c.desconectar();
                 
@@ -249,8 +255,7 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
                 System.out.println(e);
             }
         }
-        
-    }//GEN-LAST:event_btIngresarActionPerformed
+    }//GEN-LAST:event_bteditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,8 +284,8 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btIngresar;
     private javax.swing.JButton btLimpiar;
+    private javax.swing.JButton bteditar;
     private javax.swing.JComboBox<String> cbPuntos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

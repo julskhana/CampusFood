@@ -279,7 +279,7 @@ public class ConexionBD {
     }
     
     //funcion para modificar restaurantes
-    public boolean modificarCliente(restaurante r1){
+    public boolean modificarRestaurante(restaurante r1){
         try{
             int idc = r1.getId();
             System.out.println("id de restaurante: "+idc);

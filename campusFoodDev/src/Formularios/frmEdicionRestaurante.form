@@ -66,7 +66,7 @@
                       <Component id="tfhorario" min="-2" pref="119" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btIngresar" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="bteditar" min="-2" pref="80" max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -112,7 +112,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btIngresar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bteditar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
@@ -148,12 +148,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btLimpiarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btIngresar">
+    <Component class="javax.swing.JButton" name="bteditar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ingresar"/>
+        <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btIngresarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bteditarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
