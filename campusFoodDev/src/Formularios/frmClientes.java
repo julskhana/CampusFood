@@ -5,6 +5,9 @@
  */
 package Formularios;
 
+import Objetos.usuario;
+import bd.ConexionBD;
+
 /**
  *
  * @author julian
@@ -14,8 +17,11 @@ public class frmClientes extends javax.swing.JFrame {
     /**
      * Creates new form frmClientes
      */
-    public frmClientes() {
+    public frmClientes(String cuenta_ua) {
         initComponents();
+        
+        usuario uc = new usuario();
+        
     }
 
     /**
@@ -97,9 +103,9 @@ public class frmClientes extends javax.swing.JFrame {
                 .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(153, 153, 153)
+                .addGap(166, 166, 166)
                 .addComponent(btNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+                .addGap(80, 80, 80))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -101,6 +101,29 @@ public class ConexionBD {
      return resultado; 
     }
     
+    //funcion para obtener obejtos usuarios desde cuenta
+    public usuario obtenerUsuario_cuenta(String cuenta){
+        usuario u = new usuario();
+        try{
+            Statement st = this.con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM usuario where cuenta ="+cuenta+";");
+            
+            int id = rs.getInt("id");
+            //String cuenta = rs.getString("cuenta");
+            //String clave = rs.getString("clave");
+            String rol = rs.getString("rol");
+            String estado = rs.getString("estado");
+            String fecha_reg = rs.getString("fecha_registro");
+
+            usuario usr = new usuario(id,cuenta,rol,estado,fecha_reg);
+
+            System.out.println("usuarios consultados.");
+        }catch (Exception e){
+            System.out.println("error en consulta de usuarios.");
+        }
+        return u;
+    }
+    
     
     //funcion para consulta de usuarios
     public ArrayList<usuario> consultarUsuarios(){

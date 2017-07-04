@@ -29,9 +29,9 @@
               <Component id="btEditar" min="-2" pref="68" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btEliminar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
               <Component id="btNuevoCliente" min="-2" pref="73" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>

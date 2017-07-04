@@ -136,7 +136,7 @@ public class frmAutenticacion extends javax.swing.JFrame {
             if(c.esUsuarioValido(u)){
                 JOptionPane.showMessageDialog(null,"Bienvenido "+usuario+".","Autenticación",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Usuario correcto");
-                frmPrincipal ingreso = new frmPrincipal();
+                frmPrincipal ingreso = new frmPrincipal(usuario);
                 ingreso.setVisible(true);
                 this.dispose();
             }else{

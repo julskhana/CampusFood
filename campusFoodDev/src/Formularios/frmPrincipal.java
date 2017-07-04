@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package Formularios;
-
+import Objetos.usuario;
+import bd.ConexionBD;
+import com.sun.xml.internal.ws.client.ContentNegotiation;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +18,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form frmPrincipal
      */
-    public frmPrincipal() {
+    public frmPrincipal(String usuarioact) {
         initComponents();
+        tfusuarioActivo.setText(usuarioact);
         
         System.out.println("Formulario Principal.");
     }
@@ -33,6 +36,8 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        tfusuarioActivo = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         mArchivo = new javax.swing.JMenu();
         mMantenimientoUsuario = new javax.swing.JMenuItem();
@@ -52,6 +57,15 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proyecto Java - CampusFood");
+
+        jLabel1.setText("Usuario Activo:");
+
+        tfusuarioActivo.setEditable(false);
+        tfusuarioActivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfusuarioActivoActionPerformed(evt);
+            }
+        });
 
         mArchivo.setText("Archivo");
 
@@ -131,11 +145,21 @@ public class frmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfusuarioActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(340, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(244, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfusuarioActivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap())
         );
 
         pack();
@@ -143,8 +167,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void miClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miClientesActionPerformed
         // TODO add your handling code here:
-        
-        frmClientes mantCli= new frmClientes();
+        frmClientes mantCli= new frmClientes(tfusuarioActivo.getText());
         mantCli.setVisible(true);
     }//GEN-LAST:event_miClientesActionPerformed
 
@@ -188,12 +211,17 @@ public class frmPrincipal extends javax.swing.JFrame {
         user.setVisible(true);
     }//GEN-LAST:event_mMantenimientoUsuarioActionPerformed
 
+    private void tfusuarioActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfusuarioActivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfusuarioActivoActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -208,5 +236,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miProductos;
     private javax.swing.JMenuItem miRestaurantes;
     private javax.swing.JMenuItem miSalir;
+    private javax.swing.JTextField tfusuarioActivo;
     // End of variables declaration//GEN-END:variables
 }
