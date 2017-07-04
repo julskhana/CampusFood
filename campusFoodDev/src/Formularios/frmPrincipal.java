@@ -18,11 +18,14 @@ public class frmPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form frmPrincipal
      */
-    public frmPrincipal(String usuarioact) {
+    public frmPrincipal(usuario uac) {
         initComponents();
-        tfusuarioActivo.setText(usuarioact);
         
         System.out.println("Formulario Principal.");
+        tfusuarioActivo.setText(uac.getCuenta());
+        
+        //if (usuarioact.ge)
+        
     }
 
     /**
@@ -40,9 +43,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         tfusuarioActivo = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         mArchivo = new javax.swing.JMenu();
-        mMantenimientoUsuario = new javax.swing.JMenuItem();
+        miCuenta = new javax.swing.JMenuItem();
+        miCerrarSesion = new javax.swing.JMenuItem();
         miSalir = new javax.swing.JMenuItem();
         mMantenimiento = new javax.swing.JMenu();
+        mMantenimientoUsuario = new javax.swing.JMenuItem();
         miClientes = new javax.swing.JMenuItem();
         miRestaurantes = new javax.swing.JMenuItem();
         miProductos = new javax.swing.JMenuItem();
@@ -69,13 +74,11 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         mArchivo.setText("Archivo");
 
-        mMantenimientoUsuario.setText("Usuarios");
-        mMantenimientoUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mMantenimientoUsuarioActionPerformed(evt);
-            }
-        });
-        mArchivo.add(mMantenimientoUsuario);
+        miCuenta.setText("Mi Cuenta");
+        mArchivo.add(miCuenta);
+
+        miCerrarSesion.setText("Cerrar Sesion");
+        mArchivo.add(miCerrarSesion);
 
         miSalir.setText("Salir");
         miSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +91,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(mArchivo);
 
         mMantenimiento.setText("Mantenimiento");
+
+        mMantenimientoUsuario.setText("Usuarios");
+        mMantenimientoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mMantenimientoUsuarioActionPerformed(evt);
+            }
+        });
+        mMantenimiento.add(mMantenimientoUsuario);
 
         miClientes.setText("Clientes");
         miClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +242,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mMantenimientoUsuario;
     private javax.swing.JMenu mProcesos;
     private javax.swing.JMenuItem miAcercaDe;
+    private javax.swing.JMenuItem miCerrarSesion;
     private javax.swing.JMenuItem miClientes;
+    private javax.swing.JMenuItem miCuenta;
     private javax.swing.JMenuItem miOrden;
     private javax.swing.JMenuItem miProductos;
     private javax.swing.JMenuItem miRestaurantes;

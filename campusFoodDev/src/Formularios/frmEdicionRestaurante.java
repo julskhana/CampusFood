@@ -5,8 +5,7 @@
  */
 package Formularios;
 
-import Objetos.restaurante;
-import Objetos.usuario;
+import Objetos.*;
 import bd.ConexionBD;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +13,6 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
- *
  * @author norberto
  */
 public class frmEdicionRestaurante extends javax.swing.JFrame {
@@ -297,7 +295,7 @@ public class frmEdicionRestaurante extends javax.swing.JFrame {
             System.out.println("Informacion invalida, campos no pueden estar vacios...");
             JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nLa informacion no puede ser nula.","Ingreso de Restaurantes",JOptionPane.ERROR_MESSAGE);
             return false;
-        }
+        }else
         return true;
     }
     

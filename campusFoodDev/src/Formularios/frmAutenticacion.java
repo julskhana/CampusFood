@@ -134,6 +134,8 @@ public class frmAutenticacion extends javax.swing.JFrame {
             c.conectar();
             usuario u = new usuario(usuario, clave);
             if(c.esUsuarioValido(u)){
+                //olvidar clave  de usuario activo en sistema
+                u.setClave(null);
                 JOptionPane.showMessageDialog(null,"Bienvenido "+usuario+".","Autenticación",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Usuario correcto");
                 frmPrincipal ingreso = new frmPrincipal(usuario);

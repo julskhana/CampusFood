@@ -9,7 +9,6 @@ import Formularios.frmAutenticacion;
 import Formularios.frmPrincipal;
 
 /**
- *
  * @author julian
  */
 public class principal {
@@ -19,13 +18,12 @@ public class principal {
         System.out.println("Sistema de gestion de almuerzos - Campus Espol\n");
         
         //codigo para iniciar proyecto con autenticacion
-        //frmAutenticacion aut = new frmAutenticacion();
-        //aut.setVisible(true);
+        frmAutenticacion aut = new frmAutenticacion();
+        aut.setVisible(true);
         
         //codigo para iniciar proyecto sin autenticacion
         String usuario1 = "jabajana";
-        frmPrincipal frmP = new frmPrincipal(usuario1);
-        frmP.setVisible(true);
-        
+        //frmPrincipal frmP = new frmPrincipal(usuario1);
+        //frmP.setVisible(true);
     }
 }
