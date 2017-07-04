@@ -47,9 +47,8 @@ public class usuario implements Serializable{
         this.fecha_registro=fecha_reg;
     }
     
-    //cosntructor de consulta
-    public usuario (int id,String cuenta, String rol, String estado, String fecha_reg){
-        this.cuenta=cuenta;
+    //cosntructor de consulta mi cuenta
+    public usuario (int id, String rol, String estado, String fecha_reg){
         this.id=id;
         this.rol=rol;
         this.estado=estado;

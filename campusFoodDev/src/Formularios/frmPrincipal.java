@@ -21,14 +21,17 @@ public class frmPrincipal extends javax.swing.JFrame {
     public frmPrincipal(usuario uac) {
         initComponents();
         
+        usuario usuario3 = uac;
+        
+        //mostrando opciones a usuarios
+        if (!uac.getRol().equals("A")){
+            System.out.println("rol: "+uac.getRol());
+            miUsuario.setVisible(false);
+        }
+
         System.out.println("Formulario Principal.");
         tfusuarioActivo.setText(uac.getCuenta());
-        
-        if (uac.getEstado()!="A"){
-            miUsuario.enable(false);
-        }
-        
-    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,9 +80,19 @@ public class frmPrincipal extends javax.swing.JFrame {
         mArchivo.setText("Archivo");
 
         miCuenta.setText("Mi Cuenta");
+        miCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCuentaActionPerformed(evt);
+            }
+        });
         mArchivo.add(miCuenta);
 
         miCerrarSesion.setText("Cerrar Sesion");
+        miCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCerrarSesionActionPerformed(evt);
+            }
+        });
         mArchivo.add(miCerrarSesion);
 
         miSalir.setText("Salir");
@@ -227,6 +240,24 @@ public class frmPrincipal extends javax.swing.JFrame {
     private void tfusuarioActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfusuarioActivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfusuarioActivoActionPerformed
+
+    private void miCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        int opt1= JOptionPane.showConfirmDialog(this,"¿Esta Seguro de que desea Salir?","Cerrar Sesion",JOptionPane.YES_NO_OPTION);
+        if(opt1==0){
+            this.dispose();
+            frmAutenticacion fau = new frmAutenticacion();
+            fau.setVisible(true);
+                    
+            //System.exit(0);
+        }
+    }//GEN-LAST:event_miCerrarSesionActionPerformed
+
+    private void miCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCuentaActionPerformed
+        // TODO add your handling code here:
+        frmMiCuenta micuenta = new frmMiCuenta(tfusuarioActivo.getText());
+        micuenta.setVisible(true);
+    }//GEN-LAST:event_miCuentaActionPerformed
 
     /**
      * @param args the command line arguments
