@@ -13,10 +13,8 @@ public class ConexionBD {
        private static final String DBMS = "mysql";
        private static final String HOST = "127.0.0.1";
        private static final String PORT = "3306";
-       //base para linux
-       private static final String DATABASE = "campusFoodDB3";
-       //base para windows
-       //private static final String DATABASE = "proyecto_java_2017_2";
+       //base de datos
+       private static final String DATABASE = "campusFoodDB3";  //cortejamiento: utf8_spanish_ci
        private static final String USER = "root";
        private static final String PASSWORD = "";
 

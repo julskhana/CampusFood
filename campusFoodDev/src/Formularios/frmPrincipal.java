@@ -6,7 +6,7 @@
 package Formularios;
 import Objetos.usuario;
 import bd.ConexionBD;
-import com.sun.xml.internal.ws.client.ContentNegotiation;
+//import com.sun.xml.internal.ws.client.ContentNegotiation;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,7 +24,9 @@ public class frmPrincipal extends javax.swing.JFrame {
         System.out.println("Formulario Principal.");
         tfusuarioActivo.setText(uac.getCuenta());
         
-        //if (usuarioact.ge)
+        if (uac.getEstado()!="A"){
+            miUsuario.enable(false);
+        }
         
     }
 
@@ -47,7 +49,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         miCerrarSesion = new javax.swing.JMenuItem();
         miSalir = new javax.swing.JMenuItem();
         mMantenimiento = new javax.swing.JMenu();
-        mMantenimientoUsuario = new javax.swing.JMenuItem();
+        miUsuario = new javax.swing.JMenuItem();
         miClientes = new javax.swing.JMenuItem();
         miRestaurantes = new javax.swing.JMenuItem();
         miProductos = new javax.swing.JMenuItem();
@@ -92,13 +94,13 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         mMantenimiento.setText("Mantenimiento");
 
-        mMantenimientoUsuario.setText("Usuarios");
-        mMantenimientoUsuario.addActionListener(new java.awt.event.ActionListener() {
+        miUsuario.setText("Usuarios");
+        miUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mMantenimientoUsuarioActionPerformed(evt);
+                miUsuarioActionPerformed(evt);
             }
         });
-        mMantenimiento.add(mMantenimientoUsuario);
+        mMantenimiento.add(miUsuario);
 
         miClientes.setText("Clientes");
         miClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -216,11 +218,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         mantPro.setVisible(true);
     }//GEN-LAST:event_miProductosActionPerformed
 
-    private void mMantenimientoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mMantenimientoUsuarioActionPerformed
+    private void miUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUsuarioActionPerformed
         // TODO add your handling code here:
         frmUsuarios user = new frmUsuarios();
         user.setVisible(true);
-    }//GEN-LAST:event_mMantenimientoUsuarioActionPerformed
+    }//GEN-LAST:event_miUsuarioActionPerformed
 
     private void tfusuarioActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfusuarioActivoActionPerformed
         // TODO add your handling code here:
@@ -239,7 +241,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu mArchivo;
     private javax.swing.JMenu mAyuda;
     private javax.swing.JMenu mMantenimiento;
-    private javax.swing.JMenuItem mMantenimientoUsuario;
     private javax.swing.JMenu mProcesos;
     private javax.swing.JMenuItem miAcercaDe;
     private javax.swing.JMenuItem miCerrarSesion;
@@ -249,6 +250,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miProductos;
     private javax.swing.JMenuItem miRestaurantes;
     private javax.swing.JMenuItem miSalir;
+    private javax.swing.JMenuItem miUsuario;
     private javax.swing.JTextField tfusuarioActivo;
     // End of variables declaration//GEN-END:variables
 }
