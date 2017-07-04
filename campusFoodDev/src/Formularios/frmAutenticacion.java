@@ -138,7 +138,7 @@ public class frmAutenticacion extends javax.swing.JFrame {
                 u.setClave(null);
                 JOptionPane.showMessageDialog(null,"Bienvenido "+usuario+".","Autenticación",JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Usuario correcto");
-                frmPrincipal ingreso = new frmPrincipal(usuario);
+                frmPrincipal ingreso = new frmPrincipal(u);
                 ingreso.setVisible(true);
                 this.dispose();
             }else{
