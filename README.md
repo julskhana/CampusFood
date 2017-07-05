@@ -1,7 +1,7 @@
 # CampusFood
 #Sistema de gestion de compra de almuerzos en un campus universitario.
 
-#Proyecto de Java Programming Language 2017 T1
+# Proyecto de Java Programming Language 2017 T1
 # Profesor: Ing. Ronald Criollo
 #Integrantes:
 #	Julian Bajaña
@@ -9,4 +9,4 @@
 #	Norberto Vidal
 #	Jhon Zambrano
 
-#Version 0.1
+#Version 0.2
