@@ -20,15 +20,19 @@ public class frmPrincipal extends javax.swing.JFrame {
      */
     public static usuario usuarioActivo;
     
-    public frmPrincipal(usuario uac) {
+    public frmPrincipal(usuario uact) {
         initComponents();
+        
+        //definiendo usuario activo en el programa
+        usuarioActivo = uact;
+        System.out.println("Usuario Activo: "+usuarioActivo.getCuenta());
 
         System.out.println("Formulario Principal.");
-        tfusuarioActivo.setText(uac.getCuenta());
+        tfusuarioActivo.setText(uact.getCuenta());
         
         //mostrando opciones a usuarios administrador y cajero
-        if (!uac.getRol().equals("A")){
-            System.out.println("rol: "+uac.getRol());
+        if (!usuarioActivo.getRol().equals("A")){
+            System.out.println("rol: "+usuarioActivo.getRol());
             miUsuario.setVisible(false);
         }
 }
@@ -255,7 +259,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void miCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCuentaActionPerformed
         // TODO add your handling code here:
-        frmMiCuenta micuenta = new frmMiCuenta(tfusuarioActivo.getText());
+        frmMiCuenta micuenta = new frmMiCuenta(usuarioActivo);
         micuenta.setVisible(true);
     }//GEN-LAST:event_miCuentaActionPerformed
 

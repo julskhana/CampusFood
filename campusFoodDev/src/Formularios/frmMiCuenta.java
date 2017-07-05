@@ -22,7 +22,7 @@ public class frmMiCuenta extends javax.swing.JFrame {
     /**
      * Creates new form frmMiCuenta
      */
-    public frmMiCuenta(String cuenta) {
+    public frmMiCuenta(usuario uac) {
         initComponents();
         System.out.println("Formulario mi Cuenta");
         
@@ -32,12 +32,11 @@ public class frmMiCuenta extends javax.swing.JFrame {
             iconousuario.setIcon(new ImageIcon(ImagenUsuario));
         }catch (IOException e){}
         
-        
+        /*
         ConexionBD c = new ConexionBD();
         try{
             c.conectar();
             usuario u = c.obtenerDatosUsuario(cuenta);            
-            
             //cargando datos
             tfid.setText(String.valueOf(u.getId()));
             tfcuenta.setText(cuenta);
@@ -47,8 +46,15 @@ public class frmMiCuenta extends javax.swing.JFrame {
             
         }catch(Exception e){}
         c.desconectar();
+        */
         
-        
+        //cargando datos de Usuario Activo
+        tfid.setText(String.valueOf(uac.getId()));
+        tfcuenta.setText(uac.getCuenta());
+        tfrol.setText(uac.getRol());
+        tfestado.setText(uac.getEstado());
+        tffechareg.setText(uac.getFecha_registro());
+            
         
     }
 
@@ -82,9 +88,11 @@ public class frmMiCuenta extends javax.swing.JFrame {
 
         jLabel1.setText("Cuenta:");
 
+        jLabel2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel2.setText("Id:");
 
         tfid.setEditable(false);
+        tfid.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         tfid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfidActionPerformed(evt);
@@ -134,7 +142,7 @@ public class frmMiCuenta extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel5)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addGap(37, 37, 37)
                         .addComponent(iconousuario, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +194,7 @@ public class frmMiCuenta extends javax.swing.JFrame {
                     .addComponent(tffechareg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Regresar)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();

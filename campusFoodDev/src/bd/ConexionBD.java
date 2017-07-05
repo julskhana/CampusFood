@@ -111,6 +111,7 @@ public class ConexionBD {
             rs = st.executeQuery();            
             if(rs.next()){
                 u.setId(rs.getInt("id"));
+                u.setCuenta(rs.getString("cuenta"));
                 u.setRol(rs.getString("rol"));
                 u.setEstado(rs.getString("estado"));
                 u.setFecha_registro(rs.getString("fecha_registro"));
