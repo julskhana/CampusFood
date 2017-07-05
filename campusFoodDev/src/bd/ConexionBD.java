@@ -100,49 +100,29 @@ public class ConexionBD {
     }
     
     //funcion para obtener obejtos usuarios desde cuenta
-    public usuario obtenerUsuario_cuenta(String cuenta){
+    public usuario obtenerDatosUsuario(String cuenta){
         usuario u = new usuario();
-        System.out.println("obteniento usuario activo");
-        try{
-            System.out.println("obteniento usuario activo 2");
-            Statement st = this.con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM usuario where cuenta="+cuenta+";");
-                System.out.println("cargando datos db usuario");
-                int id = rs.getInt("id");
-                //String cuenta = rs.getString("cuenta");
-                //String clave = rs.getString("clave");
-                String rol = rs.getString("rol");
-                String estado = rs.getString("estado");
-                String fecha_reg = rs.getString("fecha_registro");
-                
-                usuario usr = new usuario(id,rol,estado,fecha_reg);
-                
-                System.out.println("usuario datos:\nid: "+String.valueOf(id)+"\nrol:"+rol+"\nestado:"+estado+"\nfecha"+fecha_reg);
-                
-                
-                return usr; 
-            /*
-            System.out.println("obteniento usuario");
-            Statement st = this.con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM usuario where cuenta ="+cuenta+";");
-            
-            int id = rs.getInt("id");
-            //String cuenta = rs.getString("cuenta");
-            //String clave = rs.getString("clave");
-            String rol = rs.getString("rol");
-            String estado = rs.getString("estado");
-            String fecha_reg = rs.getString("fecha_registro");
-
-            System.out.println("usuario datos:\nid: "+String.valueOf(id)+"\nrol:"+rol+"\nestado:"+estado+"\nfecha"+fecha_reg);
-            
-            usuario usr = new usuario(id,rol,estado,fecha_reg);
-            System.out.println("usuario consultado.");
-            return usr;
-            */
-        }catch (Exception e){
-            System.out.println("error en obtener usuario.");
-        }
-        return u;
+        ResultSet rs = null;                       
+        PreparedStatement st = null;
+        try
+        {            
+            st = con.prepareStatement("SELECT * FROM usuario WHERE cuenta = ?;");            
+            st.setString(1,cuenta);         
+            rs = st.executeQuery();            
+            if(rs.next()){
+                u.setId(rs.getInt("id"));
+                u.setRol(rs.getString("rol"));
+                u.setEstado(rs.getString("estado"));
+                u.setFecha_registro(rs.getString("fecha_registro"));
+                System.out.println(u);
+            } 
+            rs.close();
+            st.close();
+        }catch(Exception e){
+            System.out.println(e);
+            //resultado = false;
+        }           
+     return u; 
     }
     
     

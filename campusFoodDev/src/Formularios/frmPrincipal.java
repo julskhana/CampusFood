@@ -18,19 +18,19 @@ public class frmPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form frmPrincipal
      */
+    public static usuario usuarioActivo;
+    
     public frmPrincipal(usuario uac) {
         initComponents();
+
+        System.out.println("Formulario Principal.");
+        tfusuarioActivo.setText(uac.getCuenta());
         
-        usuario usuario3 = uac;
-        
-        //mostrando opciones a usuarios
+        //mostrando opciones a usuarios administrador y cajero
         if (!uac.getRol().equals("A")){
             System.out.println("rol: "+uac.getRol());
             miUsuario.setVisible(false);
         }
-
-        System.out.println("Formulario Principal.");
-        tfusuarioActivo.setText(uac.getCuenta());
 }
 
     /**
