@@ -23,7 +23,7 @@ public class ConexionBD {
     /*METODO CONECTAR*/
    
     public void conectar ()throws Exception{
-        try {
+        try{
             Class.forName(DRIVER);
         }catch(ClassNotFoundException ce){}
             try{
@@ -34,10 +34,8 @@ public class ConexionBD {
             }             
     }
     
-    public boolean desconectar()
-    {
-        try
-        {
+    public boolean desconectar(){
+        try{
             this.con.close();
             return(true);
         }
@@ -73,13 +71,11 @@ public class ConexionBD {
         }
     }
     
-    public boolean esUsuarioValido(usuario u)
-    {        
+    public boolean esUsuarioValido(usuario u){        
         boolean resultado = false;
-        ResultSet rs = null;                       
+        ResultSet rs = null;
         PreparedStatement st = null;
-        try
-        {            
+        try{
             st = con.prepareStatement("SELECT * FROM usuario WHERE cuenta = ? AND clave = md5(?) AND estado = ?");            
             st.setString(1,u.getCuenta());         
             st.setString(2,u.getClave());
@@ -104,8 +100,7 @@ public class ConexionBD {
         usuario u = new usuario();
         ResultSet rs = null;                       
         PreparedStatement st = null;
-        try
-        {            
+        try{
             st = con.prepareStatement("SELECT * FROM usuario WHERE cuenta = ?;");            
             st.setString(1,cuenta);         
             rs = st.executeQuery();            
@@ -115,17 +110,15 @@ public class ConexionBD {
                 u.setRol(rs.getString("rol"));
                 u.setEstado(rs.getString("estado"));
                 u.setFecha_registro(rs.getString("fecha_registro"));
-                System.out.println(u);
+                System.out.println("Datos de usuario obtenidos...");
             } 
             rs.close();
             st.close();
         }catch(Exception e){
             System.out.println(e);
-            //resultado = false;
         }           
-     return u; 
+        return u; 
     }
-    
     
     //funcion para consulta de usuarios
     public ArrayList<usuario> consultarUsuarios(){
