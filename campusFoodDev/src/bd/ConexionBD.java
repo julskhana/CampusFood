@@ -84,7 +84,10 @@ public class ConexionBD {
             if(rs.next()){
                 u.setRol(rs.getString("rol"));
                 resultado = true;
-            } 
+                System.out.println("usuario valido y activo...");
+            }else{
+                System.out.println("usuario despedido...");
+            }
             rs.close();
             st.close();
         }
@@ -111,10 +114,10 @@ public class ConexionBD {
                 u.setEstado(rs.getString("estado"));
                 u.setFecha_registro(rs.getString("fecha_registro"));
                 System.out.println("Datos de usuario obtenidos...");
-            } 
+            }
             rs.close();
             st.close();
-        }catch(Exception e){
+        }catch(SQLException e){
             System.out.println(e);
         }           
         return u; 

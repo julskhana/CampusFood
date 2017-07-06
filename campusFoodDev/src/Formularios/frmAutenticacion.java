@@ -131,7 +131,8 @@ public class frmAutenticacion extends javax.swing.JFrame {
                 this.dispose();
             }else{
                 JOptionPane.showMessageDialog(null,"Usuario o Clave Incorrectos","Autenticación",JOptionPane.ERROR_MESSAGE);                        
-                System.out.println("Usuario incorrecto");
+                System.out.println("Usuario o clave incorrecto");
+                limpiar();
             }
             c.desconectar();
         }catch (Exception e){
