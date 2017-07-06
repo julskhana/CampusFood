@@ -9,4 +9,6 @@
 #	Norberto Vidal
 #	Jhon Zambrano
 
+#Revisar la carpeta Documentacion
+
 #Version 0.1
