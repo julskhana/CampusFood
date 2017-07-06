@@ -38,4 +38,5 @@ Especificaciones:
 		*Versión de PHP: 5.6.24
 
 4. Propiedades del Proyecto en Netbeans:
+	-SGV: 		Git Repo:https://github.com/julskhana/CampusFood
 	-Librerias:	MySQL JDBC Driver
