@@ -229,7 +229,6 @@ public class frmIngresoRestaurante extends javax.swing.JFrame {
                 System.out.println(e);
             }
         }
-        
     }//GEN-LAST:event_btIngresarActionPerformed
 
     private void btcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcancelarActionPerformed

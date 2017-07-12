@@ -186,23 +186,61 @@ public class ConexionBD {
     }
     
     //funcion para ingresar cliente a bd
-    public boolean ingresarCliente(cliente cliente){
+    //funcion para consulta de usuarios
+    public ArrayList<cliente> consultarClientes(String busqueda, String tipo){
+        ArrayList<cliente> registroC = new ArrayList<cliente>();
+        try{
+            Statement st = this.con.createStatement();
+            ResultSet rs = null;
+            
+            if(tipo.equalsIgnoreCase("cliente")){
+                rs = st.executeQuery("SELECT * FROM cliente;");
+            }else{
+                rs = st.executeQuery("SELECT * FROM cliente WHERE "+tipo+" LIKE '%"+busqueda+"%';");
+            }
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String ced = rs.getString("cedula");
+                String noms = rs.getString("nombres");
+                String apes = rs.getString("apellidos");
+                String correo = rs.getString("correo");
+                String dir = rs.getString("direccion");
+                String tel = rs.getString("telefono");
+                String tip = rs.getString("tipo");
+                float sald = rs.getFloat("saldo");
+                float desc = rs.getFloat("descuento");
+                int edad = rs.getInt("edad");
+                String sexo = rs.getString("sexo");
+                int id_u = rs.getInt("id_usuario");
+                
+                cliente cli = new cliente(id, ced, noms, apes, correo, dir, tel, tip.charAt(0), sald, desc, edad, sexo.charAt(0), id_u);
+                registroC.add(cli);
+            }
+            System.out.println("clientes consultados bd.");
+        }catch (Exception e){
+            System.out.println("error en consulta de clientes bd.");
+        }
+        return registroC;
+    }
+    
+    
+    public boolean ingresarCliente(cliente cli){
         try{
             //Ingreso de Datos de Cliente
             PreparedStatement st=null;
             st = con.prepareStatement("INSERT INTO cliente (cedula,nombres,apellidos,correo,direccion,telefono,tipo,saldo,descuento,edad,sexo,id_usuario) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);");
-            st.setString(1,cliente.getCedula());
-            st.setString(2,cliente.getNombres());
-            st.setString(3,cliente.getApellidos());
-            st.setString(4,cliente.getCorreo());
-            st.setString(5,cliente.getDireccion());
-            st.setString(6,cliente.getTelefono());
-            st.setString(7,cliente.getTipo());
-            st.setFloat(8,cliente.getSaldo());
-            st.setFloat(9,cliente.getDescuento());
-            st.setInt(10,cliente.getEdad());
-            st.setString(11,cliente.getSexo());
-            st.setInt(12,cliente.getId());
+            st.setString(1,cli.getCedula());
+            st.setString(2,cli.getNombres());
+            st.setString(3,cli.getApellidos());
+            st.setString(4,cli.getCorreo());
+            st.setString(5,cli.getDireccion());
+            st.setString(6,cli.getTelefono());
+            st.setString(7,String.valueOf(cli.getTipo()));
+            st.setFloat(8,cli.getSaldo());
+            st.setFloat(9,cli.getDescuento());
+            st.setInt(10,cli.getEdad());
+            st.setString(11,String.valueOf(cli.getSexo()));
+            st.setInt(12,cli.getId_usuario());
             
             st.executeUpdate();
             st.close();

@@ -48,7 +48,7 @@ public class frmRestaurante extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mantenimiento de Restaurante");
 
-        cbConsultaRestaurante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Nombre", "Ubicacion", "Descripcion", "Capacidad", "Horario", "Puntuacion" }));
+        cbConsultaRestaurante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Nombre", "Ubicacion" }));
 
         tfdescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,17 +273,13 @@ public class frmRestaurante extends javax.swing.JFrame {
     private boolean formularioConsultaValido(){
         String tipo = cbConsultaRestaurante.getSelectedItem().toString();
         String descripcion = tfdescripcion.getText();
-        if(tipo.equals("Cedula") && descripcion.equals("")){
+        if(tipo.equals("Nombre") && descripcion.equals("")){
                 JOptionPane.showMessageDialog(this,"Debe ingresar un número","Consulta",JOptionPane.ERROR_MESSAGE);
                 return false;
-        }else if(tipo.equals("Nombres") && descripcion.equals("")){
+        }else if(tipo.equals("Ubicacion") && descripcion.equals("")){
                 JOptionPane.showMessageDialog(this,"Debe ingresar un Nombre","Consulta",JOptionPane.ERROR_MESSAGE);
                 return false;
-        }else if(tipo.equals("Apellidos") && descripcion.equals("")){
-                JOptionPane.showMessageDialog(this,"Debe ingresar un Apellido","Consulta",JOptionPane.ERROR_MESSAGE);
-                return false;
         }
-        
         return true;
     }
     

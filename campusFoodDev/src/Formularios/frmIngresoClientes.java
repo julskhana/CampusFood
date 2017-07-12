@@ -5,6 +5,8 @@
  */
 package Formularios;
 import Objetos.*;
+import bd.ConexionBD;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +19,8 @@ public class frmIngresoClientes extends javax.swing.JFrame {
      */
     public frmIngresoClientes() {
         initComponents();
+        
+        tfusuarioAC.setText(frmPrincipal.usuarioActivo.getCuenta());
     }
 
     /**
@@ -52,6 +56,8 @@ public class frmIngresoClientes extends javax.swing.JFrame {
         cbSexo = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         tfEdad = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        tfusuarioAC = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ingreso de Clientes");
@@ -71,7 +77,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
         jLabel6.setText("Saldo:");
 
         tfSaldo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        tfSaldo.setText("0.0");
+        tfSaldo.setText("0");
         tfSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfSaldoActionPerformed(evt);
@@ -80,9 +86,19 @@ public class frmIngresoClientes extends javax.swing.JFrame {
 
         btIngresar.setText("Ingresar");
         btIngresar.setPreferredSize(new java.awt.Dimension(80, 30));
+        btIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btIngresarActionPerformed(evt);
+            }
+        });
 
         btLimpiar.setText("Limpiar");
         btLimpiar.setPreferredSize(new java.awt.Dimension(80, 30));
+        btLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLimpiarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Direccion:");
 
@@ -103,7 +119,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
         jLabel9.setText("Descuento:");
 
         tfDescuento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        tfDescuento.setText("0.0");
+        tfDescuento.setText("0");
         tfDescuento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfDescuentoActionPerformed(evt);
@@ -116,6 +132,10 @@ public class frmIngresoClientes extends javax.swing.JFrame {
 
         jLabel11.setText("Edad:");
 
+        jLabel12.setText("Usuario:");
+
+        tfusuarioAC.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,22 +143,30 @@ public class frmIngresoClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(173, Short.MAX_VALUE)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfusuarioAC, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel10))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(btLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(tfCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,7 +199,9 @@ public class frmIngresoClientes extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(tfCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(tfusuarioAC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -234,9 +264,88 @@ public class frmIngresoClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfDescuentoActionPerformed
 
+    private void btLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btLimpiarActionPerformed
+
+    private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
+        // TODO add your handling code here:
+        if (es_formulario_valido()){
+            String cedula = tfCedula.getText();
+            String nombre = tfNombres.getText();
+            String apellido = tfApellidos.getText();
+            String correo = tfCorreo.getText();
+            String direccion = tfDireccion.getText();
+            String telefono = tfTelefono.getText();
+            int edad = Integer.parseInt(tfEdad.getText());
+            float saldo = Float.parseFloat(tfSaldo.getText());
+            float desc = Float.parseFloat(tfDescuento.getText());
+            String tipo = cbTipo.getSelectedItem().toString();
+            String sexo = cbSexo.getSelectedItem().toString();
+            int id_usuario = frmPrincipal.usuarioActivo.getId();
+            
+            //recopilacion de datos para crear nuevo cliente
+            cliente cli = new cliente(cedula, nombre, apellido, correo, direccion, telefono, tipo.charAt(0), saldo, desc, edad, sexo.charAt(0), id_usuario);
+            //conexion a la base
+            ConexionBD c = new ConexionBD();
+            
+            System.out.println("tamaño string cedula: "+tfCedula.getText().length());
+            
+            try{
+                c.conectar();
+                if (c.ingresarCliente(cli)){
+                    System.out.println("Cliente Ingresado exitosamente...");
+                    JOptionPane.showMessageDialog(this,"cliente Ingresado Correctamente.");
+                    limpiar();
+                    this.dispose();
+                }else{
+                    System.out.println("Error al ingresar el cliente");
+                }
+                c.desconectar();
+                
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        }
+    }//GEN-LAST:event_btIngresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+    private boolean es_formulario_valido(){
+        if(tfCedula.getText().equals("") ||
+            tfNombres.getText().equals("") ||
+            tfApellidos.getText().equals("") ||
+            tfDireccion.getText().equals("") ||
+            tfTelefono.getText().equals("") ||
+            tfCorreo.getText().equals("") ||
+            tfEdad.getText().equals("") ||
+            tfSaldo.getText().equals("") ||
+            tfDescuento.getText().equals("") ){
+                System.out.println("texto invalida, campos no pueden estar vacios...");
+                JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos incompletos.","Ingreso de Clientes",JOptionPane.ERROR_MESSAGE);
+                return false;
+        }else if (tfCedula.getText().length()==0){
+                System.out.println("cedula invalida...");
+                JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCedula invalida.","Ingreso de Clientes",JOptionPane.ERROR_MESSAGE);
+                return false;
+        }
+        return true;
+    }
+    
+    public void limpiar(){
+        tfCedula.setText("");
+        tfNombres.setText("");
+        tfApellidos.setText("");
+        tfCorreo.setText("");
+        tfDireccion.setText("");
+        tfTelefono.setText("");
+        tfEdad.setText("");
+        tfSaldo.setText("0.0");
+        tfDescuento.setText("0.0");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btIngresar;
@@ -246,6 +355,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -263,5 +373,6 @@ public class frmIngresoClientes extends javax.swing.JFrame {
     private javax.swing.JTextField tfNombres;
     private javax.swing.JTextField tfSaldo;
     private javax.swing.JTextField tfTelefono;
+    private javax.swing.JTextField tfusuarioAC;
     // End of variables declaration//GEN-END:variables
 }

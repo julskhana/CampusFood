@@ -20,14 +20,15 @@ public class cliente implements Serializable{
     private String correo;
     private String direccion;
     private String telefono;
-    private String tipo;
+    private char tipo;
     private float saldo;
     private float descuento;
     private int edad;
-    private String sexo;
+    private char sexo;
+    private int id_usuario;
     
     //constructor 
-    public cliente (int id, String ced, String noms, String apls, String correo, String dir, String tel, String tipo, float saldo, float desc, int edad, String sexo){
+    public cliente (int id, String ced, String noms, String apls, String correo, String dir, String tel, char tipo, float saldo, float desc, int edad, char sexo, int id_u){
         this.id=id;
         this.cedula=ced;
         this.nombres=noms;
@@ -40,6 +41,23 @@ public class cliente implements Serializable{
         this.descuento=desc;
         this.edad=edad;
         this.sexo=sexo;
+        this.id_usuario=id_u;
+    }
+    
+    //constructor 
+    public cliente (String ced, String noms, String apls, String correo, String dir, String tel, char tipo, float saldo, float desc, int edad, char sexo, int id_u){
+        this.cedula=ced;
+        this.nombres=noms;
+        this.apellidos=apls;
+        this.correo=correo;
+        this.direccion=dir;
+        this.telefono=tel;
+        this.tipo=tipo;
+        this.saldo=saldo;
+        this.descuento=desc;
+        this.edad=edad;
+        this.sexo=sexo;
+        this.id_usuario=id_u;
     }
     
     //constructor vacio
@@ -67,7 +85,7 @@ public class cliente implements Serializable{
         this.correo = correo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(char tipo) {
         this.tipo = tipo;
     }
 
@@ -91,8 +109,12 @@ public class cliente implements Serializable{
         this.edad = edad;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(char sexo) {
         this.sexo = sexo;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
     
     
@@ -119,7 +141,7 @@ public class cliente implements Serializable{
         return correo;
     }
 
-    public String getTipo() {
+    public char getTipo() {
         return tipo;
     }
 
@@ -143,8 +165,12 @@ public class cliente implements Serializable{
         return edad;
     }
 
-    public String getSexo() {
+    public char getSexo() {
         return sexo;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
     }
     
     

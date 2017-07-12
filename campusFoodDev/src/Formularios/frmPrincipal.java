@@ -197,7 +197,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void miClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miClientesActionPerformed
         // TODO add your handling code here:
-        frmClientes mantCli= new frmClientes(tfusuarioActivo.getText());
+        frmClientes mantCli= new frmClientes(usuarioActivo);
         mantCli.setVisible(true);
     }//GEN-LAST:event_miClientesActionPerformed
 
