@@ -6,7 +6,10 @@
 package Formularios;
 import Objetos.*;
 import bd.ConexionBD;
+import Funciones.validaciones;
+import java.awt.Color;
 import javax.swing.JOptionPane;
+import sun.security.provider.VerificationProvider;
 
 /**
  *
@@ -19,7 +22,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
      */
     public frmIngresoClientes() {
         initComponents();
-        
+        System.out.println("Ingreso de Clientes");
         tfusuarioAC.setText(frmPrincipal.usuarioActivo.getCuenta());
     }
 
@@ -131,6 +134,8 @@ public class frmIngresoClientes extends javax.swing.JFrame {
         cbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
 
         jLabel11.setText("Edad:");
+
+        tfEdad.setText("18");
 
         jLabel12.setText("Usuario:");
 
@@ -271,7 +276,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
 
     private void btIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIngresarActionPerformed
         // TODO add your handling code here:
-        if (es_formulario_valido()){
+        if (es_formulario_valido() && validaciones.esNumerico(tfCedula.getText()) && validaciones.esNumerico(tfTelefono.getText()) && validaciones.esNumerico(tfEdad.getText())){
             String cedula = tfCedula.getText();
             String nombre = tfNombres.getText();
             String apellido = tfApellidos.getText();
@@ -296,17 +301,23 @@ public class frmIngresoClientes extends javax.swing.JFrame {
                 c.conectar();
                 if (c.ingresarCliente(cli)){
                     System.out.println("Cliente Ingresado exitosamente...");
-                    JOptionPane.showMessageDialog(this,"cliente Ingresado Correctamente.");
+                    JOptionPane.showMessageDialog(this,"Cliente Ingresado Correctamente.");
                     limpiar();
                     this.dispose();
                 }else{
                     System.out.println("Error al ingresar el cliente");
                 }
-                c.desconectar();
-                
+                c.desconectar();    
             }catch (Exception e){
                 System.out.println(e);
             }
+        }else{
+            JOptionPane.showMessageDialog(this,"Datos incorrectos.","Ingreso de Clientes",JOptionPane.ERROR_MESSAGE);
+            if(tfEdad.getText().equals("")){
+                tfEdad.setText("18");
+            }            
+            datosIncorrectos();
+            //limpiar();
         }
     }//GEN-LAST:event_btIngresarActionPerformed
 
@@ -315,7 +326,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
      */
     
     private boolean es_formulario_valido(){
-        if(tfCedula.getText().equals("") ||
+        if( (tfCedula.getText().equals("") && tfCedula.getText().length()>9 )||
             tfNombres.getText().equals("") ||
             tfApellidos.getText().equals("") ||
             tfDireccion.getText().equals("") ||
@@ -325,11 +336,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
             tfSaldo.getText().equals("") ||
             tfDescuento.getText().equals("") ){
                 System.out.println("texto invalida, campos no pueden estar vacios...");
-                JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos incompletos.","Ingreso de Clientes",JOptionPane.ERROR_MESSAGE);
-                return false;
-        }else if (tfCedula.getText().length()==0){
-                System.out.println("cedula invalida...");
-                JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCedula invalida.","Ingreso de Clientes",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Formulario Incorrecto\nCampos de texto no pueden estar vacios.","Ingreso de Clientes",JOptionPane.ERROR_MESSAGE);
                 return false;
         }
         return true;
@@ -342,11 +349,39 @@ public class frmIngresoClientes extends javax.swing.JFrame {
         tfCorreo.setText("");
         tfDireccion.setText("");
         tfTelefono.setText("");
-        tfEdad.setText("");
-        tfSaldo.setText("0.0");
-        tfDescuento.setText("0.0");
+        tfEdad.setText("18");
+        tfSaldo.setText("0");
+        tfDescuento.setText("0");
     }
-
+    
+    public void datosIncorrectos(){
+        System.out.println("Errores formulario clientes");
+        String cedula = tfCedula.getText();
+        String telefono = tfTelefono.getText();
+        String edad = tfEdad.getText();
+        if(validaciones.esNumerico(cedula) && cedula.length()<10){
+            tfCedula.setForeground(Color.BLACK);
+        }else{
+            tfCedula.setForeground(Color.RED);
+            JOptionPane.showMessageDialog(this,"Cedula Invalida\nLa cedula debe ser de minimo 10 digitos.","Ingreso de Clientes",JOptionPane.ERROR_MESSAGE);
+            System.out.println("cedula invalida " + cedula.length() );
+        }
+        if(validaciones.esNumerico(telefono)){
+            tfTelefono.setForeground(Color.BLACK);
+        }else{
+            tfTelefono.setForeground(Color.RED);
+            System.out.println("telefono invalido");
+            JOptionPane.showMessageDialog(this,"Telefono Invalido","Ingreso de Clientes",JOptionPane.ERROR_MESSAGE);
+        }
+        if(validaciones.esNumerico(edad) && Integer.valueOf(edad)>0 ){
+            tfEdad.setForeground(Color.BLACK);
+        }else{
+            tfEdad.setForeground(Color.RED);
+            System.out.println("edad invalida");
+            JOptionPane.showMessageDialog(this,"Edad Invalida","Ingreso de Clientes",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btIngresar;
     private javax.swing.JButton btLimpiar;
