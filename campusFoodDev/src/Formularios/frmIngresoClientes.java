@@ -359,7 +359,7 @@ public class frmIngresoClientes extends javax.swing.JFrame {
         String cedula = tfCedula.getText();
         String telefono = tfTelefono.getText();
         String edad = tfEdad.getText();
-        if(validaciones.esNumerico(cedula) && cedula.length()<10){
+        if(validaciones.esCedulaValida(cedula)){
             tfCedula.setForeground(Color.BLACK);
         }else{
             tfCedula.setForeground(Color.RED);
