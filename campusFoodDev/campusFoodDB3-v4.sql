@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-06-2017 a las 22:04:56
+-- Tiempo de generación: 14-07-2017 a las 20:46:12
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -41,6 +41,16 @@ CREATE TABLE `cliente` (
   `sexo` char(1) COLLATE latin1_spanish_ci DEFAULT NULL,
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `cedula`, `nombres`, `apellidos`, `correo`, `direccion`, `telefono`, `tipo`, `saldo`, `descuento`, `edad`, `sexo`, `id_usuario`) VALUES
+(25, '0911111111', 'Jorge', 'Galarza', 'jgalarza@espol.edu.ec', 'espol prosperina', '01111111', 'E', 0, 0, 27, 'M', 11),
+(26, '0922222222', 'Rosa', 'Cabrera', 'rcab@ups.com', 'ups barrio cuba', '02222222', 'E', 2.5, 0, 23, 'M', 11),
+(27, '09256', 'a', 'aa', 'aaa', 'aaaa', '8', 'E', 0, 0, 18, 'M', 11),
+(28, '234', 'asdas', 'asdasd', 'qweq', 'qwqwe', '999', 'E', 0, 0, 18, 'M', 11);
 
 -- --------------------------------------------------------
 
@@ -100,19 +110,26 @@ CREATE TABLE `producto` (
 CREATE TABLE `restaurante` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
-  `ubicacion` varchar(100) COLLATE latin1_spanish_ci NOT NULL
+  `ubicacion` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
+  `descripcion` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
+  `capacidad` int(4) NOT NULL,
+  `horario` varchar(15) COLLATE latin1_spanish_ci NOT NULL,
+  `puntuacion` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `restaurante`
 --
 
-INSERT INTO `restaurante` (`id`, `nombre`, `ubicacion`) VALUES
-(1, 'Mi Cafeteria', 'CELEX'),
-(2, 'Neo', 'EDCOM'),
-(3, 'Comedor Principal FCSH', 'FCSH'),
-(4, 'Comedor Piscina', 'Tecnologias'),
-(5, 'Comedor Fiec FCSH', 'FIEC');
+INSERT INTO `restaurante` (`id`, `nombre`, `ubicacion`, `descripcion`, `capacidad`, `horario`, `puntuacion`) VALUES
+(1, 'Mi Cafeteria', 'CELEX', 'Establecimiento con variedad de menu y servicios.', 60, '09:00-14:00', 5),
+(2, 'Neo', 'EDCOM', 'Ubicado en la plazoleta de edcom.', 50, '09:00-15:30', 4),
+(3, 'Comedor Principal FCSH', 'FCSH', 'aaabbbb', 0, '09:30-14:30', 2),
+(4, 'Comedor Piscina', 'Tecnologias', 'bbbbbbb', 25, '09:00-14:00', 3),
+(5, 'Comedor Fiec FCSH', 'FIEC', 'HHHHHHHH', 30, '09:00-14:00', 4),
+(6, 'aaa', 'fiec', '', 0, '', 0),
+(7, 'cocacola', 'fiec', '', 0, '', 0),
+(8, 'prueba1', 'celex', 'prueba de ingreso de restaurantes 1', 50, '09:30-15:30', 3);
 
 -- --------------------------------------------------------
 
@@ -123,7 +140,7 @@ INSERT INTO `restaurante` (`id`, `nombre`, `ubicacion`) VALUES
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `cuenta` varchar(45) COLLATE latin1_spanish_ci NOT NULL,
-  `clave` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
+  `clave` varchar(32) COLLATE latin1_spanish_ci NOT NULL,
   `rol` char(1) COLLATE latin1_spanish_ci NOT NULL,
   `estado` char(1) COLLATE latin1_spanish_ci NOT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -134,9 +151,12 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `cuenta`, `clave`, `rol`, `estado`, `fecha_registro`) VALUES
-(11, 'jabajana', '11111', 'A', 'A', '2017-06-20 19:50:00'),
-(12, 'wvidal', '2222', 'A', 'A', '2017-06-20 20:03:25'),
-(13, 'drmerino', '3333', 'C', 'A', '2017-06-20 20:04:08');
+(11, 'bajana', 'b0baee9d279d34fa1dfd71aadb908c3f', 'A', 'A', '2017-07-06 00:18:58'),
+(12, 'vidal', '3d2172418ce305c7d16d4b05597c6a59', 'A', 'A', '2017-07-06 00:17:48'),
+(13, 'merino', 'b7bc2a2f5bb6d521e64c8974c143e9a0', 'C', 'A', '2017-07-06 00:18:09'),
+(14, 'zambra', '79b7cdcd14db14e9cb498f1793817d69', 'C', 'D', '2017-07-06 00:20:54'),
+(15, 'prueba2', '3d2172418ce305c7d16d4b05597c6a59', 'A', 'D', '2015-01-20 19:50:00'),
+(16, 'prueba3', 'b7bc2a2f5bb6d521e64c8974c143e9a0', 'A', 'A', '2015-01-20 19:50:00');
 
 --
 -- Índices para tablas volcadas
@@ -194,7 +214,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT de la tabla `detalle_orden`
 --
@@ -214,12 +234,12 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `restaurante`
 --
 ALTER TABLE `restaurante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Restricciones para tablas volcadas
 --
