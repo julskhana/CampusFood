@@ -24,7 +24,6 @@ public class frmAcercaDe extends javax.swing.JFrame {
     public frmAcercaDe() {
         initComponents();
         
-        
         //Excepcion para cargar imagen
         try{
             BufferedImage espolicon = ImageIO.read(new File("src/icons/espol_icon.png"));
