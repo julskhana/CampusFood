@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author julian
+ * @author julian 
  */
 public class IngresoRestaurante extends HttpServlet {
 
@@ -31,6 +31,11 @@ public class IngresoRestaurante extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /*
+        * REHABILITAR PUERTO PARA TOMCAT
+        * CMD > netstat -ao
+        * Revisar pid en administrador de tareas y terminar proceso para liberar puerto 8080.
+        */
         
         String nom = request.getParameter("nombre");
         String ubi = request.getParameter("ubicacion");
