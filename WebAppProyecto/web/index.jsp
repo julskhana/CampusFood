@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    
+    <body>
         <h1>FORMULARIO 1 - Restaurante</h1>
         <form action="IngresoEquipo">
             
@@ -24,5 +24,6 @@
             
             <input type="submit" value="Ingresar">
         </form>
-    
+        <a href="ConsultarRestaurante">Consultar Restaurantes</a>
+    </body>
 </html>

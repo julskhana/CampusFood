@@ -4,9 +4,17 @@
         <servlet-name>IngresoEquipo</servlet-name>
         <servlet-class>general.IngresoRestaurante</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ConsultarRestaurante</servlet-name>
+        <servlet-class>general.ConsultarRestaurante</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IngresoEquipo</servlet-name>
         <url-pattern>/IngresoEquipo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsultarRestaurante</servlet-name>
+        <url-pattern>/ConsultarRestaurante</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
