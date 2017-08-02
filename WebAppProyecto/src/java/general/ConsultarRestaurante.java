@@ -61,11 +61,9 @@ public class ConsultarRestaurante extends HttpServlet {
             for (restaurante r:rest){
                 out.print("<tr");
                 //color impar
-                if(i%2!=0){
-                    out.print(" bgcolor='#808080'>");
-                }else{
-                    out.print(">");
-                }    
+                if(i%2!=0){ out.print(" bgcolor='#808080'>");
+                }else{ out.print(">");}  
+                
                 out.print("<td>"+r.getId()+"</td><td>"+r.getNombre()+"</td><td>"+r.getUbicacion()+"</td><td>"+r.getCapacidad()+"</td><td>"+r.getHorario()+"</td><td>"+r.getHorario()+"</td><td>"+r.getPuntuacion()+"</td>");
                 out.print("</tr>");
                 i++;
