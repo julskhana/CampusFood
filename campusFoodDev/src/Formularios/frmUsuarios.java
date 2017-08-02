@@ -243,8 +243,7 @@ public class frmUsuarios extends javax.swing.JFrame {
 
     public void consultarRegistro(){
         String tipo = cbtipo.getSelectedItem().toString();
-        String descripcion = tfdescripcion.getText();
-        
+        String descripcion = tfdescripcion.getText();        
         //consultar
         try{
             //cunsolta a la base
@@ -252,7 +251,7 @@ public class frmUsuarios extends javax.swing.JFrame {
                 ConexionBD c = new ConexionBD();
                 c.conectar();
                 
-                ArrayList<usuario> registro = c.consultarUsuarios();
+                ArrayList<usuario> registro = c.consultarUsuarios("","usuario");
                 ArrayList<usuario> resultado = new ArrayList<usuario>();
                 
                 //Consultar tipo y descripcion

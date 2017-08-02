@@ -124,11 +124,19 @@ public class ConexionBD {
     }
     
     //funcion para consulta de usuarios
-    public ArrayList<usuario> consultarUsuarios(){
+    public ArrayList<usuario> consultarUsuarios(String busqueda, String tipo){
         ArrayList<usuario> registroU = new ArrayList<usuario>();
         try{
             Statement st = this.con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM usuario;");
+            //ResultSet rs = st.executeQuery("SELECT * FROM usuario;");
+            ResultSet rs = null;
+            
+            if(tipo.equalsIgnoreCase("usuario")){
+                rs = st.executeQuery("SELECT * FROM usuario;");
+            }else{
+                rs = st.executeQuery("SELECT * FROM cliente WHERE "+tipo+" LIKE '%"+busqueda+"%';");
+            }
+            
             while (rs.next()){
                 int id = rs.getInt("id");
                 String cuenta = rs.getString("cuenta");

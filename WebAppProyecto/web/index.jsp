@@ -12,18 +12,25 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>FORMULARIO 1 - Restaurante</h1>
-        <form action="IngresoEquipo">
+        <h1>PROYECTO JAVA - WEB APP</h1>
+        <p>Consultas</p>
+        
+            <a href="ConsultarUsuarios">Usuarios<br></a>
+            <a href="ConsultarRestaurante">Restaurantes<br></a>
+            <a href="ConsultarClientes">Clientes<br></a>
             
-            <td>Nombre:</td><td><input type="text" name="nombre"><br></td>
-            <td>Ubicacion:<td><input type="text" name="ubicacion"><br></td>
-            <td>Descripcion:</td><td><input type="text" name="descripcion"><br></td>
-            <td>Capacidad:</td><td><input type="text" name="capacidad"><br></td>
-            <td>Horario:</td><td><input type="text" name="hora"><br></td>
-            <td>Puntos:</td><td><input type="text" name="puntos"><br></td>
-            
-            <input type="submit" value="Ingresar">
-        </form>
-        <a href="ConsultarRestaurante">Consultar Restaurantes</a>
+        <p>Ingreso de Restaurante</p>
+            <form action="IngresoEquipo">
+                <!--Campos para llenar informacion de nuevo restaurante-->
+                <td>Nombre:</td><td><input type="text" name="nombre"><br></td>
+                <td>Ubicacion:<td><input type="text" name="ubicacion"><br></td>
+                <td>Descripcion:</td><td><input type="text" name="descripcion"><br></td>
+                <td>Capacidad:</td><td><input type="text" name="capacidad"><br></td>
+                <td>Horario:</td><td><input type="text" name="hora"><br></td>
+                <td>Puntos:</td><td><input type="text" name="puntos"><br></td>
+                <!--Boton para ingresar datos de nuevo restaruante a la base de datos-->
+                <input type="submit" value="Ingresar">
+                
+            </form>
     </body>
 </html>

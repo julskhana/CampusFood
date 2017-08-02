@@ -8,6 +8,14 @@
         <servlet-name>ConsultarRestaurante</servlet-name>
         <servlet-class>general.ConsultarRestaurante</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ConsultarUsuarios</servlet-name>
+        <servlet-class>general.ConsultarUsuarios</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConsultarClientes</servlet-name>
+        <servlet-class>general.ConsultarClientes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IngresoEquipo</servlet-name>
         <url-pattern>/IngresoEquipo</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>ConsultarRestaurante</servlet-name>
         <url-pattern>/ConsultarRestaurante</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsultarUsuarios</servlet-name>
+        <url-pattern>/ConsultarUsuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsultarClientes</servlet-name>
+        <url-pattern>/ConsultarClientes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

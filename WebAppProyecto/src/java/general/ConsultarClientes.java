@@ -6,7 +6,8 @@
 package general;
 
 import bd.ConexionBD;
-import entidades.restaurante;
+import entidades.cliente;
+import entidades.usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author julian
  */
-public class ConsultarRestaurante extends HttpServlet {
+public class ConsultarClientes extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,45 +34,72 @@ public class ConsultarRestaurante extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //Proceso para consultar restaurantes
-        ConexionBD c = new ConexionBD();
-        ArrayList<restaurante> rest = new ArrayList<restaurante>();
         
+        //proceso para consultar clientes
+        ConexionBD c = new ConexionBD();
+        ArrayList<cliente> clientes = new ArrayList<cliente>();
         try{
             c.conectar();
-            rest = c.consultarRestaurante("","restaurante");
-        }catch (Exception e){
-            
-        }
+            clientes = c.consultarClientes("","cliente");
+        }catch (Exception e){}
+        
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConsultarRestaurante</title>");            
+            out.println("<title>Servlet ConsultarClientes</title>");            
             out.println("</head>");
             out.println("<body>");
+            //out.println("<h1>Servlet ConsultarClientes at " + request.getContextPath() + "</h1>");
             
-            out.println("<h1>CONSULTA RESTAURANTES</h1>");
+            out.println("<h1>CONSULTA CLIENTES</h1>");
             
-            //out.println("<h1>Servlet ConsultarRestaurante at " + request.getContextPath() + "</h1>");
+            //out.println("<h1>Servlet ConsultarUsuarios at " + request.getContextPath() + "</h1>");
+            //color teal = #008080
             out.println("<table border='1'>");
             //primera fila
-            out.println("<tr bgcolor='#FFA500'><td>ID</td><td>Nombre</td><td>Ubicación</td><td>Descripción</td><td>Capacidad</td><td>Horario</td><td>Puntuación</td></tr>");
+            out.println("<tr bgcolor='#ffff00'>"
+                    + "<td>ID</td>"
+                    + "<td>Cedula</td>"
+                    + "<td>Nombres</td>"
+                    + "<td>Apellidos</td>"
+                    + "<td>Correo</td>"
+                    + "<td>Direccion</td>"
+                    + "<td>Telefono</td>"
+                    + "<td>Tipo</td>"
+                    + "<td>Saldo</td>"
+                    + "<td>Descuento</td>"
+                    + "<td>Edad</td>"
+                    + "<td>Sexo</td>"
+                    + "<td>Id Usuario</td>");
             //filas con informacion
             int i=1; 
-            for (restaurante r:rest){
+            for (cliente cli:clientes){
                 out.print("<tr");
-                //color impar
+                //color impar plomo
                 if(i%2!=0){ out.print(" bgcolor='#808080'>");
                 }else{ out.print(">");}  
                 
-                out.print("<td>"+r.getId()+"</td><td>"+r.getNombre()+"</td><td>"+r.getUbicacion()+"</td><td>"+r.getCapacidad()+"</td><td>"+r.getHorario()+"</td><td>"+r.getHorario()+"</td><td>"+r.getPuntuacion()+"</td>");
+                out.print("<td>"+cli.getId()+"</td>"
+                        + "<td>"+cli.getCedula()+"</td>"
+                        + "<td>"+cli.getNombres()+"</td>"
+                        + "<td>"+cli.getApellidos()+"</td>"
+                        + "<td>"+cli.getCorreo()+"</td>"
+                        + "<td>"+cli.getDireccion()+"</td>"
+                        + "<td>"+cli.getTelefono()+"</td>"
+                        + "<td>"+cli.getTipo()+"</td>"
+                        + "<td>"+cli.getSaldo()+"</td>"
+                        + "<td>"+cli.getDescuento()+"</td>"
+                        + "<td>"+cli.getEdad()+"</td>"
+                        + "<td>"+cli.getSexo()+"</td>"
+                        + "<td>"+cli.getId_usuario()+"</td>");
                 out.print("</tr>");
                 i++;
                 }
             out.println("</table>");
+            
             out.println("</body>");
             out.println("</html>");
         }
