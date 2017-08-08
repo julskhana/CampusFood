@@ -2,7 +2,7 @@ ESPOL - FIEC	Termino 1 2017
 LICRED
 	Materia:	Java Programming Language (FIEC06205) - Paralelo 100
 	Profesor:	Ing. Ronald Criollo
-PROYECTO
+PROYECTO JAVA
 	Nombre:		CampusFood
 	Descripcion:	Sistema de gestion de compra de almuerzos en un campus universitario.
 	Integrantes:	Bajaña Julian
@@ -40,3 +40,10 @@ Especificaciones:
 4. Propiedades del Proyecto en Netbeans:
 	-SGV: 		Git Repo:https://github.com/julskhana/CampusFood
 	-Librerias:	MySQL JDBC Driver
+
+PROYECTO WEB
+	Nombre:			WebAppProyecto
+	Descripcion:	Sistema de gestion de compra de almuerzos en un campus universitario.
+
+Especificaciones:
+	- Apache Tomcat 7.0.73 (Linux)
