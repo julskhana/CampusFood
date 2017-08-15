@@ -1,18 +1,10 @@
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Objetos;
-
-import java.io.Serializable;
+package com.example.julian.proyecto_android_app;
 
 /**
- *
- * @author julian
+ * Created by julian on 8/14/17.
  */
-public class restaurante implements Serializable{
-    
+
+public class Restaurante {
     private int id;
     private String nombre;
     private String ubicacion;
@@ -21,9 +13,9 @@ public class restaurante implements Serializable{
     private String horario;
     private int puntuacion;
     //private String almuerzo;
-    
+
     //constructor normal
-    public restaurante(int id, String nombre, String ubicacion, String descripcion, int capacidad, String hora, int puntos){
+    public Restaurante(int id, String nombre, String ubicacion, String descripcion, int capacidad, String hora, int puntos){
         this.id=id;
         this.nombre=nombre;
         this.ubicacion=ubicacion;
@@ -32,9 +24,9 @@ public class restaurante implements Serializable{
         this.horario=hora;
         this.puntuacion=puntos;
     }
-    
+
     //constructor ingresar
-    public restaurante(String nombre, String ubicacion, String descripcion, int capacidad, String hora, int puntos){    
+    public Restaurante(String nombre, String ubicacion, String descripcion, int capacidad, String hora, int puntos){
         this.nombre=nombre;
         this.ubicacion=ubicacion;
         this.descripcion=descripcion;
@@ -42,12 +34,12 @@ public class restaurante implements Serializable{
         this.horario=hora;
         this.puntuacion=puntos;
     }
-    
+
     //constructor para consultar
-    
+
     //constructor vacio
-    public restaurante(){}
-    
+    public Restaurante(){}
+
     //getters
     public int getId() {
         return id;
@@ -77,8 +69,8 @@ public class restaurante implements Serializable{
         return puntuacion;
     }
 
-    
-    
+
+
     //setters
     public void setId(int id) {
         this.id = id;
@@ -107,5 +99,5 @@ public class restaurante implements Serializable{
     public void setPuntuacion(int puntuacion) {
         this.puntuacion = puntuacion;
     }
-    
+
 }
