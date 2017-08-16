@@ -5,8 +5,7 @@
  */
 package Principal;
 
-import Formularios.frmAutenticacion;
-import Formularios.frmPrincipal;
+import Formularios.*;
 
 /**
  * @author julian

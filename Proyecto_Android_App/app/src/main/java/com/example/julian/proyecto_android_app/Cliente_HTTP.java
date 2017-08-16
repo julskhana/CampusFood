@@ -58,7 +58,6 @@ public class Cliente_HTTP extends AsyncTask {
 
     }
 
-
     public String insertar(Restaurante r) throws URISyntaxException, UnsupportedEncodingException {
         String nombre       = r.getNombre();
         String ubicacion    = r.getUbicacion();
@@ -66,11 +65,10 @@ public class Cliente_HTTP extends AsyncTask {
         int capacidad       = r.getCapacidad();
         String hora         = r.getHorario();
         int puntos          = r.getPuntuacion();
-
         String mensaje      = "";
 
         try {
-            URL url = new URL("http://localhost:8080/WebAppProyecto/IngresoEquipo?nombre="+nombre+"&ubicacion="+ubicacion+"&descripcion="+descripcion+"&capacidad="+capacidad+"&hora="+hora+"&puntos="+puntos+"".replace(" ","%20"));
+            URL url = new URL("http://172.20.142.146:8080/WebAppProyecto/IngresoEquipo?nombre="+nombre+"&ubicacion="+ubicacion+"&descripcion="+descripcion+"&capacidad="+capacidad+"&hora="+hora+"&puntos="+puntos+"".replace(" ","%20"));
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -78,7 +76,6 @@ public class Cliente_HTTP extends AsyncTask {
             System.out.println("Response Code: " + conn.getResponseCode());
             InputStream in = new BufferedInputStream(conn.getInputStream());
             String xmlString = org.apache.commons.io.IOUtils.toString(in, "UTF-8");
-
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = factory.newDocumentBuilder();
@@ -89,7 +86,7 @@ public class Cliente_HTTP extends AsyncTask {
             org.w3c.dom.Element nameElement = (org.w3c.dom.Element) nl.item(0);
             mensaje = nameElement.getFirstChild().getNodeValue().trim();
         }catch(Exception e){
-            mensaje = "error";
+            mensaje = "Error";
         }
         return mensaje;
     }

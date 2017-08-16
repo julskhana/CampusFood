@@ -36,6 +36,8 @@ public class IngresoRestaurante extends HttpServlet {
         * CMD > netstat -ao
         * Revisar pid en administrador de tareas y terminar proceso para liberar puerto 8080.
         */
+        response.setContentType("text/xml;charset=UTF-8");
+        PrintWriter pw = response.getWriter();
         
         String nom = request.getParameter("nombre");
         String ubi = request.getParameter("ubicacion");
@@ -44,6 +46,7 @@ public class IngresoRestaurante extends HttpServlet {
         String hor = request.getParameter("hora");
         String punt = request.getParameter("puntos");
         boolean resultado = true;
+        String mensaje = "";
         
         try{
             //conectar con base datos
@@ -51,29 +54,38 @@ public class IngresoRestaurante extends HttpServlet {
             c.conectar();
             restaurante r = new restaurante(nom, ubi, desc, Integer.parseInt(cap), hor, Integer.parseInt(punt));
             resultado =  c.ingresarRestaurante(r);
-        }catch (Exception e){
-            resultado = false;
-        }
+        }catch (Exception e){ resultado = false; }
         
-        response.setContentType("text/html;charset=UTF-8");
+        //response.setContentType("text/html;charset=UTF-8");
+        //try (PrintWriter out = response.getWriter()) {
+            
+        /*
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>Servlet IngresoEquipo</title>");            
+        out.println("</head>");
+        out.println("<body>");
+
+        //out.println("<h1>Servlet IngresoEquipo at " + request.getContextPath() + "</h1>");
+        if(resultado){
+            out.println("<h1>Se ingres&oacute; correctamente el registro</h1>");
+        }else{
+            out.println("<h1>Ocurri&oacute; un error en el ingreso</h1>");            
+        }
+        */
+            
+        if(resultado)
+            mensaje = "Se ingresó correctamente";
+        else    
+            mensaje = "Ocurrió un error en el ingreso";
+        
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet IngresoEquipo</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            
-            //out.println("<h1>Servlet IngresoEquipo at " + request.getContextPath() + "</h1>");
-            if(resultado){
-                out.println("<h1>Se ingres&oacute; correctamente el registro</h1>");
-            }else{
-                out.println("<h1>Ocurri&oacute; un error en el ingreso</h1>");            
-            }
-            
-            out.println("</body>");
-            out.println("</html>");
+            pw.print("<?xml version='1.0' encoding='UTF-8' ?>");
+            pw.printf("<respuesta>");
+            pw.printf("<estado_resultado>"+resultado+"</estado_resultado>");            
+            pw.printf("<mensaje>"+mensaje+"</mensaje>");                        
+            pw.print("</respuesta>");
         }
     }
 

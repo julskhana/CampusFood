@@ -6,7 +6,7 @@
 package Formularios;
 import Objetos.usuario;
 import bd.ConexionBD;
-//import com.sun.xml.internal.ws.client.ContentNegotiation;
+import com.sun.xml.internal.ws.client.ContentNegotiation;
 import javax.swing.JOptionPane;
 
 /**
@@ -225,7 +225,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void miRestaurantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRestaurantesActionPerformed
         // TODO add your handling code here:
-        frmRestaurante mantRes= new frmRestaurante();
+        frmRestaurante mantRes = new frmRestaurante();
         mantRes.setVisible(true);
     }//GEN-LAST:event_miRestaurantesActionPerformed
 
