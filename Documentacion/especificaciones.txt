@@ -47,3 +47,8 @@ PROYECTO WEB
 
 Especificaciones:
 	- Apache Tomcat 7.0.73 (Linux)
+
+PROYECTO APP ANDROID
+Drivers
+	http://adbdriver.com/ (Windows)
+	android-tools   | Android platform tools (adb, fastboot) LINUX
