@@ -21,7 +21,7 @@ public class principal {
         aut.setVisible(true);
         
         //codigo para iniciar proyecto sin autenticacion
-        String usuario1 = "jabajana";
+        //String usuario1 = "jabajana";
         //frmPrincipal frmP = new frmPrincipal(usuario1);
         //frmP.setVisible(true);
     }

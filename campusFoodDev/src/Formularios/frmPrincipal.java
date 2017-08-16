@@ -5,8 +5,8 @@
  */
 package Formularios;
 import Objetos.usuario;
-import bd.ConexionBD;
-import com.sun.xml.internal.ws.client.ContentNegotiation;
+//import bd.ConexionBD;
+//import com.sun.xml.internal.ws.client.ContentNegotiation;
 import javax.swing.JOptionPane;
 
 /**

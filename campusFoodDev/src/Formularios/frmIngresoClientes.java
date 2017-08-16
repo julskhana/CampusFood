@@ -9,7 +9,7 @@ import bd.ConexionBD;
 import Funciones.validaciones;
 import java.awt.Color;
 import javax.swing.JOptionPane;
-import sun.security.provider.VerificationProvider;
+//import sun.security.provider.VerificationProvider;
 
 /**
  *
