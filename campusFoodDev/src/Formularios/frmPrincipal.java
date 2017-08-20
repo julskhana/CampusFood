@@ -147,7 +147,7 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         mProcesos.setText("Procesos");
 
-        miOrden.setText("Orden");
+        miOrden.setText("Generar Orden");
         miOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miOrdenActionPerformed(evt);

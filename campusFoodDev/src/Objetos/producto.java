@@ -33,6 +33,13 @@ public class producto implements Serializable{
         this.id_restaurante=id_rest;
     }
     
+    //constructor para ingresar productos en orden
+    public producto(int id, String nom,float precio){
+        this.id=id;
+        this.nombre=nom;
+        this.precio=precio;
+    }
+    
     //constructor para ingresar
     public producto(String nom, String desc, String tipo, float precio, Date cal, int id_r){
         this.nombre=nom;

@@ -44,7 +44,7 @@ public class cliente implements Serializable{
         this.id_usuario=id_u;
     }
     
-    //constructor 
+    //constructor para ingresar
     public cliente (String ced, String noms, String apls, String correo, String dir, String tel, char tipo, float saldo, float desc, int edad, char sexo, int id_u){
         this.cedula=ced;
         this.nombres=noms;
@@ -58,6 +58,17 @@ public class cliente implements Serializable{
         this.edad=edad;
         this.sexo=sexo;
         this.id_usuario=id_u;
+    }
+    
+    //constructor para ingresar en orden
+    public cliente (int id, String ced, String noms, String apls, String correo, char tipo, float saldo){
+        this.id=id;
+        this.cedula=ced;
+        this.nombres=noms;
+        this.apellidos=apls;
+        this.correo=correo;
+        this.tipo=tipo;
+        this.saldo=saldo;
     }
     
     //constructor vacio

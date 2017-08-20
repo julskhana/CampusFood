@@ -50,6 +50,13 @@ public class restaurante implements Serializable{
         this.ubicacion=ubicacion;
     }
     
+    //constructor para ingreso de productos en orden
+    public restaurante(int id, String nombre){
+        this.id=id;
+        this.nombre=nombre;
+    }
+    
+
     
     //constructor vacio
     public restaurante(){}
