@@ -6,6 +6,7 @@
 package Objetos;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -15,24 +16,36 @@ public class producto implements Serializable{
     
     private int id;
     private String nombre;
-    private String tipo;
     private String descripcion;
+    private String tipo;
     private float precio;
-    private String calendario;
+    private Date calendario;
+    private int id_restaurante;
     
     //constructor
-    public producto(int id, String nom, String tipo, String desc, float precio, String cal){
+    public producto(int id, String nom, String desc, String tipo, float precio, Date cal, int id_rest){
         this.id=id;
         this.nombre=nom;
         this.tipo=tipo;
         this.descripcion=desc;
         this.precio=precio;
         this.calendario=cal;
+        this.id_restaurante=id_rest;
+    }
+    
+    //constructor para ingresar
+    public producto(String nom, String desc, String tipo, float precio, Date cal, int id_r){
+        this.nombre=nom;
+        this.tipo=tipo;
+        this.descripcion=desc;
+        this.precio=precio;
+        this.calendario=cal;
+        this.id_restaurante=id_r;
     }
     
     //constructor vacio
     public producto(){}
-    
+
     //setters
 
     public void setId(int id) {
@@ -55,8 +68,12 @@ public class producto implements Serializable{
         this.precio = precio;
     }
 
-    public void setCalendario(String calendario) {
+    public void setCalendario(Date calendario) {
         this.calendario = calendario;
+    }
+
+    public void setId_restaurante(int id_restaurante) {
+        this.id_restaurante = id_restaurante;
     }
     
     //getters
@@ -81,8 +98,12 @@ public class producto implements Serializable{
         return precio;
     }
 
-    public String getCalendario() {
+    public Date getCalendario() {
         return calendario;
+    }
+
+    public int getId_restaurante() {
+        return id_restaurante;
     }
     
 }

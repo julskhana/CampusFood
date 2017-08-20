@@ -6,6 +6,7 @@
 package Formularios;
 
 import Objetos.restaurante;
+import Objetos.usuario;
 import bd.ConexionBD;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,14 +16,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author norberto
  */
-public class frmRestaurante extends javax.swing.JFrame {
+public class frmSeleccionarRestaurante extends javax.swing.JFrame {
 
     /**
      * Creates new form frmRestaurante
      */
-    public frmRestaurante() {
+    public frmSeleccionarRestaurante() {
         initComponents();
-        btEditar.enable(false);
+        btSeleccionar.enable(false);
     }
 
     /**
@@ -39,13 +40,11 @@ public class frmRestaurante extends javax.swing.JFrame {
         btConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbRestaurante = new javax.swing.JTable();
-        btEditar = new javax.swing.JButton();
-        btEliminar = new javax.swing.JButton();
-        btNuevo = new javax.swing.JButton();
+        btSeleccionar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Mantenimiento de Restaurante");
+        setTitle("Mantenimiento Productos - Seleccion de Restaurante");
 
         cbConsultaRestaurante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Nombre", "Ubicacion" }));
 
@@ -64,17 +63,17 @@ public class frmRestaurante extends javax.swing.JFrame {
 
         tbRestaurante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Ubicacion", "Descripcion", "Capacidad", "Horario", "Puntuacion(Max.5)"
+                "Id", "Nombre", "Ubicacion"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -83,24 +82,10 @@ public class frmRestaurante extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbRestaurante);
 
-        btEditar.setText("Editar");
-        btEditar.addActionListener(new java.awt.event.ActionListener() {
+        btSeleccionar.setText("Seleccionar");
+        btSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEditarActionPerformed(evt);
-            }
-        });
-
-        btEliminar.setText("Eliminar");
-        btEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEliminarActionPerformed(evt);
-            }
-        });
-
-        btNuevo.setText("Nuevo");
-        btNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNuevoActionPerformed(evt);
+                btSeleccionarActionPerformed(evt);
             }
         });
 
@@ -111,25 +96,23 @@ public class frmRestaurante extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btEliminar)
-                        .addGap(186, 186, 186)
-                        .addComponent(btEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(191, 191, 191)
+                        .addComponent(btSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbConsultaRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btConsultar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbConsultaRestaurante, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btConsultar)))))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,10 +126,7 @@ public class frmRestaurante extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btNuevo)
-                    .addComponent(btEditar)
-                    .addComponent(btEliminar))
+                .addComponent(btSeleccionar)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -161,35 +141,26 @@ public class frmRestaurante extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (formularioConsultaValido()){
             consultarRegistroR();
-            btEditar.enable(true);
-            btEditar.setFocusable(true);
         }
     }//GEN-LAST:event_btConsultarActionPerformed
 
-    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        // TODO add your handling code here:
-        //frmEdicionRestaurante2 mantEdiRes= new frmEdicionRestaurante2();
-        //mantEdiRes.setVisible(true);
-        if(seleccionEdicionnValida()){
+    private void btSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSeleccionarActionPerformed
+        if(seleccionValida()){
             int fila = tbRestaurante.getSelectedRow();
+            
             int id = Integer.parseInt(tbRestaurante.getValueAt(fila,0).toString());
-            frmEdicionRestaurante edrest = new frmEdicionRestaurante(id);
-            edrest.setVisible(true);
+            String nombre = tbRestaurante.getValueAt(fila,1).toString();
+            String ubi = tbRestaurante.getValueAt(fila,2).toString();
+            
+            restaurante r = new restaurante(id, nombre, ubi);
+            
+            frmProducto mantpro = new frmProducto(r);
+            mantpro.setVisible(true);
         }else{
             consultarRegistroR();
         }
         consultarRegistroR();
-    }//GEN-LAST:event_btEditarActionPerformed
-
-    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btEliminarActionPerformed
-
-    private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
-        // TODO add your handling code here:
-        frmIngresoRestaurante mantIngRes=new frmIngresoRestaurante();
-        mantIngRes.setVisible(true);
-    }//GEN-LAST:event_btNuevoActionPerformed
+    }//GEN-LAST:event_btSeleccionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,7 +169,6 @@ public class frmRestaurante extends javax.swing.JFrame {
     public void consultarRegistroR(){
         String tipo = cbConsultaRestaurante.getSelectedItem().toString();
         String descripcion = tfdescripcion.getText();
-        
         //consultar
         try{
             //cunsolta a la base
@@ -250,14 +220,14 @@ public class frmRestaurante extends javax.swing.JFrame {
                 
                 //recorriendo base de datos for
                 for (restaurante res:resultado){
-                    Object[] fila = new Object[7];
+                    Object[] fila = new Object[3];
                     fila[0] = res.getId();
                     fila[1] = res.getNombre();
                     fila[2] = res.getUbicacion();
-                    fila[3] = res.getDescripcion();
-                    fila[4] = res.getCapacidad();
-                    fila[5] = res.getHorario();
-                    fila[6] = res.getPuntuacion();
+                    //fila[3] = res.getDescripcion();
+                    //fila[4] = res.getCapacidad();
+                    //fila[5] = res.getHorario();
+                    //fila[6] = res.getPuntuacion();
                     dtm.addRow(fila);
                 }
             c.desconectar();
@@ -282,6 +252,7 @@ public class frmRestaurante extends javax.swing.JFrame {
         return true;
     }
     
+    /*
     private boolean seleccionEliminacionValida(){ 
         int n = tbRestaurante.getSelectedRowCount();
         if(n==0){
@@ -294,12 +265,13 @@ public class frmRestaurante extends javax.swing.JFrame {
         else
             return false;
     }
+    */
     
-    //funcion para establecer seleccion valida al momento de editar o eliminar
-    private boolean seleccionEdicionnValida(){ 
+    //funcion para establecer seleccion valida al momento de seleccionar un registro
+    private boolean seleccionValida(){ 
         int n = tbRestaurante.getSelectedRowCount();
         if(n==0){
-            JOptionPane.showMessageDialog(this,"Debe seleccionar mínimo un registro para editar","Edicion",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Debe seleccionar mínimo un registro.","Seleccion",JOptionPane.ERROR_MESSAGE);
             return false;        
         }
         return true;
@@ -308,9 +280,7 @@ public class frmRestaurante extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConsultar;
-    private javax.swing.JButton btEditar;
-    private javax.swing.JButton btEliminar;
-    private javax.swing.JButton btNuevo;
+    private javax.swing.JButton btSeleccionar;
     private javax.swing.JComboBox<String> cbConsultaRestaurante;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

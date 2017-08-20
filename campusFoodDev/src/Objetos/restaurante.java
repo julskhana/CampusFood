@@ -43,7 +43,13 @@ public class restaurante implements Serializable{
         this.puntuacion=puntos;
     }
     
-    //constructor para consultar
+    //constructor para ingreso de productos
+    public restaurante(int id, String nombre, String ubicacion){
+        this.id=id;
+        this.nombre=nombre;
+        this.ubicacion=ubicacion;
+    }
+    
     
     //constructor vacio
     public restaurante(){}

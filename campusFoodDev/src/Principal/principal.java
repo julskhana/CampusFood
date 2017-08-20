@@ -6,6 +6,7 @@
 package Principal;
 
 import Formularios.*;
+import Objetos.usuario;
 
 /**
  * @author julian
@@ -17,12 +18,15 @@ public class principal {
         System.out.println("Sistema de gestion de almuerzos - Campus Espol\n");
         
         //codigo para iniciar proyecto con autenticacion
+        /*
         frmAutenticacion aut = new frmAutenticacion();
         aut.setVisible(true);
+        */
         
         //codigo para iniciar proyecto sin autenticacion
-        //String usuario1 = "jabajana";
-        //frmPrincipal frmP = new frmPrincipal(usuario1);
-        //frmP.setVisible(true);
+        
+        usuario u = new usuario(11,"bajana","","A","A","2017-07-05 19:18:58");
+        frmPrincipal frmP = new frmPrincipal(u);
+        frmP.setVisible(true);
     }
 }

@@ -376,6 +376,60 @@ public class ConexionBD {
         }
     }
 
+    //PRODUCTOS
+    
+    public ArrayList<producto> consultarProducto(String busqueda, String tipo){
+        ArrayList<producto> registroP = new ArrayList<producto>();
+        try{
+            Statement st = this.con.createStatement();
+            ResultSet rs = null;
+            if(tipo.equalsIgnoreCase("producto")){
+                rs = st.executeQuery("SELECT * FROM producto;");
+            }else{
+                rs = st.executeQuery("SELECT * FROM producto WHERE "+tipo+"="+busqueda+";");
+            }
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String nom = rs.getString("nombre");
+                String desc = rs.getString("descripcion");
+                String tip = rs.getString("tipo");
+                float precio = rs.getFloat("precio");
+                java.sql.Date cal = rs.getDate("calendario");
+                int idr = rs.getInt("id_restaurante");
+                
+                producto p = new producto(id, nom, desc, tip, precio, cal, idr);
+                registroP.add(p);
+            }
+            System.out.println("productos consultados.");
+        }catch (SQLException e){
+            System.out.println("error en consulta de productoss.\n"+e);
+        }
+        return registroP;
+    }
+    
+    public boolean ingresarProducto(producto p){
+        try{
+            
+            PreparedStatement st=null;
+            st = con.prepareStatement("insert into producto (nombre,descripcion,tipo,precio,calendario,id_restaurante) VALUES (?,?,?,?,?,?);");
+            st.setString(1,p.getNombre());
+            st.setString(2,p.getDescripcion());
+            st.setString(3,p.getTipo());
+            st.setFloat(4,p.getPrecio());
+            st.setDate(5, (Date) p.getCalendario());
+            st.setInt(6,p.getId_restaurante());
+            
+            st.executeUpdate();
+            st.close();
+            
+            System.out.println("Se ingreso el producto exitosamente...");
+            
+            return true;
+        }catch (Exception e){
+            System.out.println("Error al ingresar el producto BD\n"+e);
+            return false;
+        }
+    }
     
     //FUNCIONES DE PROYECTO ANTERIOR
     /*

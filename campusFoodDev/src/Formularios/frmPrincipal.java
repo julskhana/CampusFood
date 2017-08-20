@@ -231,8 +231,8 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     private void miProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miProductosActionPerformed
         // TODO add your handling code here:
-        frmProducto mantPro= new frmProducto();
-        mantPro.setVisible(true);
+        frmSeleccionarRestaurante selecR = new frmSeleccionarRestaurante();
+        selecR.setVisible(true);
     }//GEN-LAST:event_miProductosActionPerformed
 
     private void miUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUsuarioActionPerformed
