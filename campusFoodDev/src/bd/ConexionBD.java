@@ -434,7 +434,6 @@ public class ConexionBD {
     //DETALLE ORDEN
     public boolean ingresarDetalleOrden(detalleOrden d){
         try{
-            
             PreparedStatement st=null;
             st = con.prepareStatement("INSERT INTO detalle_orden (cantidad,precio_unitario,precio_total,id_producto) VALUES (?,?,?,?);");
             st.setInt(1,d.getCantidad());
@@ -450,6 +449,50 @@ public class ConexionBD {
             return true;
         }catch (Exception e){
             System.out.println("Error al ingresar el dettalle orden BD\n"+e);
+            return false;
+        }
+    }
+    
+    public int numeroUltimaOrden(){
+        int ultimo_registro=0;
+        try{
+        //Statement st = this.con.createStatement();
+        Statement st = this.con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM orden ORDER BY ID DESC LIMIT 1;");
+        if(rs == null){
+            ultimo_registro = 0;
+            System.out.println("ultimo orden id = "+ultimo_registro);
+        }else{
+            ultimo_registro=rs.getInt("id");
+            System.out.println("ultimo orden id = "+ultimo_registro);
+        }
+        }catch(SQLException e){
+            System.out.println("error al obtener ultimo id de orden"+e);
+        }
+        return ultimo_registro;
+    }
+    
+    //ORDEN
+    
+    private boolean ingresarOrden(orden ord){
+        try{
+            PreparedStatement st=null;
+            st = con.prepareStatement("INSERT INTO orden (numero,fecha,descripcion,subtotal,iva_cero,iva,total,id_cliente,id_detalle_orden) VALUES(?,?,?,?,?,?,?,?,?);");
+            st.setInt(1,ord.getNumero());
+            st.setString(2,ord.getFecha());
+            st.setString(3,ord.getDescripcion());
+            st.setFloat(4,ord.getSubtotal());
+            st.setFloat(5,ord.getIva_cero());
+            st.setFloat(6,ord.getIva());
+            st.setFloat(7,ord.getTotal());
+            st.setInt(8,ord.getId_cliente());
+            st.setInt(9,ord.getId_detalle_orden());
+            st.executeUpdate();
+            st.close();
+            System.out.println("Se ingreso orden con exito...");
+            return true;
+        }catch (Exception e){
+            System.out.println("Error al ingresar la orden BD\n"+e);
             return false;
         }
     }

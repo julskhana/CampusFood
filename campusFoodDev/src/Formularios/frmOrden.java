@@ -40,6 +40,18 @@ public class frmOrden extends javax.swing.JFrame {
         tfFecha.setText(fecha_hora_orden);
         tfUsuario.setText(frmPrincipal.usuarioActivo.getCuenta());
         
+        //generando numero de orden
+        ConexionBD num = new ConexionBD();
+        try{
+            num.conectar();
+            int numero_orden = num.numeroUltimaOrden();
+            tfNumeroOrden.setText(String.valueOf(numero_orden+1));
+        }catch(Exception e){
+            System.out.println("error al cargar numero de orden");
+        }
+        num.desconectar();
+                
+        
         DefaultTableModel dtm = (DefaultTableModel)frmOrden.tbdetalleOrden.getModel();
         dtm.setRowCount(0);
     }
@@ -201,6 +213,7 @@ public class frmOrden extends javax.swing.JFrame {
         jLabel15.setText("N°:");
 
         tfNumeroOrden.setEditable(false);
+        tfNumeroOrden.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel16.setText("Descuento:");
 
@@ -463,14 +476,31 @@ public class frmOrden extends javax.swing.JFrame {
             try{
                 cdo.conectar();
                 if(cdo.ingresarDetalleOrden(det_ord)){
-                    //JOptionPane.showMessageDialog(this,".","Orden",JOptionPane.INFORMATION_MESSAGE);
-                    System.out.println("Detalle orden ingresada.");
-                }
+                    System.out.println("Detalle orden ingresada.");}
             }catch(Exception e){
                 System.out.println("Error al ingresasr detalle orden.");
             }
-            
-            
+            cdo.desconectar();
+            //ingreso de orden total
+            int numero_orden = Integer.valueOf(tfNumeroOrden.getText());
+            String fecha = tfFecha.getText();
+            String descripcion = tfDescripcion.getText();
+            float subtotal = Float.valueOf(tfSubTotal.getText());
+            float ivacero = Float.valueOf(tfivacero.getText());
+            float iva_12 = Float.valueOf(tfiva12.getText());
+            float total = Float.valueOf(tfTotal.getText());
+            orden o = new orden(numero_orden, fecha, descripcion, subtotal, ivacero, iva_12, total, id_cliente,numero_orden);
+            //ConexionBD cor = new ConexionBD();
+            /*
+            try{
+                cdo.conectar();
+                if(cdo.in){
+                    System.out.println("Orden ingresada.");}
+            }catch(Exception e){
+                System.out.println("Error al ingresasr orden."+e);
+            }
+            */
+            cdo.desconectar();
             System.out.println("numero de productos: "+tbdetalleOrden.getRowCount());
         }else{
             JOptionPane.showMessageDialog(this,"Formulario Invalido.","Orden",JOptionPane.ERROR_MESSAGE);
