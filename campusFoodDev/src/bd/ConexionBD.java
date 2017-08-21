@@ -431,6 +431,30 @@ public class ConexionBD {
         }
     }
     
+    //DETALLE ORDEN
+    public boolean ingresarDetalleOrden(detalleOrden d){
+        try{
+            
+            PreparedStatement st=null;
+            st = con.prepareStatement("INSERT INTO detalle_orden (cantidad,precio_unitario,precio_total,id_producto) VALUES (?,?,?,?);");
+            st.setInt(1,d.getCantidad());
+            st.setFloat(2,d.getPrecio_unitario());
+            st.setFloat(3,d.getPrecio_total());
+            st.setInt(4,d.getId_prod());
+            
+            st.executeUpdate();
+            st.close();
+            
+            System.out.println("Se ingreso de detalle orden exitos0...");
+            
+            return true;
+        }catch (Exception e){
+            System.out.println("Error al ingresar el dettalle orden BD\n"+e);
+            return false;
+        }
+    }
+    
+    
     //FUNCIONES DE PROYECTO ANTERIOR
     /*
     public boolean esUsuarioValido(Usuario u)

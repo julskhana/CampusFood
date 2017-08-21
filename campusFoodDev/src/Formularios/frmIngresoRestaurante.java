@@ -6,9 +6,7 @@
 package Formularios;
 
 import Objetos.restaurante;
-import Objetos.usuario;
 import bd.ConexionBD;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**

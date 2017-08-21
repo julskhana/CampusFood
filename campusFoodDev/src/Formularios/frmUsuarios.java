@@ -213,7 +213,6 @@ public class frmUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btConsultarActionPerformed
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-
         // TODO add your handling code here:
         if (seleccionEliminacionValida()){
             ConexionBD c = new ConexionBD();

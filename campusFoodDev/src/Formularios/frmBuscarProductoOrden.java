@@ -236,6 +236,7 @@ public class frmBuscarProductoOrden extends javax.swing.JFrame {
             float precio = Float.parseFloat(tbProductos.getValueAt(fila,4).toString());
             
             producto p = new producto(id, nombre, precio);
+            frmOrden.id_producto = p.getId();
             float ptotal = precio * cantidad;
             
             //cargando productos en tabla detalle orden
@@ -252,7 +253,6 @@ public class frmBuscarProductoOrden extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this,"Formulario Invalido","Seleccion",JOptionPane.ERROR_MESSAGE);
         }
-            
     }//GEN-LAST:event_btSeleccionarActionPerformed
 
     /**
@@ -263,7 +263,6 @@ public class frmBuscarProductoOrden extends javax.swing.JFrame {
         return Funciones.validaciones.esNumerico(tfcanditdad.getText()) && tbProductos.getSelectedRowCount()>0;
     }
     
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConsultar;
     private javax.swing.JButton btSeleccionar;

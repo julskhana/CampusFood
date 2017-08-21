@@ -6,6 +6,7 @@
 package Formularios;
 
 import Objetos.*;
+import bd.ConexionBD;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +24,7 @@ public class frmOrden extends javax.swing.JFrame {
      */
     public static int id_cliente;
     public static int id_restaurante;
+    public static int id_producto;
     public static float descuento_cliente=0;
     public static boolean total_calculado = false;
     //public static producto po;
@@ -245,6 +247,11 @@ public class frmOrden extends javax.swing.JFrame {
         });
 
         btEliminarProductos.setText("Eliminar Productos");
+        btEliminarProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEliminarProductosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -395,8 +402,8 @@ public class frmOrden extends javax.swing.JFrame {
                             .addComponent(btCargarProductos)
                             .addComponent(jLabel13))))
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
@@ -424,7 +431,7 @@ public class frmOrden extends javax.swing.JFrame {
                             .addComponent(jLabel19)
                             .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(brIngresarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
@@ -443,7 +450,26 @@ public class frmOrden extends javax.swing.JFrame {
     private void brIngresarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brIngresarOrdenActionPerformed
         // TODO add your handling code here:
         if(esFormularioValido() && total_calculado){
-            //
+            //ingresando orden
+            int cantidad = Integer.parseInt(tbdetalleOrden.getValueAt(0,0).toString());
+            float puni = Float.parseFloat(tbdetalleOrden.getValueAt(0,2).toString());
+            float ptot = Float.parseFloat(tbdetalleOrden.getValueAt(0,3).toString());
+            System.out.println("Detalle orden:");
+            System.out.println("cantidad: "+cantidad+" producto:"+id_producto+" p. uni:"+puni+" p. total:"+ptot);
+            //creacion de detalle orden
+            detalleOrden det_ord = new detalleOrden(cantidad, puni, ptot, id_producto);
+            //ingreso de detalle orden a DB
+            ConexionBD cdo = new ConexionBD();
+            try{
+                cdo.conectar();
+                if(cdo.ingresarDetalleOrden(det_ord)){
+                    //JOptionPane.showMessageDialog(this,".","Orden",JOptionPane.INFORMATION_MESSAGE);
+                    System.out.println("Detalle orden ingresada.");
+                }
+            }catch(Exception e){
+                System.out.println("Error al ingresasr detalle orden.");
+            }
+            
             
             System.out.println("numero de productos: "+tbdetalleOrden.getRowCount());
         }else{
@@ -466,6 +492,8 @@ public class frmOrden extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(tfRestaurante.getText().equals("")){
             JOptionPane.showMessageDialog(this,"Debe definir un restaurante","Productos",JOptionPane.ERROR_MESSAGE);
+        }else if(tbdetalleOrden.getRowCount()>0){
+            JOptionPane.showMessageDialog(this,"Solo puede agregar un producto por Orden.","Productos",JOptionPane.ERROR_MESSAGE);
         }else{
             restaurante r = new restaurante(id_restaurante, tfRestaurante.getText());
             frmBuscarProductoOrden buscprod = new frmBuscarProductoOrden(r);
@@ -483,6 +511,15 @@ public class frmOrden extends javax.swing.JFrame {
             total_calculado = true;
         }
     }//GEN-LAST:event_btCalcularTotalActionPerformed
+
+    private void btEliminarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarProductosActionPerformed
+        // TODO add your handling code here:
+        if(esEliminacionValida()){
+            DefaultTableModel dtm = (DefaultTableModel)frmOrden.tbdetalleOrden.getModel();
+            int fila = tbdetalleOrden.getSelectedRow();
+            dtm.removeRow(fila);
+        }
+    }//GEN-LAST:event_btEliminarProductosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -515,6 +552,16 @@ public class frmOrden extends javax.swing.JFrame {
         //calculo de total
         float total = ivacero + iva12;
         tfTotal.setText(String.valueOf(total));
+    }
+    
+    private boolean esEliminacionValida(){
+        int n = tbdetalleOrden.getSelectedRowCount();
+        if(n==0){
+            JOptionPane.showMessageDialog(this,"Debe seleccionar mínimo un registro para eliminar","Eliminación",JOptionPane.ERROR_MESSAGE);
+            return false;        
+        }
+        int op = JOptionPane.showConfirmDialog(this, "Está seguro de eliminar los registros seleccionados?","Eliminación",JOptionPane.YES_NO_OPTION);
+        return op==0;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
