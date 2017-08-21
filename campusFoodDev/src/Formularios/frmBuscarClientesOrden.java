@@ -43,7 +43,6 @@ public class frmBuscarClientesOrden extends javax.swing.JFrame {
         cbConsulta = new javax.swing.JComboBox<>();
         tfdescripcion = new javax.swing.JTextField();
         btConsultar = new javax.swing.JButton();
-        btNuevoCliente = new javax.swing.JButton();
         btSeleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -79,14 +78,6 @@ public class frmBuscarClientesOrden extends javax.swing.JFrame {
             }
         });
 
-        btNuevoCliente.setText("Nuevo");
-        btNuevoCliente.setPreferredSize(new java.awt.Dimension(75, 30));
-        btNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNuevoClienteActionPerformed(evt);
-            }
-        });
-
         btSeleccionar.setText("Seleccionar");
         btSeleccionar.setPreferredSize(new java.awt.Dimension(75, 30));
         btSeleccionar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,9 +93,7 @@ public class frmBuscarClientesOrden extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 328, Short.MAX_VALUE)
                 .addComponent(btSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160)
-                .addComponent(btNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(313, 313, 313))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(cbConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,20 +118,12 @@ public class frmBuscarClientesOrden extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNuevoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoClienteActionPerformed
-        // TODO add your handling code here:
-        frmIngresoClientes mantIngCli= new frmIngresoClientes();
-        mantIngCli.setVisible(true);
-    }//GEN-LAST:event_btNuevoClienteActionPerformed
 
     private void btSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSeleccionarActionPerformed
         // TODO add your handling code here:
@@ -160,7 +141,6 @@ public class frmBuscarClientesOrden extends javax.swing.JFrame {
             
             cliente c = new cliente(id, cedula, nombres, apellidos, correo, tipo.charAt(0), saldo);
             frmOrden.id_cliente=c.getId();
-            System.out.println("id del cliente: "+id+" cedula: "+cedula);
             frmOrden.tfcedula.setText(c.getCedula());
             frmOrden.tfNombres.setText(c.getNombres());
             frmOrden.tfApellidos.setText(c.getApellidos());
@@ -168,6 +148,9 @@ public class frmBuscarClientesOrden extends javax.swing.JFrame {
             frmOrden.tfTipo.setText(tipo);
             frmOrden.tfSaldo.setText(String.valueOf(saldo));
             frmOrden.tfDescuento.setText(String.valueOf(descuento));
+            frmOrden.descuento_cliente=descuento;
+            System.out.println("cliente - id:"+id+" cedula:"+cedula+" descuento:"+descuento+" saldo:"+saldo);
+            
             this.dispose();
         }
     }//GEN-LAST:event_btSeleccionarActionPerformed
@@ -280,7 +263,6 @@ public class frmBuscarClientesOrden extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConsultar;
-    private javax.swing.JButton btNuevoCliente;
     private javax.swing.JButton btSeleccionar;
     private javax.swing.JComboBox<String> cbConsulta;
     private javax.swing.JScrollPane jScrollPane1;

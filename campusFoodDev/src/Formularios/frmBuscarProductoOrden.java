@@ -47,7 +47,6 @@ public class frmBuscarProductoOrden extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProductos = new javax.swing.JTable();
         btSeleccionar = new javax.swing.JButton();
-        btNuevo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tfRestaurante = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -99,13 +98,6 @@ public class frmBuscarProductoOrden extends javax.swing.JFrame {
             }
         });
 
-        btNuevo.setText("Nuevo");
-        btNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNuevoActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Restaurante:");
 
         tfRestaurante.setEditable(false);
@@ -124,8 +116,7 @@ public class frmBuscarProductoOrden extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(206, 206, 206)
                         .addComponent(btSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -162,9 +153,7 @@ public class frmBuscarProductoOrden extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSeleccionar)
-                    .addComponent(btNuevo))
+                .addComponent(btSeleccionar)
                 .addGap(15, 15, 15))
         );
 
@@ -266,12 +255,6 @@ public class frmBuscarProductoOrden extends javax.swing.JFrame {
             
     }//GEN-LAST:event_btSeleccionarActionPerformed
 
-    private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed
-        // TODO add your handling code here:
-        frmIngresoProducto mantIngPro= new frmIngresoProducto(restaurante_act.getId());
-        mantIngPro.setVisible(true);
-    }//GEN-LAST:event_btNuevoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -283,7 +266,6 @@ public class frmBuscarProductoOrden extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConsultar;
-    private javax.swing.JButton btNuevo;
     private javax.swing.JButton btSeleccionar;
     private javax.swing.JComboBox<String> cbConsultaProducto;
     private javax.swing.JLabel jLabel1;

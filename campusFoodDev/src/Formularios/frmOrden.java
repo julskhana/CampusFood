@@ -23,10 +23,16 @@ public class frmOrden extends javax.swing.JFrame {
      */
     public static int id_cliente;
     public static int id_restaurante;
+    public static float descuento_cliente=0;
+    public static boolean total_calculado = false;
     //public static producto po;
     
     public frmOrden() {
         initComponents();
+        
+        
+        
+        System.out.println("Formulario - Generar Orden");
         
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
@@ -36,7 +42,6 @@ public class frmOrden extends javax.swing.JFrame {
         
         DefaultTableModel dtm = (DefaultTableModel)frmOrden.tbdetalleOrden.getModel();
         dtm.setRowCount(0);
-            
     }
 
     /**
@@ -88,11 +93,11 @@ public class frmOrden extends javax.swing.JFrame {
         tfTotal = new javax.swing.JTextField();
         btBuscarRestaurante = new javax.swing.JButton();
         tfDescripcion = new javax.swing.JTextField();
-        btConfirmarDetalle = new javax.swing.JButton();
+        btCalcularTotal = new javax.swing.JButton();
         btEliminarProductos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Generar Orden");
+        setTitle("Orden");
 
         jLabel1.setText("Cedula:");
 
@@ -186,7 +191,7 @@ public class frmOrden extends javax.swing.JFrame {
 
         brIngresarOrden.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         brIngresarOrden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/orden2.png"))); // NOI18N
-        brIngresarOrden.setText("Ingresar Orden");
+        brIngresarOrden.setText("Finalizar Orden");
         brIngresarOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brIngresarOrdenActionPerformed(evt);
@@ -201,6 +206,7 @@ public class frmOrden extends javax.swing.JFrame {
 
         tfDescuento.setEditable(false);
         tfDescuento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        tfDescuento.setText("0.0");
 
         jLabel17.setText("IVA 0%:");
 
@@ -233,10 +239,10 @@ public class frmOrden extends javax.swing.JFrame {
 
         tfDescripcion.setText("Descripcion.");
 
-        btConfirmarDetalle.setText("Confirmar Productos");
-        btConfirmarDetalle.addActionListener(new java.awt.event.ActionListener() {
+        btCalcularTotal.setText("Calcular Total");
+        btCalcularTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btConfirmarDetalleActionPerformed(evt);
+                btCalcularTotalActionPerformed(evt);
             }
         });
 
@@ -316,15 +322,16 @@ public class frmOrden extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btCalcularTotal)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btEliminarProductos)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(78, 78, 78)
-                                        .addComponent(brIngresarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btConfirmarDetalle)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btEliminarProductos)))
+                                        .addGap(95, 95, 95)
+                                        .addComponent(brIngresarOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel16)
@@ -391,11 +398,11 @@ public class frmOrden extends javax.swing.JFrame {
                             .addComponent(jLabel13))))
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
-                    .addComponent(btConfirmarDetalle)
+                    .addComponent(btCalcularTotal)
                     .addComponent(btEliminarProductos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -419,7 +426,7 @@ public class frmOrden extends javax.swing.JFrame {
                             .addComponent(jLabel19)
                             .addComponent(tfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(brIngresarOrden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -437,10 +444,11 @@ public class frmOrden extends javax.swing.JFrame {
 
     private void brIngresarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brIngresarOrdenActionPerformed
         // TODO add your handling code here:
-        if(esFormularioValido() && tbdetalleOrden.getSelectedRowCount()>0){
+        if(esFormularioValido() && total_calculado){
+            
             System.out.println("numero de productos: "+tbdetalleOrden.getRowCount());
         }else{
-            JOptionPane.showMessageDialog(this,"Faltan datos.","Orden Invalida",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Formulario Invalido.","Orden",JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_brIngresarOrdenActionPerformed
@@ -464,12 +472,18 @@ public class frmOrden extends javax.swing.JFrame {
             frmBuscarProductoOrden buscprod = new frmBuscarProductoOrden(r);
             buscprod.setVisible(true);
         }
+        calcularValores();
     }//GEN-LAST:event_btCargarProductosActionPerformed
 
-    private void btConfirmarDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmarDetalleActionPerformed
+    private void btCalcularTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularTotalActionPerformed
         // TODO add your handling code here:
-        calcularValores();
-    }//GEN-LAST:event_btConfirmarDetalleActionPerformed
+        if(tfRestaurante.getText().equals("") || tfcedula.getText().equals("") || tbdetalleOrden.getRowCount()<1){    
+            JOptionPane.showMessageDialog(this,"Valores incompletos.\nSe requiere Cliente y Productos.","Calculo de Valores",JOptionPane.ERROR_MESSAGE);
+        }else{
+            calcularValores();
+            total_calculado = true;
+        }
+    }//GEN-LAST:event_btCalcularTotalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -485,16 +499,22 @@ public class frmOrden extends javax.swing.JFrame {
     
     private void calcularValores(){
         float subtotal = 0;
+        //calculo de subtotal
         for (int i=0; i<tbdetalleOrden.getRowCount(); i++){
             subtotal = subtotal + Float.parseFloat(tbdetalleOrden.getValueAt(i,3).toString());
-        }
+        }        
         tfSubTotal.setText(String.valueOf(subtotal));
-        
         //descuento
-        float desctotal = Float.valueOf(tfDescuento.toString());
-        float iva12 = (float) ((subtotal - desctotal)*0.12);
+        float descuento = subtotal*(descuento_cliente*0.01f);
+        tfDescuento.setText(String.valueOf(descuento));
+        //iva cero
+        float ivacero = subtotal - descuento;
+        tfivacero.setText(String.valueOf(ivacero));
+        //calculo iva
+        float iva12 = ivacero*0.12f;
         tfiva12.setText(String.valueOf(iva12));
-        float total = subtotal - desctotal +iva12;
+        //calculo de total
+        float total = ivacero + iva12;
         tfTotal.setText(String.valueOf(total));
     }
 
@@ -502,8 +522,8 @@ public class frmOrden extends javax.swing.JFrame {
     private javax.swing.JButton brIngresarOrden;
     private javax.swing.JButton btBuscarCliente;
     private javax.swing.JButton btBuscarRestaurante;
+    private javax.swing.JButton btCalcularTotal;
     private javax.swing.JButton btCargarProductos;
-    private javax.swing.JButton btConfirmarDetalle;
     private javax.swing.JButton btEliminarProductos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
