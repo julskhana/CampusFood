@@ -30,8 +30,6 @@ public class frmOrden extends javax.swing.JFrame {
     public frmOrden() {
         initComponents();
         
-        
-        
         System.out.println("Formulario - Generar Orden");
         
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -445,6 +443,7 @@ public class frmOrden extends javax.swing.JFrame {
     private void brIngresarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brIngresarOrdenActionPerformed
         // TODO add your handling code here:
         if(esFormularioValido() && total_calculado){
+            //
             
             System.out.println("numero de productos: "+tbdetalleOrden.getRowCount());
         }else{
