@@ -7,6 +7,7 @@ package Formularios;
 
 import Objetos.*;
 import bd.ConexionBD;
+import java.awt.Color;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -462,7 +463,7 @@ public class frmOrden extends javax.swing.JFrame {
 
     private void brIngresarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brIngresarOrdenActionPerformed
         // TODO add your handling code here:
-        if(esFormularioValido() && total_calculado){
+        if(esFormularioValido() && total_calculado && cobrar()){
             //ingreso de orden total
             int numero_orden = Integer.valueOf(tfNumeroOrden.getText());
             String fecha = tfFecha.getText();
@@ -503,7 +504,7 @@ public class frmOrden extends javax.swing.JFrame {
             cdo.desconectar();
             //cdo.desconectar();
             System.out.println("numero de productos: "+tbdetalleOrden.getRowCount());
-            JOptionPane.showMessageDialog(this,"Orden Ingresada Exitosamente.","Orden",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Orden Ingresada Exitosamente.","Orden",JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(this,"Formulario Invalido.","Orden",JOptionPane.ERROR_MESSAGE);
@@ -595,6 +596,30 @@ public class frmOrden extends javax.swing.JFrame {
         }
         int op = JOptionPane.showConfirmDialog(this, "Está seguro de eliminar los registros seleccionados?","Eliminación",JOptionPane.YES_NO_OPTION);
         return op==0;
+    }
+    
+    private boolean cobrar(){
+        float saldo_cli = Float.parseFloat(tfSaldo.getText());
+        float total_orden = Float.parseFloat(tfTotal.getText());
+        if(saldo_cli>total_orden){
+            ConexionBD c = new ConexionBD();
+            try{
+                float nuevo_saldo = saldo_cli - total_orden;
+                c.conectar();
+                if(c.cobroCliente(id_cliente, nuevo_saldo)){
+                    System.out.println("Cobro Realizado, Saldo del Cliente "+tfNombres.getText()+" es: $"+nuevo_saldo);
+                }
+                tfSaldo.setForeground(Color.BLACK);
+                c.desconectar();
+            }catch(Exception e){
+                System.out.println("error al procesar cobro. "+e);
+            }
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(this,"Saldo Insuficiente.","Cobro",JOptionPane.ERROR_MESSAGE);
+            tfSaldo.setForeground(Color.RED);
+            return false;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

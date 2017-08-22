@@ -507,8 +507,18 @@ public class ConexionBD {
         }
     }
     
-    public boolean cobroCliente(){
-        
+    public boolean cobroCliente(int id_cliente, float nuevo_saldo){
+        try{
+            PreparedStatement st = null;
+            st = con.prepareStatement("update cliente set saldo = ? where id = ?;");
+            st.setFloat(1,nuevo_saldo);
+            st.setInt(2,id_cliente);
+            st.executeUpdate();
+            st.close();
+            System.out.println("cobro correcto, nuevo saldo: "+nuevo_saldo+" cliente:"+id_cliente);
+        }catch (SQLException e){
+            System.out.println("Error al cobrar cliente - bd "+ e);
+        }
         return false;
     }
     
