@@ -183,6 +183,30 @@ public class frmRestaurante extends javax.swing.JFrame {
 
     private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
         // TODO add your handling code here:
+        if (seleccionEliminacionValida()){
+            //ConexionBase c = new ConexionBase();
+            ConexionBD c = new ConexionBD();
+            try{
+                c.conectar();
+                int filas[] =tbRestaurante.getSelectedRows();
+                    for (int i = 0; i < filas.length; i++) {
+                        int fila = filas[i];
+                        String id = tbRestaurante.getValueAt(fila,0).toString();
+                        /*
+                        if(!c.(Integer.parseInt(id))){
+                            JOptionPane.showMessageDialog(this,"Ocurrió un error en la eliminación","Eliminación",JOptionPane.ERROR_MESSAGE);
+                            return ;
+                        }
+                        */
+                    }
+            }catch(Exception e){
+                System.out.println(e);
+            }
+            c.desconectar();
+        }
+        //refrescando tabla de restaurantes
+        if(formularioConsultaValido()){consultarRegistroR();}
+
     }//GEN-LAST:event_btEliminarActionPerformed
 
     private void btNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNuevoActionPerformed

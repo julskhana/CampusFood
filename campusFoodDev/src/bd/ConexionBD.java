@@ -70,7 +70,7 @@ public class ConexionBD {
             
             System.out.println("Se ingreso el usuario exitosamente...");
             return true;
-        }catch (Exception e){
+        }catch (SQLException e){
             System.out.println("Error al ingresar el usuario\n"+e);
             return false;
         }
@@ -96,8 +96,8 @@ public class ConexionBD {
             rs.close();
             st.close();
         }
-        catch(Exception e){
-            System.out.println(e);
+        catch(SQLException e){
+            System.out.println("Error al consultar usuario. "+ e);
             resultado = false;
         }           
      return resultado; 
@@ -293,8 +293,8 @@ public class ConexionBD {
                 registroR.add(rest);
             }
             System.out.println("restaurantes consultados.");
-        }catch (Exception e){
-            System.out.println("error en consulta de restaurantes.");
+        }catch (SQLException e){
+            System.out.println("error en consulta de restaurantes."+e);
         }
         return registroR;
     }
@@ -316,7 +316,7 @@ public class ConexionBD {
             
             System.out.println("Se ingreso el restaurante exitosamente...");
             return true;
-        }catch (Exception e){
+        }catch (SQLException e){
             System.out.println("Error al ingresar el restaurante\n"+e);
             return false;
         }
@@ -376,6 +376,21 @@ public class ConexionBD {
         }
     }
 
+    private boolean eliminarRestaurante(int id_rest){
+        try{
+            PreparedStatement st = null;
+            st = con.prepareStatement("DELETE FROM restaurante WHERE id = ?;");
+            st.setInt(1,id_rest);
+            st.executeUpdate();
+            st.close();
+            System.out.println("Se elimino el registro.-");
+            return true;
+        }catch(SQLException e){
+            System.out.println("Error al eliminar el registro."+e);
+            return false;
+        }        
+    }
+    
     //PRODUCTOS
     
     public ArrayList<producto> consultarProducto(String busqueda, String tipo){
