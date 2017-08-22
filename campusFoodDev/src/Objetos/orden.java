@@ -22,10 +22,9 @@ public class orden implements Serializable{
     private float iva;
     private float total;
     private int id_cliente;
-    private int id_detalle_orden;
 
     //constructor completo
-    public orden(int id, int numero, String fecha, String descripcion, float subtotal, float iva_cero, float iva, float total, int id_cliente, int id_detalle_orden) {
+    public orden(int id, int numero, String fecha, String descripcion, float subtotal, float iva_cero, float iva, float total, int id_cliente) {
         this.id = id;
         this.numero = numero;
         this.fecha = fecha;
@@ -35,11 +34,10 @@ public class orden implements Serializable{
         this.iva = iva;
         this.total = total;
         this.id_cliente = id_cliente;
-        this.id_detalle_orden = id_detalle_orden;
     }
         
     //constructor para ingresar
-    public orden(int numero, String fecha, String descripcion, float subtotal, float iva_cero, float iva, float total, int id_cliente, int id_detalle_orden) {        
+    public orden(int numero, String fecha, String descripcion, float subtotal, float iva_cero, float iva, float total, int id_cliente) {        
         this.numero = numero;
         this.fecha = fecha;
         this.descripcion = descripcion;
@@ -48,7 +46,6 @@ public class orden implements Serializable{
         this.iva = iva;
         this.total = total;
         this.id_cliente = id_cliente;
-        this.id_detalle_orden = id_detalle_orden;
     }
     
     //constructo vacio
@@ -91,12 +88,6 @@ public class orden implements Serializable{
     public void setId_cliente(int id_cliente) {
         this.id_cliente = id_cliente;
     }
-
-    public void setId_detalle_orden(int id_detalle_orden) {
-        this.id_detalle_orden = id_detalle_orden;
-    }
-    
-    
     
     //getters
 
@@ -135,9 +126,4 @@ public class orden implements Serializable{
     public int getId_cliente() {
         return id_cliente;
     }
-
-    public int getId_detalle_orden() {
-        return id_detalle_orden;
-    }
-    
 }

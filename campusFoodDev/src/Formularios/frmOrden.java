@@ -463,24 +463,6 @@ public class frmOrden extends javax.swing.JFrame {
     private void brIngresarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brIngresarOrdenActionPerformed
         // TODO add your handling code here:
         if(esFormularioValido() && total_calculado){
-            //ingresando orden
-            int cantidad = Integer.parseInt(tbdetalleOrden.getValueAt(0,0).toString());
-            float puni = Float.parseFloat(tbdetalleOrden.getValueAt(0,2).toString());
-            float ptot = Float.parseFloat(tbdetalleOrden.getValueAt(0,3).toString());
-            System.out.println("Detalle orden:");
-            System.out.println("cantidad: "+cantidad+" producto:"+id_producto+" p. uni:"+puni+" p. total:"+ptot);
-            //creacion de detalle orden
-            detalleOrden det_ord = new detalleOrden(cantidad, puni, ptot, id_producto);
-            //ingreso de detalle orden a DB
-            ConexionBD cdo = new ConexionBD();
-            try{
-                cdo.conectar();
-                if(cdo.ingresarDetalleOrden(det_ord)){
-                    System.out.println("Detalle orden ingresada.");}
-            }catch(Exception e){
-                System.out.println("Error al ingresasr detalle orden.");
-            }
-            cdo.desconectar();
             //ingreso de orden total
             int numero_orden = Integer.valueOf(tfNumeroOrden.getText());
             String fecha = tfFecha.getText();
@@ -489,19 +471,40 @@ public class frmOrden extends javax.swing.JFrame {
             float ivacero = Float.valueOf(tfivacero.getText());
             float iva_12 = Float.valueOf(tfiva12.getText());
             float total = Float.valueOf(tfTotal.getText());
-            orden o = new orden(numero_orden, fecha, descripcion, subtotal, ivacero, iva_12, total, id_cliente,numero_orden);
+            orden o = new orden(numero_orden, fecha, descripcion, subtotal, ivacero, iva_12, total, id_cliente);
+            ConexionBD cdo = new ConexionBD();
             //ConexionBD cor = new ConexionBD();
-            /*
             try{
                 cdo.conectar();
-                if(cdo.in){
+                if(cdo.ingresarOrden(o)){
                     System.out.println("Orden ingresada.");}
             }catch(Exception e){
                 System.out.println("Error al ingresasr orden."+e);
             }
-            */
+            
+            //ingresando detalle orden
+            for(int fila=0;fila<tbdetalleOrden.getRowCount();fila++){
+                int cantidad = Integer.parseInt(tbdetalleOrden.getValueAt(fila,0).toString());
+                float puni = Float.parseFloat(tbdetalleOrden.getValueAt(fila,2).toString());
+                float ptot = Float.parseFloat(tbdetalleOrden.getValueAt(fila,3).toString());
+                System.out.println("Detalle orden #"+fila);
+                System.out.println("cantidad: "+cantidad+" producto:"+id_producto+" p. uni:"+puni+" p. total:"+ptot);
+                //creacion de detalle orden
+                detalleOrden det_ord = new detalleOrden(cantidad, puni, ptot, id_producto, Integer.parseInt(tfNumeroOrden.getText()));
+                //ingreso de detalle orden a DB
+                try{
+                    cdo.conectar();
+                    if(cdo.ingresarDetalleOrden(det_ord)){
+                        System.out.println("Detalle orden ingresada.");}
+                }catch(Exception e){
+                    System.out.println("Error al ingresasr detalle orden.");
+                }
+            }
             cdo.desconectar();
+            //cdo.desconectar();
             System.out.println("numero de productos: "+tbdetalleOrden.getRowCount());
+            JOptionPane.showMessageDialog(this,"Orden Ingresada Exitosamente.","Orden",JOptionPane.ERROR_MESSAGE);
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(this,"Formulario Invalido.","Orden",JOptionPane.ERROR_MESSAGE);
         }
@@ -522,8 +525,8 @@ public class frmOrden extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(tfRestaurante.getText().equals("")){
             JOptionPane.showMessageDialog(this,"Debe definir un restaurante","Productos",JOptionPane.ERROR_MESSAGE);
-        }else if(tbdetalleOrden.getRowCount()>0){
-            JOptionPane.showMessageDialog(this,"Solo puede agregar un producto por Orden.","Productos",JOptionPane.ERROR_MESSAGE);
+        //}else if(tbdetalleOrden.getRowCount()>0){
+         //   JOptionPane.showMessageDialog(this,"Solo puede agregar un producto por Orden.","Productos",JOptionPane.ERROR_MESSAGE);
         }else{
             restaurante r = new restaurante(id_restaurante, tfRestaurante.getText());
             frmBuscarProductoOrden buscprod = new frmBuscarProductoOrden(r);

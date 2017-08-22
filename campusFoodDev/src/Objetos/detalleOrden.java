@@ -17,22 +17,25 @@ public class detalleOrden implements Serializable{
     float precio_unitario;
     float precio_total;
     int id_prod;
+    int id_orden;
     
     //constructor
-    public detalleOrden (int id, int cant, float puni, float ptotal, int producto){
+    public detalleOrden (int id, int cant, float puni, float ptotal, int producto, int id_o){
         this.id=id;
         this.cantidad=cant;
         this.precio_unitario=puni;
         this.precio_total=ptotal;
         this.id_prod=producto;
+        this.id_orden=id_o;
     }
     
     //constructor para ingresar
-    public detalleOrden (int cant, float puni, float ptotal, int producto){
+    public detalleOrden (int cant, float puni, float ptotal, int producto, int id_ord){
         this.cantidad=cant;
         this.precio_unitario=puni;
         this.precio_total=ptotal;
         this.id_prod=producto;
+        this.id_orden=id_ord;
     }
     
     //constructor vacio
@@ -59,6 +62,10 @@ public class detalleOrden implements Serializable{
     public void setId_prod(int id_prod) {
         this.id_prod = id_prod;
     }
+
+    public void setId_orden(int id_orden) {
+        this.id_orden = id_orden;
+    }
     
     //getters
 
@@ -82,5 +89,8 @@ public class detalleOrden implements Serializable{
         return id_prod;
     }
 
-    
+    public int getId_orden() {
+        return id_orden;
+    }
+
 }
