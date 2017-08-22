@@ -36,7 +36,7 @@ public class orden implements Serializable{
         this.id_cliente = id_cliente;
     }
         
-    //constructor para ingresar
+    //constructor para ingresar y consultar
     public orden(int numero, String fecha, String descripcion, float subtotal, float iva_cero, float iva, float total, int id_cliente) {        
         this.numero = numero;
         this.fecha = fecha;

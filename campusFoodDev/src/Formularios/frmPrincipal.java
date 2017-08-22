@@ -62,6 +62,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         miProductos = new javax.swing.JMenuItem();
         mProcesos = new javax.swing.JMenu();
         miOrden = new javax.swing.JMenuItem();
+        mnConsultaOrdenes = new javax.swing.JMenuItem();
         mAyuda = new javax.swing.JMenu();
         miAcercaDe = new javax.swing.JMenuItem();
 
@@ -154,6 +155,14 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
         mProcesos.add(miOrden);
+
+        mnConsultaOrdenes.setText("Mantenimiento Ordenes");
+        mnConsultaOrdenes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnConsultaOrdenesActionPerformed(evt);
+            }
+        });
+        mProcesos.add(mnConsultaOrdenes);
 
         jMenuBar1.add(mProcesos);
 
@@ -263,6 +272,12 @@ public class frmPrincipal extends javax.swing.JFrame {
         micuenta.setVisible(true);
     }//GEN-LAST:event_miCuentaActionPerformed
 
+    private void mnConsultaOrdenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnConsultaOrdenesActionPerformed
+        // TODO add your handling code here:
+        frmConsultarOrdenes consulta_orden = new frmConsultarOrdenes();
+        consulta_orden.setVisible(true);
+    }//GEN-LAST:event_mnConsultaOrdenesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -286,6 +301,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem miRestaurantes;
     private javax.swing.JMenuItem miSalir;
     private javax.swing.JMenuItem miUsuario;
+    private javax.swing.JMenuItem mnConsultaOrdenes;
     private javax.swing.JTextField tfusuarioActivo;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,7 @@ package Principal;
 
 import Formularios.*;
 import Objetos.usuario;
+import bd.ConexionBD;
 
 /**
  * @author julian
@@ -28,5 +29,6 @@ public class principal {
         usuario u = new usuario(11,"bajana","","A","A","2017-07-05 19:18:58");
         frmPrincipal frmP = new frmPrincipal(u);
         frmP.setVisible(true);
+        
     }
 }

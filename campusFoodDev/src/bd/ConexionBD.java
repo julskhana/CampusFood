@@ -44,8 +44,9 @@ public class ConexionBD {
             this.con.close();
             return(true);
         }
-        catch(Exception e)
+        catch(SQLException e)
         {
+            System.out.println("Error al Desconectar. "+e);
             return(false);
         }    
     }
@@ -260,8 +261,8 @@ public class ConexionBD {
             
             System.out.println("Cliente Ingresado a DB...");
             return true;
-        }catch (Exception e){
-            System.out.println("Error al ingrear cliente a DB...");
+        }catch (SQLException e){
+            System.out.println("Error al ingrear cliente a DB... " +e);
             return false;
         }
     }
@@ -522,6 +523,56 @@ public class ConexionBD {
         return false;
     }
     
+    public String obtenerNombreCliente(int id_cliente){
+        String nombre_cliente = "";
+        try{
+        //Statement st = this.con.createStatement();
+        
+        Statement st = this.con.createStatement();
+        ResultSet rs = null;
+            
+        rs = st.executeQuery("SELECT * FROM cliente where id = "+id_cliente+";");
+        if(rs.next()){
+            String nom = rs.getString("nombres");
+            String ape = rs.getString("apellidos");
+            nombre_cliente.concat(nom+" "+ape);
+            System.out.println("nombre obtenido: "+nombre_cliente);
+        }
+        }catch(SQLException e){
+            System.out.println("error al obtener nombre cliente bd. "+e);
+        }
+        return nombre_cliente.toString();
+    }
+    
+    public ArrayList<orden> consultarOrdenes(String busqueda, String tipo){
+        ArrayList<orden> registro = new ArrayList<orden>();
+        try{
+            Statement st = this.con.createStatement();
+            ResultSet rs = null;
+            if(tipo.equalsIgnoreCase("orden")){
+                rs = st.executeQuery("SELECT * FROM orden;");
+            }else{
+                rs = st.executeQuery("SELECT * FROM orden WHERE "+tipo+"="+busqueda+";");
+            }
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String fecha = rs.getString("fecha");
+                String desc = rs.getString("descripcion");
+                float subt = rs.getFloat("subtotal");
+                float iva0 = rs.getFloat("iva_cero");
+                float iva12 = rs.getFloat("iva");
+                float total = rs.getFloat("total");
+                int cli = rs.getInt("id_cliente");
+                
+                orden ord = new orden(id, id, fecha, desc, subt, iva0, iva12, total, cli);
+                registro.add(ord);
+            }
+            System.out.println("ordenes consultadas.");
+        }catch (SQLException e){
+            System.out.println("error en consulta de ordenes.\n"+e);
+        }
+        return registro;
+    }
     
     //FUNCIONES DE PROYECTO ANTERIOR
     /*

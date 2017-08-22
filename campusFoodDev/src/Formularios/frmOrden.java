@@ -48,11 +48,10 @@ public class frmOrden extends javax.swing.JFrame {
             int numero_orden = num.numeroUltimaOrden();
             tfNumeroOrden.setText(String.valueOf(numero_orden+1));
         }catch(Exception e){
-            System.out.println("error al cargar numero de orden");
+            System.out.println("error al cargar numero de orden. "+e);
         }
         num.desconectar();
                 
-        
         DefaultTableModel dtm = (DefaultTableModel)frmOrden.tbdetalleOrden.getModel();
         dtm.setRowCount(0);
     }
@@ -508,7 +507,6 @@ public class frmOrden extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this,"Error.","Orden",JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_brIngresarOrdenActionPerformed
 
     private void tfiva12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfiva12ActionPerformed
