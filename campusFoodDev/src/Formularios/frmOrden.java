@@ -482,7 +482,6 @@ public class frmOrden extends javax.swing.JFrame {
             }catch(Exception e){
                 System.out.println("Error al ingresasr orden."+e);
             }
-            
             //ingresando detalle orden
             for(int fila=0;fila<tbdetalleOrden.getRowCount();fila++){
                 int cantidad = Integer.parseInt(tbdetalleOrden.getValueAt(fila,0).toString());
@@ -498,7 +497,7 @@ public class frmOrden extends javax.swing.JFrame {
                     if(cdo.ingresarDetalleOrden(det_ord)){
                         System.out.println("Detalle orden ingresada.");}
                 }catch(Exception e){
-                    System.out.println("Error al ingresasr detalle orden.");
+                    System.out.println("Error al ingresasr detalle orden."+e);
                 }
             }
             cdo.desconectar();
@@ -507,7 +506,7 @@ public class frmOrden extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Orden Ingresada Exitosamente.","Orden",JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }else{
-            JOptionPane.showMessageDialog(this,"Formulario Invalido.","Orden",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Error.","Orden",JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_brIngresarOrdenActionPerformed
