@@ -6,7 +6,7 @@ import Objetos.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ConexionBD {
+public class ConexionBD{
     
        private Connection con;
        //driver netbeans
